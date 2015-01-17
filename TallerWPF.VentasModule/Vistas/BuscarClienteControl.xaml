@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="TallerWPF.VentasModule.Vistas.BuscarClienteControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:infra="clr-namespace:TallerWPF.Infraestructura;assembly=TallerWPF.Infraestructura"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <infra:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+            <infra:FalseToVisibilityConverter x:Key="falseToVisibilityConverter"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/TallerWPF.Infraestructura;component/RecursosYEstilos/Brushes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Seleccionar Cliente" Foreground="{StaticResource DefaultForegroundBrush}" FontSize="10" FontWeight="Bold" 
+               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalContentAlignment="Center"
+               Margin="4"/>
+
+        <Label Content="RFC" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Margin="2"
+               Visibility="{Binding BuscarPorIdCliente, Converter={StaticResource falseToVisibilityConverter}}"/>
+        <telerik:RadAutoCompleteBox ItemsSource="{Binding CatalogoClientes}" SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}" 
+                                    Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                                    Margin="2" Width="300" MaxWidth="300"
+                                    FontSize="11" FontWeight="Bold"
+                                    DisplayMemberPath="Rfc"
+                                    SelectionMode="Single"
+                                    Visibility="{Binding BuscarPorIdCliente, Converter={StaticResource falseToVisibilityConverter}}"
+                                    HorizontalAlignment="Left">
+            <telerik:RadAutoCompleteBox.DropDownItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding IdCliente}"/>
+                        <Label Content="{Binding Nombre}" Margin="6,0,0,0"/>
+                        <Label Content="{Binding RFC}" Margin="6,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </telerik:RadAutoCompleteBox.DropDownItemTemplate>
+        </telerik:RadAutoCompleteBox>
+
+        <Label Content="No Cliente" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Margin="2"
+               Visibility="{Binding BuscarPorIdCliente, Converter={StaticResource boolToVisibilityConverter}}"/>
+        <telerik:RadAutoCompleteBox ItemsSource="{Binding CatalogoClientes}" 
+                                    Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                                    Margin="2" Width="300" MaxWidth="300"
+                                    SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}"
+                                    DisplayMemberPath="IdCliente"
+                                    SelectionMode="Single"
+                                    FontSize="11" FontWeight="Bold"
+                                    Visibility="{Binding BuscarPorIdCliente, Converter={StaticResource boolToVisibilityConverter}}"
+                                    HorizontalAlignment="Left">
+            <telerik:RadAutoCompleteBox.DropDownItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding IdCliente}"/>
+                        <Label Content="{Binding Nombre}" Margin="6,0,0,0"/>
+                        <Label Content="{Binding RFC}" Margin="6,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </telerik:RadAutoCompleteBox.DropDownItemTemplate>
+        </telerik:RadAutoCompleteBox>
+
+        <CheckBox Content="Buscar por Número de Cliente" IsChecked="{Binding BuscarPorIdCliente, Mode=TwoWay}"
+                  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"/>
+
+        <Label Content="Nombre" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0" Margin="2"></Label>
+        <Label Content="{Binding ClienteSeleccionado.Nombre}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="2" FontWeight="Bold"/>
+        
+        <Label Content="Dirección" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="2"></Label>
+        <Label Content="{Binding ClienteSeleccionado.Direccion}" Grid.Row="4" Grid.Column="1"  Margin="2" FontWeight="Bold"></Label>
+        
+        <Label Content="Ciudad" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="0" Margin="2"></Label>
+        <Label Content="{Binding ClienteSeleccionado.IdCiudad}" Grid.Row="5" Grid.Column="1" Margin="2" FontWeight="Bold"></Label>
+
+        <Separator Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4"/>
+
+
+    </Grid>
+</UserControl>

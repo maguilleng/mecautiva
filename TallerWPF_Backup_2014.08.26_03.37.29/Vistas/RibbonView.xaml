@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="TallerWPF.Vistas.RibbonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cal="http://www.codeplex.com/prism"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <telerik:RadRibbonView x:Name="MenuPrincipal" ApplicationButtonContent="Configuración" 
+                           UseLayoutRounding="True" ApplicationName="">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="SelectionChanged">
+                <cal:InvokeCommandAction Command="{Binding TabMenuCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <telerik:RadRibbonView.QuickAccessToolBar>
+            <telerik:QuickAccessToolBar>
+            </telerik:QuickAccessToolBar>
+        </telerik:RadRibbonView.QuickAccessToolBar>
+        <telerik:RadRibbonTab Header="Ventas" Tag="ModuloVentas">
+            <telerik:RadRibbonGroup Header="Opciones de Ventas">
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"
+                                            LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
+                                            Size="Large"
+                                            Text="Nueva Venta"
+                                             Command="{Binding BotonMenuCommand}"
+                                             CommandParameter="NuevaVenta">
+
+                </telerik:RadRibbonButton>
+            </telerik:RadRibbonGroup>
+            <telerik:RadRibbonGroup Header="Venta Actual" AlternationCount="1">
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium" 
+                                        LargeImage="/TallerWPF.Infraestructura;component/RecursosYEstilos/Imagenes/Ventas/EliminarProducto_64.png"
+                                         SmallImage="/TallerWPF.Infraestructura;component/RecursosYEstilos/Imagenes/Ventas/EliminarProducto_64.png"
+                                         Size="Medium"
+                                         Text="Limpiar Productos"
+                                         telerik:ScreenTip.Title="Limpiar Productos"
+                                         telerik:ScreenTip.Description="Limpiar los Productos Agregados a la Venta Actual"
+                                         Command="{Binding BotonMenuCommand}"
+                                         CommandParameter="LimpiarProductosVentaActual"/>
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium" 
+                                        LargeImage="/Recursos/Imagenes/Ventas/discount-icon.png"
+                                         SmallImage="/Recursos/Imagenes/Ventas/discount-icon.png"
+                                         Size="Medium"
+                                         Text="Aplicar Descuento"/>
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"
+                                        LargeImage="/Recursos/Imagenes/Ventas/pago_64_64.png"
+                                         SmallImage="/Recursos/Imagenes/Ventas/pago_64_64.png"
+                                         Size="Medium"
+                                         Text="Pagar"/>
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium" 
+                                        LargeImage="/Recursos/Imagenes/Comunes/print.png"
+                                         SmallImage="/Recursos/Imagenes/Comunes/imprimir.png"
+                                         Size="Medium"
+                                         Text="Imprimir Venta"/>
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium" 
+                                        LargeImage="/Recursos/Imagenes/Ventas/FacturaLarge.png"
+                                         SmallImage="/Recursos/Imagenes/Ventas/FacturaSmall.png"
+                                         Size="Medium"
+                                         Text="Generar Factura"/>
+            </telerik:RadRibbonGroup>
+        </telerik:RadRibbonTab>
+        <telerik:RadRibbonTab Header="Inventarios" Tag="ModuloInventarios"/>
+        <telerik:RadRibbonTab Header="Servicios" Tag="ModuloServicios"/>
+        <telerik:RadRibbonTab Header="Administración" Tag="ModuloServicios"/>
+        <telerik:RadRibbonTab Header="Tablero" Tag="ModuloTableroControl"/>
+    </telerik:RadRibbonView>
+</UserControl>

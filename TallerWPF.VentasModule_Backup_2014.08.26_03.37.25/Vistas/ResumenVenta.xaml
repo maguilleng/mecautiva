@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="TallerWPF.VentasModule.Vistas.ResumenVenta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/TallerWPF.Infraestructura;component/RecursosYEstilos/Brushes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="Subtotal" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" Margin="2"
+               FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+        <Label Content="{Binding VentaActual.Subtotal}" Grid.Row="0" Grid.Column="1" Margin="2"
+               FontSize="20" FontWeight="Bold" Foreground="{StaticResource StrongBrush}"
+               VerticalAlignment="Center"/>
+
+        <Label Content="IVA" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2" Margin="2"
+               FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+        <Label Content="{Binding VentaActual.Iva}" Grid.Row="0" Grid.Column="3" Margin="2"
+               FontSize="20" FontWeight="Bold" Foreground="{StaticResource StrongBrush}"
+               VerticalAlignment="Center"/>
+
+        <Label Content="TOTAL" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="4" Margin="2"
+               FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+        <Label Content="{Binding VentaActual.Total}" Grid.Row="0" Grid.Column="5" Margin="2"
+               FontSize="20" FontWeight="Bold" Foreground="{StaticResource AccentDarkBrush}"
+               VerticalAlignment="Center"/>
+
+        
+    </Grid>
+</UserControl>

@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="TallerWPF.VentasModule.Vistas.SeleccionarProductos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:infra="clr-namespace:TallerWPF.Infraestructura;assembly=TallerWPF.Infraestructura"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="300" Margin="6">
+    <UserControl.Resources>        
+        <ResourceDictionary>
+            <infra:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+            <infra:FalseToVisibilityConverter x:Key="falseToVisibilityConverter"/>
+            <infra:ExistenciaAColorBrushConverter x:Key="existenciaAcolorBrushConverter"/>
+            
+            <DataTemplate x:Key="BuscarProductoPorCodigoTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding Codigo}" Grid.Column="0"/>
+                    <Label Content="Existencia:" Grid.Column="1"/>
+                    <Label Content="{Binding Existencia}" Foreground="{Binding Existencia, Converter={StaticResource existenciaAcolorBrushConverter}}" Grid.Column="2"/>
+                </Grid>
+            </DataTemplate>
+            
+            <DataTemplate x:Key="BuscarProductoPorDescripcionTemplate">
+                <StackPanel Orientation="Horizontal" Margin="2">
+                    <Label Content="{Binding Código}"/>
+                    <Label Content="Existencia:" Margin="15,0,0,0"/>
+                    <Label Content="{Binding Existencia}" Margin="5, 0,0,0"/>
+                </StackPanel>
+            </DataTemplate>            
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/TallerWPF.Infraestructura;component/RecursosYEstilos/Brushes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border >
+        <Border.Background>
+            <SolidColorBrush Color="{StaticResource PrimaryColor}"></SolidColorBrush>
+        </Border.Background>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Agregar Producto" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               Foreground="{StaticResource DefaultForegroundBrush}" FontSize="10" FontWeight="Bold" Margin="4" HorizontalContentAlignment="Center"></Label>
+
+            <Label Content="Código" Grid.Row="1" Grid.Column="0" Margin="2" HorizontalAlignment="Right" Visibility="{Binding BuscarPorDescripcionProducto, Converter={StaticResource falseToVisibilityConverter}}"/>
+            <Label Content="Descripción" Grid.Row="1" Grid.Column="0" Margin="2" HorizontalAlignment="Right" Visibility="{Binding BuscarPorDescripcionProducto, Converter={StaticResource boolToVisibilityConverter}}"/>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <telerik:RadAutoCompleteBox ItemsSource="{Binding Productos}"
+                    SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}"
+                    FontWeight="Bold" FontSize="12" Margin="2" SelectionMode="Single"
+                    Visibility="{Binding BuscarPorDescripcionProducto, Converter={StaticResource falseToVisibilityConverter}}"
+                    HorizontalAlignment="Stretch"
+                    Grid.Row="0" Grid.Column="0"
+                    DisplayMemberPath="Codigo"
+                    DropDownItemTemplate="{StaticResource BuscarProductoPorCodigoTemplate}"/>
+                
+                <telerik:RadAutoCompleteBox ItemsSource="{Binding Productos}" DisplayMemberPath="Descripcion" 
+                    SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}"
+                    Grid.Row="0" Grid.Column="0" SelectionMode="Single" 
+                    Margin="2" FontWeight="Bold" FontSize="12"
+                    Visibility="{Binding BuscarPorDescripcionProducto, Converter={StaticResource boolToVisibilityConverter}}"
+                    HorizontalAlignment="Stretch"/>
+                
+                <CheckBox Content="Por Descripción" HorizontalAlignment="Right"
+                          Grid.Row="0" Grid.Column="1"
+                          IsChecked="{Binding BuscarPorDescripcionProducto, Mode=TwoWay}"/>
+            </Grid>                                              
+
+            <Label Content="Descripción" Grid.Row="2" Grid.Column="0" Margin="2" HorizontalAlignment="Right"></Label>
+            <Label Content="{Binding ProductoSeleccionado.Descripcion}" Grid.Row="2" Grid.Column="1" 
+                 Margin="2" FontWeight="Bold" FontSize="12"/>
+
+            <Label Content="Precio Unitario" Grid.Row="3" Grid.Column="0" Margin="2" HorizontalAlignment="Right"></Label>
+            <Label Content="{Binding ProductoSeleccionado.PrecioUnitario}" Grid.Row="3" Grid.Column="1"
+                Margin="2" FontWeight="Bold" FontSize="12"/>
+
+            <Label Content="Marca" Grid.Row="4" Grid.Column="0" Margin="2" HorizontalAlignment="Right"></Label>
+            <Label Content="{Binding ProductoSeleccionado.Marca}" Grid.Row="4" Grid.Column="1" 
+                 Margin="2" FontWeight="Bold" FontSize="12"/>
+
+            <Label Content="Modelo" Grid.Row="5" Grid.Column="0" Margin="2" HorizontalAlignment="Right"></Label>
+            <Label Content="{Binding ProductoSeleccionado.Modelo}" Grid.Row="5" Grid.Column="1" 
+                 Margin="2" FontWeight="Bold" FontSize="12"/>
+
+            <Label Content="Categoría" Grid.Row="6" Grid.Column="0" Margin="2" HorizontalAlignment="Right"></Label>
+            <Label Content="{Binding ProductoSeleccionado.Categoria}" Grid.Row="6" Grid.Column="1" 
+                 Margin="2" FontWeight="Bold" FontSize="12"/>
+        </Grid>
+    </Border>
+    
+</UserControl>

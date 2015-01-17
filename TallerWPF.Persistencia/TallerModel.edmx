@@ -1,0 +1,1237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PuntoVentaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PuntoVentaModelStoreContainer">
+          <EntitySet Name="C_Clientes" EntityType="PuntoVentaModel.Store.C_Clientes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="C_FormasPago" EntityType="PuntoVentaModel.Store.C_FormasPago" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="C_Marcas" EntityType="PuntoVentaModel.Store.C_Marcas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="C_Servicios" EntityType="PuntoVentaModel.Store.C_Servicios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="C_TiposPersona" EntityType="PuntoVentaModel.Store.C_TiposPersona" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="C_TiposServicios" EntityType="PuntoVentaModel.Store.C_TiposServicios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="C_Vehiculos" EntityType="PuntoVentaModel.Store.C_Vehiculos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Facturas" EntityType="PuntoVentaModel.Store.Facturas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Inventario" EntityType="PuntoVentaModel.Store.Inventario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Pagos" EntityType="PuntoVentaModel.Store.Pagos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PagosDetalle" EntityType="PuntoVentaModel.Store.PagosDetalle" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Precios" EntityType="PuntoVentaModel.Store.Precios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Ventas" EntityType="PuntoVentaModel.Store.Ventas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VentasDetalle" EntityType="PuntoVentaModel.Store.VentasDetalle" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_C_Clientes_C_TiposPersona" Association="PuntoVentaModel.Store.FK_C_Clientes_C_TiposPersona">
+            <End Role="C_TiposPersona" EntitySet="C_TiposPersona" />
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Servicios_C_Marcas" Association="PuntoVentaModel.Store.FK_C_Servicios_C_Marcas">
+            <End Role="C_Marcas" EntitySet="C_Marcas" />
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Servicios_C_TiposServicios" Association="PuntoVentaModel.Store.FK_C_Servicios_C_TiposServicios">
+            <End Role="C_TiposServicios" EntitySet="C_TiposServicios" />
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Vehiculos_C_Clientes" Association="PuntoVentaModel.Store.FK_C_Vehiculos_C_Clientes">
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+            <End Role="C_Vehiculos" EntitySet="C_Vehiculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_Ventas" Association="PuntoVentaModel.Store.FK_Facturas_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventario_C_Servicios" Association="PuntoVentaModel.Store.FK_Inventario_C_Servicios">
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Ventas" Association="PuntoVentaModel.Store.FK_Pagos_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagosDetalle_C_FormasPago" Association="PuntoVentaModel.Store.FK_PagosDetalle_C_FormasPago">
+            <End Role="C_FormasPago" EntitySet="C_FormasPago" />
+            <End Role="PagosDetalle" EntitySet="PagosDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagosDetalle_Pagos" Association="PuntoVentaModel.Store.FK_PagosDetalle_Pagos">
+            <End Role="Pagos" EntitySet="Pagos" />
+            <End Role="PagosDetalle" EntitySet="PagosDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Precios_C_Servicios" Association="PuntoVentaModel.Store.FK_Precios_C_Servicios">
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+            <End Role="Precios" EntitySet="Precios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventas_C_Clientes" Association="PuntoVentaModel.Store.FK_Ventas_C_Clientes">
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventas_C_Vehiculos" Association="PuntoVentaModel.Store.FK_Ventas_C_Vehiculos">
+            <End Role="C_Vehiculos" EntitySet="C_Vehiculos" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentasDetalle_C_Servicios" Association="PuntoVentaModel.Store.FK_VentasDetalle_C_Servicios">
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+            <End Role="VentasDetalle" EntitySet="VentasDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentasDetalle_Ventas" Association="PuntoVentaModel.Store.FK_VentasDetalle_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="VentasDetalle" EntitySet="VentasDetalle" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C_Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RFC" Type="nvarchar" Nullable="false" MaxLength="13" />
+          <Property Name="NumeroCliente" Type="nvarchar" MaxLength="10" />
+          <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="IdTipoPersona" Type="int" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="250" />
+          <Property Name="IdCiudad" Type="int" />
+          <Property Name="CodigoPostal" Type="int" />
+          <Property Name="IdMunicipio" Type="int" Nullable="false" />
+          <Property Name="Movil" Type="float" />
+          <Property Name="Casa" Type="float" />
+          <Property Name="Trabajo" Type="float" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+        </EntityType>
+        <EntityType Name="C_FormasPago">
+          <Key>
+            <PropertyRef Name="IdFormaPago" />
+          </Key>
+          <Property Name="IdFormaPago" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Mnemonico" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+        </EntityType>
+        <EntityType Name="C_Marcas">
+          <Key>
+            <PropertyRef Name="IdMarca" />
+          </Key>
+          <Property Name="IdMarca" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Clave" Type="nvarchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+        </EntityType>
+        <EntityType Name="C_Servicios">
+          <Key>
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdServicio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="IdUnidadMedida" Type="int" Nullable="false" />
+          <Property Name="Serie" Type="nvarchar" MaxLength="50" />
+          <Property Name="SeAlmacena" Type="bit" />
+          <Property Name="SeCompra" Type="bit" />
+          <Property Name="SeVende" Type="bit" />
+          <Property Name="IdMarca" Type="int" Nullable="false" />
+          <Property Name="IdTipoServicio" Type="int" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="C_TiposPersona">
+          <Key>
+            <PropertyRef Name="IdTipoPersona" />
+          </Key>
+          <Property Name="IdTipoPersona" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Mnemonico" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+        </EntityType>
+        <EntityType Name="C_TiposServicios">
+          <Key>
+            <PropertyRef Name="IdTipoServicio" />
+          </Key>
+          <Property Name="IdTipoServicio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+          <Property Name="Estatus" Type="int" />
+        </EntityType>
+        <EntityType Name="C_Vehiculos">
+          <Key>
+            <PropertyRef Name="IdVehiculo" />
+          </Key>
+          <Property Name="IdVehiculo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Placas" Type="nvarchar" MaxLength="10" />
+          <Property Name="Marca" Type="nvarchar" MaxLength="40" />
+          <Property Name="IdTipo" Type="int" Nullable="false" />
+          <Property Name="Linea" Type="nvarchar" MaxLength="50" />
+          <Property Name="Modelo" Type="int" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoEconomico" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+        </EntityType>
+        <EntityType Name="Facturas">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdVenta" Type="int" Nullable="false" />
+          <Property Name="FechaEmision" Type="date" Nullable="false" />
+          <Property Name="FechaCertificacion" Type="date" Nullable="false" />
+          <Property Name="CertificadoEmisor" Type="bigint" Nullable="false" />
+          <Property Name="CertificadoSAT" Type="bigint" Nullable="false" />
+          <Property Name="CadenaOriginalCertificacionSAT" Type="nvarchar" MaxLength="500" />
+          <Property Name="SelloDigitalEmisor" Type="nvarchar" MaxLength="500" />
+          <Property Name="SelloDigitalSAT" Type="nvarchar" MaxLength="500" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+        </EntityType>
+        <EntityType Name="Inventario">
+          <Key>
+            <PropertyRef Name="IdInventario" />
+          </Key>
+          <Property Name="IdInventario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdServicio" Type="int" Nullable="false" />
+          <Property Name="PrecioCompra" Type="float" Nullable="false" />
+          <Property Name="PrecioVenta" Type="float" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="FechaCompra" Type="date" Nullable="false" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+          <Property Name="Estatus" Type="int" />
+        </EntityType>
+        <EntityType Name="Pagos">
+          <Key>
+            <PropertyRef Name="IdPago" />
+          </Key>
+          <Property Name="IdPago" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdVenta" Type="int" Nullable="false" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+          <Property Name="Estatus" Type="int" />
+        </EntityType>
+        <EntityType Name="PagosDetalle">
+          <Key>
+            <PropertyRef Name="IdPagoDetalle" />
+          </Key>
+          <Property Name="IdPagoDetalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdPago" Type="int" Nullable="false" />
+          <Property Name="IdFormaPago" Type="int" Nullable="false" />
+          <Property Name="Institucion" Type="nvarchar" MaxLength="250" />
+          <Property Name="Referencia" Type="nvarchar" MaxLength="150" />
+          <Property Name="Cantidad" Type="float" Nullable="false" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+        </EntityType>
+        <EntityType Name="Precios">
+          <Key>
+            <PropertyRef Name="IdPrecio" />
+          </Key>
+          <Property Name="IdPrecio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdServicio" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="float" Nullable="false" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+          <Property Name="Estatus" Type="int" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="IdVenta" />
+          </Key>
+          <Property Name="IdVenta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Folio" Type="nvarchar" MaxLength="50" />
+          <Property Name="Subtotal" Type="float" Nullable="false" />
+          <Property Name="IVA" Type="float" Nullable="false" />
+          <Property Name="Total" Type="float" Nullable="false" />
+          <Property Name="TotalLetras" Type="nvarchar" MaxLength="550" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="IdVehiculo" Type="int" />
+          <Property Name="Kilometraje" Type="int" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+          <Property Name="Estatus" Type="int" />
+        </EntityType>
+        <EntityType Name="VentasDetalle">
+          <Key>
+            <PropertyRef Name="IdVentaDetalle" />
+          </Key>
+          <Property Name="IdVentaDetalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdVenta" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="float" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="float" Nullable="false" />
+          <Property Name="Importe" Type="float" Nullable="false" />
+          <Property Name="IdServicio" Type="int" Nullable="false" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
+          <Property Name="Estatus" Type="int" />
+        </EntityType>
+        <Association Name="FK_C_Clientes_C_TiposPersona">
+          <End Role="C_TiposPersona" Type="PuntoVentaModel.Store.C_TiposPersona" Multiplicity="1" />
+          <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_TiposPersona">
+              <PropertyRef Name="IdTipoPersona" />
+            </Principal>
+            <Dependent Role="C_Clientes">
+              <PropertyRef Name="IdTipoPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Servicios_C_Marcas">
+          <End Role="C_Marcas" Type="PuntoVentaModel.Store.C_Marcas" Multiplicity="1" />
+          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Marcas">
+              <PropertyRef Name="IdMarca" />
+            </Principal>
+            <Dependent Role="C_Servicios">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Servicios_C_TiposServicios">
+          <End Role="C_TiposServicios" Type="PuntoVentaModel.Store.C_TiposServicios" Multiplicity="0..1" />
+          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_TiposServicios">
+              <PropertyRef Name="IdTipoServicio" />
+            </Principal>
+            <Dependent Role="C_Servicios">
+              <PropertyRef Name="IdTipoServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Vehiculos_C_Clientes">
+          <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="1" />
+          <End Role="C_Vehiculos" Type="PuntoVentaModel.Store.C_Vehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="C_Vehiculos">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_Ventas">
+          <End Role="Ventas" Type="PuntoVentaModel.Store.Ventas" Multiplicity="1" />
+          <End Role="Facturas" Type="PuntoVentaModel.Store.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="IdVenta" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventario_C_Servicios">
+          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="1" />
+          <End Role="Inventario" Type="PuntoVentaModel.Store.Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Servicios">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Ventas">
+          <End Role="Ventas" Type="PuntoVentaModel.Store.Ventas" Multiplicity="1" />
+          <End Role="Pagos" Type="PuntoVentaModel.Store.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="IdVenta" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="IdVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagosDetalle_C_FormasPago">
+          <End Role="C_FormasPago" Type="PuntoVentaModel.Store.C_FormasPago" Multiplicity="1" />
+          <End Role="PagosDetalle" Type="PuntoVentaModel.Store.PagosDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_FormasPago">
+              <PropertyRef Name="IdFormaPago" />
+            </Principal>
+            <Dependent Role="PagosDetalle">
+              <PropertyRef Name="IdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagosDetalle_Pagos">
+          <End Role="Pagos" Type="PuntoVentaModel.Store.Pagos" Multiplicity="1" />
+          <End Role="PagosDetalle" Type="PuntoVentaModel.Store.PagosDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pagos">
+              <PropertyRef Name="IdPago" />
+            </Principal>
+            <Dependent Role="PagosDetalle">
+              <PropertyRef Name="IdPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Precios_C_Servicios">
+          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="1" />
+          <End Role="Precios" Type="PuntoVentaModel.Store.Precios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Servicios">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="Precios">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventas_C_Clientes">
+          <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="1" />
+          <End Role="Ventas" Type="PuntoVentaModel.Store.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventas_C_Vehiculos">
+          <End Role="C_Vehiculos" Type="PuntoVentaModel.Store.C_Vehiculos" Multiplicity="0..1" />
+          <End Role="Ventas" Type="PuntoVentaModel.Store.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Vehiculos">
+              <PropertyRef Name="IdVehiculo" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="IdVehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentasDetalle_C_Servicios">
+          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="1" />
+          <End Role="VentasDetalle" Type="PuntoVentaModel.Store.VentasDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Servicios">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="VentasDetalle">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentasDetalle_Ventas">
+          <End Role="Ventas" Type="PuntoVentaModel.Store.Ventas" Multiplicity="1" />
+          <End Role="VentasDetalle" Type="PuntoVentaModel.Store.VentasDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="IdVenta" />
+            </Principal>
+            <Dependent Role="VentasDetalle">
+              <PropertyRef Name="IdVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PuntoVentaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PuntoVentaEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="C_Clientes" EntityType="PuntoVentaModel.C_Clientes" />
+          <EntitySet Name="C_FormasPago" EntityType="PuntoVentaModel.C_FormasPago" />
+          <EntitySet Name="C_Marcas" EntityType="PuntoVentaModel.C_Marcas" />
+          <EntitySet Name="C_Servicios" EntityType="PuntoVentaModel.C_Servicios" />
+          <EntitySet Name="C_TiposPersona" EntityType="PuntoVentaModel.C_TiposPersona" />
+          <EntitySet Name="C_TiposServicios" EntityType="PuntoVentaModel.C_TiposServicios" />
+          <EntitySet Name="C_Vehiculos" EntityType="PuntoVentaModel.C_Vehiculos" />
+          <EntitySet Name="Facturas" EntityType="PuntoVentaModel.Facturas" />
+          <EntitySet Name="Inventario" EntityType="PuntoVentaModel.Inventario" />
+          <EntitySet Name="Pagos" EntityType="PuntoVentaModel.Pagos" />
+          <EntitySet Name="PagosDetalle" EntityType="PuntoVentaModel.PagosDetalle" />
+          <EntitySet Name="Precios" EntityType="PuntoVentaModel.Precios" />
+          <EntitySet Name="Ventas" EntityType="PuntoVentaModel.Ventas" />
+          <AssociationSet Name="FK_C_Clientes_C_TiposPersona" Association="PuntoVentaModel.FK_C_Clientes_C_TiposPersona">
+            <End Role="C_TiposPersona" EntitySet="C_TiposPersona" />
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventas_C_Clientes" Association="PuntoVentaModel.FK_Ventas_C_Clientes">
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagosDetalle_C_FormasPago" Association="PuntoVentaModel.FK_PagosDetalle_C_FormasPago">
+            <End Role="C_FormasPago" EntitySet="C_FormasPago" />
+            <End Role="PagosDetalle" EntitySet="PagosDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Servicios_C_Marcas" Association="PuntoVentaModel.FK_C_Servicios_C_Marcas">
+            <End Role="C_Marcas" EntitySet="C_Marcas" />
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Servicios_C_TiposServicios" Association="PuntoVentaModel.FK_C_Servicios_C_TiposServicios">
+            <End Role="C_TiposServicios" EntitySet="C_TiposServicios" />
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventario_C_Servicios" Association="PuntoVentaModel.FK_Inventario_C_Servicios">
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Precios_C_Servicios" Association="PuntoVentaModel.FK_Precios_C_Servicios">
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+            <End Role="Precios" EntitySet="Precios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventas_C_Vehiculos" Association="PuntoVentaModel.FK_Ventas_C_Vehiculos">
+            <End Role="C_Vehiculos" EntitySet="C_Vehiculos" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_Ventas" Association="PuntoVentaModel.FK_Facturas_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Ventas" Association="PuntoVentaModel.FK_Pagos_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagosDetalle_Pagos" Association="PuntoVentaModel.FK_PagosDetalle_Pagos">
+            <End Role="Pagos" EntitySet="Pagos" />
+            <End Role="PagosDetalle" EntitySet="PagosDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Vehiculos_C_Clientes" Association="PuntoVentaModel.FK_C_Vehiculos_C_Clientes">
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+            <End Role="C_Vehiculos" EntitySet="C_Vehiculos" />
+          </AssociationSet>
+          <EntitySet Name="VentasDetalle" EntityType="PuntoVentaModel.VentasDetalle" />
+          <AssociationSet Name="FK_VentasDetalle_C_Servicios" Association="PuntoVentaModel.FK_VentasDetalle_C_Servicios">
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+            <End Role="VentasDetalle" EntitySet="VentasDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentasDetalle_Ventas" Association="PuntoVentaModel.FK_VentasDetalle_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="VentasDetalle" EntitySet="VentasDetalle" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C_Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RFC" Type="String" Nullable="false" MaxLength="13" Unicode="true" FixedLength="false" />
+          <Property Name="NumeroCliente" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="IdTipoPersona" Type="Int32" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="IdCiudad" Type="Int32" />
+          <Property Name="CodigoPostal" Type="Int32" />
+          <Property Name="IdMunicipio" Type="Int32" Nullable="false" />
+          <Property Name="Movil" Type="Double" />
+          <Property Name="Casa" Type="Double" />
+          <Property Name="Trabajo" Type="Double" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <NavigationProperty Name="C_TiposPersona" Relationship="PuntoVentaModel.FK_C_Clientes_C_TiposPersona" FromRole="C_Clientes" ToRole="C_TiposPersona" />
+          <NavigationProperty Name="Ventas" Relationship="PuntoVentaModel.FK_Ventas_C_Clientes" FromRole="C_Clientes" ToRole="Ventas" />
+          <NavigationProperty Name="C_Vehiculos" Relationship="PuntoVentaModel.FK_C_Vehiculos_C_Clientes" FromRole="C_Clientes" ToRole="C_Vehiculos" />
+        </EntityType>
+        <EntityType Name="C_FormasPago">
+          <Key>
+            <PropertyRef Name="IdFormaPago" />
+          </Key>
+          <Property Name="IdFormaPago" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Mnemonico" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <NavigationProperty Name="PagosDetalle" Relationship="PuntoVentaModel.FK_PagosDetalle_C_FormasPago" FromRole="C_FormasPago" ToRole="PagosDetalle" />
+        </EntityType>
+        <EntityType Name="C_Marcas">
+          <Key>
+            <PropertyRef Name="IdMarca" />
+          </Key>
+          <Property Name="IdMarca" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Clave" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <NavigationProperty Name="C_Servicios" Relationship="PuntoVentaModel.FK_C_Servicios_C_Marcas" FromRole="C_Marcas" ToRole="C_Servicios" />
+        </EntityType>
+        <EntityType Name="C_Servicios">
+          <Key>
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdServicio" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="IdUnidadMedida" Type="Int32" Nullable="false" />
+          <Property Name="Serie" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SeAlmacena" Type="Boolean" />
+          <Property Name="SeCompra" Type="Boolean" />
+          <Property Name="SeVende" Type="Boolean" />
+          <Property Name="IdMarca" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoServicio" Type="Int32" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="C_Marcas" Relationship="PuntoVentaModel.FK_C_Servicios_C_Marcas" FromRole="C_Servicios" ToRole="C_Marcas" />
+          <NavigationProperty Name="C_TiposServicios" Relationship="PuntoVentaModel.FK_C_Servicios_C_TiposServicios" FromRole="C_Servicios" ToRole="C_TiposServicios" />
+          <NavigationProperty Name="Inventario" Relationship="PuntoVentaModel.FK_Inventario_C_Servicios" FromRole="C_Servicios" ToRole="Inventario" />
+          <NavigationProperty Name="Precios" Relationship="PuntoVentaModel.FK_Precios_C_Servicios" FromRole="C_Servicios" ToRole="Precios" />
+          <Property Type="String" Name="Codigo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VentasDetalle" Relationship="PuntoVentaModel.FK_VentasDetalle_C_Servicios" FromRole="C_Servicios" ToRole="VentasDetalle" />
+        </EntityType>
+        <EntityType Name="C_TiposPersona">
+          <Key>
+            <PropertyRef Name="IdTipoPersona" />
+          </Key>
+          <Property Name="IdTipoPersona" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Mnemonico" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <NavigationProperty Name="C_Clientes" Relationship="PuntoVentaModel.FK_C_Clientes_C_TiposPersona" FromRole="C_TiposPersona" ToRole="C_Clientes" />
+        </EntityType>
+        <EntityType Name="C_TiposServicios">
+          <Key>
+            <PropertyRef Name="IdTipoServicio" />
+          </Key>
+          <Property Name="IdTipoServicio" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="C_Servicios" Relationship="PuntoVentaModel.FK_C_Servicios_C_TiposServicios" FromRole="C_TiposServicios" ToRole="C_Servicios" />
+        </EntityType>
+        <EntityType Name="C_Vehiculos">
+          <Key>
+            <PropertyRef Name="IdVehiculo" />
+          </Key>
+          <Property Name="IdVehiculo" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Placas" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Marca" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="IdTipo" Type="Int32" Nullable="false" />
+          <Property Name="Linea" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Modelo" Type="Int32" />
+          <Property Name="Color" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="NoEconomico" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <NavigationProperty Name="Ventas" Relationship="PuntoVentaModel.FK_Ventas_C_Vehiculos" FromRole="C_Vehiculos" ToRole="Ventas" />
+          <NavigationProperty Name="C_Clientes" Relationship="PuntoVentaModel.FK_C_Vehiculos_C_Clientes" FromRole="C_Vehiculos" ToRole="C_Clientes" />
+        </EntityType>
+        <EntityType Name="Facturas">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdVenta" Type="Int32" Nullable="false" />
+          <Property Name="FechaEmision" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaCertificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CertificadoEmisor" Type="Int64" Nullable="false" />
+          <Property Name="CertificadoSAT" Type="Int64" Nullable="false" />
+          <Property Name="CadenaOriginalCertificacionSAT" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="SelloDigitalEmisor" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="SelloDigitalSAT" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <NavigationProperty Name="Ventas" Relationship="PuntoVentaModel.FK_Facturas_Ventas" FromRole="Facturas" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Inventario">
+          <Key>
+            <PropertyRef Name="IdInventario" />
+          </Key>
+          <Property Name="IdInventario" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdServicio" Type="Int32" Nullable="false" />
+          <Property Name="PrecioCompra" Type="Double" Nullable="false" />
+          <Property Name="PrecioVenta" Type="Double" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="FechaCompra" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="C_Servicios" Relationship="PuntoVentaModel.FK_Inventario_C_Servicios" FromRole="Inventario" ToRole="C_Servicios" />
+        </EntityType>
+        <EntityType Name="Pagos">
+          <Key>
+            <PropertyRef Name="IdPago" />
+          </Key>
+          <Property Name="IdPago" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdVenta" Type="Int32" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="Ventas" Relationship="PuntoVentaModel.FK_Pagos_Ventas" FromRole="Pagos" ToRole="Ventas" />
+          <NavigationProperty Name="PagosDetalle" Relationship="PuntoVentaModel.FK_PagosDetalle_Pagos" FromRole="Pagos" ToRole="PagosDetalle" />
+        </EntityType>
+        <EntityType Name="PagosDetalle">
+          <Key>
+            <PropertyRef Name="IdPagoDetalle" />
+          </Key>
+          <Property Name="IdPagoDetalle" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPago" Type="Int32" Nullable="false" />
+          <Property Name="IdFormaPago" Type="Int32" Nullable="false" />
+          <Property Name="Institucion" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Referencia" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Cantidad" Type="Double" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <NavigationProperty Name="C_FormasPago" Relationship="PuntoVentaModel.FK_PagosDetalle_C_FormasPago" FromRole="PagosDetalle" ToRole="C_FormasPago" />
+          <NavigationProperty Name="Pagos" Relationship="PuntoVentaModel.FK_PagosDetalle_Pagos" FromRole="PagosDetalle" ToRole="Pagos" />
+        </EntityType>
+        <EntityType Name="Precios">
+          <Key>
+            <PropertyRef Name="IdPrecio" />
+          </Key>
+          <Property Name="IdPrecio" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdServicio" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="Double" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="C_Servicios" Relationship="PuntoVentaModel.FK_Precios_C_Servicios" FromRole="Precios" ToRole="C_Servicios" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="IdVenta" />
+          </Key>
+          <Property Name="IdVenta" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Folio" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Subtotal" Type="Double" Nullable="false" />
+          <Property Name="IVA" Type="Double" Nullable="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="TotalLetras" Type="String" MaxLength="550" Unicode="true" FixedLength="false" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="IdVehiculo" Type="Int32" />
+          <Property Name="Kilometraje" Type="Int32" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="IdUsuarioCreacion" Type="Int32" />
+          <Property Name="IdUsuarioModificacion" Type="Int32" />
+          <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="C_Clientes" Relationship="PuntoVentaModel.FK_Ventas_C_Clientes" FromRole="Ventas" ToRole="C_Clientes" />
+          <NavigationProperty Name="C_Vehiculos" Relationship="PuntoVentaModel.FK_Ventas_C_Vehiculos" FromRole="Ventas" ToRole="C_Vehiculos" />
+          <NavigationProperty Name="Facturas" Relationship="PuntoVentaModel.FK_Facturas_Ventas" FromRole="Ventas" ToRole="Facturas" />
+          <NavigationProperty Name="Pagos" Relationship="PuntoVentaModel.FK_Pagos_Ventas" FromRole="Ventas" ToRole="Pagos" />
+          <NavigationProperty Name="VentasDetalle" Relationship="PuntoVentaModel.FK_VentasDetalle_Ventas" FromRole="Ventas" ToRole="VentasDetalle" />
+        </EntityType>
+        <Association Name="FK_C_Clientes_C_TiposPersona">
+          <End Role="C_TiposPersona" Type="PuntoVentaModel.C_TiposPersona" Multiplicity="1" />
+          <End Role="C_Clientes" Type="PuntoVentaModel.C_Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_TiposPersona">
+              <PropertyRef Name="IdTipoPersona" />
+            </Principal>
+            <Dependent Role="C_Clientes">
+              <PropertyRef Name="IdTipoPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventas_C_Clientes">
+          <End Role="C_Clientes" Type="PuntoVentaModel.C_Clientes" Multiplicity="1" />
+          <End Role="Ventas" Type="PuntoVentaModel.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagosDetalle_C_FormasPago">
+          <End Role="C_FormasPago" Type="PuntoVentaModel.C_FormasPago" Multiplicity="1" />
+          <End Role="PagosDetalle" Type="PuntoVentaModel.PagosDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_FormasPago">
+              <PropertyRef Name="IdFormaPago" />
+            </Principal>
+            <Dependent Role="PagosDetalle">
+              <PropertyRef Name="IdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Servicios_C_Marcas">
+          <End Role="C_Marcas" Type="PuntoVentaModel.C_Marcas" Multiplicity="1" />
+          <End Role="C_Servicios" Type="PuntoVentaModel.C_Servicios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Marcas">
+              <PropertyRef Name="IdMarca" />
+            </Principal>
+            <Dependent Role="C_Servicios">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Servicios_C_TiposServicios">
+          <End Role="C_TiposServicios" Type="PuntoVentaModel.C_TiposServicios" Multiplicity="0..1" />
+          <End Role="C_Servicios" Type="PuntoVentaModel.C_Servicios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_TiposServicios">
+              <PropertyRef Name="IdTipoServicio" />
+            </Principal>
+            <Dependent Role="C_Servicios">
+              <PropertyRef Name="IdTipoServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventario_C_Servicios">
+          <End Role="C_Servicios" Type="PuntoVentaModel.C_Servicios" Multiplicity="1" />
+          <End Role="Inventario" Type="PuntoVentaModel.Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Servicios">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Precios_C_Servicios">
+          <End Role="C_Servicios" Type="PuntoVentaModel.C_Servicios" Multiplicity="1" />
+          <End Role="Precios" Type="PuntoVentaModel.Precios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Servicios">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="Precios">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventas_C_Vehiculos">
+          <End Role="C_Vehiculos" Type="PuntoVentaModel.C_Vehiculos" Multiplicity="0..1" />
+          <End Role="Ventas" Type="PuntoVentaModel.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Vehiculos">
+              <PropertyRef Name="IdVehiculo" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="IdVehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_Ventas">
+          <End Role="Ventas" Type="PuntoVentaModel.Ventas" Multiplicity="1" />
+          <End Role="Facturas" Type="PuntoVentaModel.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="IdVenta" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Ventas">
+          <End Role="Ventas" Type="PuntoVentaModel.Ventas" Multiplicity="1" />
+          <End Role="Pagos" Type="PuntoVentaModel.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="IdVenta" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="IdVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagosDetalle_Pagos">
+          <End Role="Pagos" Type="PuntoVentaModel.Pagos" Multiplicity="1" />
+          <End Role="PagosDetalle" Type="PuntoVentaModel.PagosDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pagos">
+              <PropertyRef Name="IdPago" />
+            </Principal>
+            <Dependent Role="PagosDetalle">
+              <PropertyRef Name="IdPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Vehiculos_C_Clientes">
+          <End Type="PuntoVentaModel.C_Clientes" Role="C_Clientes" Multiplicity="1" />
+          <End Type="PuntoVentaModel.C_Vehiculos" Role="C_Vehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="C_Vehiculos">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VentasDetalle">
+          <Key>
+            <PropertyRef Name="IdVentaDetalle" />
+          </Key>
+          <Property Type="Int32" Name="IdVentaDetalle" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdVenta" Nullable="false" />
+          <Property Type="Double" Name="Cantidad" Nullable="false" />
+          <Property Type="Double" Name="PrecioUnitario" Nullable="false" />
+          <Property Type="Double" Name="Importe" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="DateTime" Name="FechaAlta" Precision="0" />
+          <Property Type="DateTime" Name="FechaModificacion" Precision="0" />
+          <Property Type="Int32" Name="IdUsuarioCreacion" />
+          <Property Type="Int32" Name="IdUsuarioModificacion" />
+          <Property Type="Int32" Name="Estatus" />
+          <NavigationProperty Name="C_Servicios" Relationship="PuntoVentaModel.FK_VentasDetalle_C_Servicios" FromRole="VentasDetalle" ToRole="C_Servicios" />
+          <NavigationProperty Name="Ventas" Relationship="PuntoVentaModel.FK_VentasDetalle_Ventas" FromRole="VentasDetalle" ToRole="Ventas" />
+        </EntityType>
+        <Association Name="FK_VentasDetalle_C_Servicios">
+          <End Type="PuntoVentaModel.C_Servicios" Role="C_Servicios" Multiplicity="1" />
+          <End Type="PuntoVentaModel.VentasDetalle" Role="VentasDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Servicios">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="VentasDetalle">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentasDetalle_Ventas">
+          <End Type="PuntoVentaModel.Ventas" Role="Ventas" Multiplicity="1" />
+          <End Type="PuntoVentaModel.VentasDetalle" Role="VentasDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="IdVenta" />
+            </Principal>
+            <Dependent Role="VentasDetalle">
+              <PropertyRef Name="IdVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PuntoVentaModelStoreContainer" CdmEntityContainer="PuntoVentaEntities">
+          <EntitySetMapping Name="C_Clientes">
+            <EntityTypeMapping TypeName="PuntoVentaModel.C_Clientes">
+              <MappingFragment StoreEntitySet="C_Clientes">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="NumeroCliente" ColumnName="NumeroCliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdTipoPersona" ColumnName="IdTipoPersona" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
+                <ScalarProperty Name="Movil" ColumnName="Movil" />
+                <ScalarProperty Name="Casa" ColumnName="Casa" />
+                <ScalarProperty Name="Trabajo" ColumnName="Trabajo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_FormasPago">
+            <EntityTypeMapping TypeName="PuntoVentaModel.C_FormasPago">
+              <MappingFragment StoreEntitySet="C_FormasPago">
+                <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Mnemonico" ColumnName="Mnemonico" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Marcas">
+            <EntityTypeMapping TypeName="PuntoVentaModel.C_Marcas">
+              <MappingFragment StoreEntitySet="C_Marcas">
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Servicios">
+            <EntityTypeMapping TypeName="PuntoVentaModel.C_Servicios">
+              <MappingFragment StoreEntitySet="C_Servicios">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdUnidadMedida" ColumnName="IdUnidadMedida" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="SeAlmacena" ColumnName="SeAlmacena" />
+                <ScalarProperty Name="SeCompra" ColumnName="SeCompra" />
+                <ScalarProperty Name="SeVende" ColumnName="SeVende" />
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="IdTipoServicio" ColumnName="IdTipoServicio" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_TiposPersona">
+            <EntityTypeMapping TypeName="PuntoVentaModel.C_TiposPersona">
+              <MappingFragment StoreEntitySet="C_TiposPersona">
+                <ScalarProperty Name="IdTipoPersona" ColumnName="IdTipoPersona" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Mnemonico" ColumnName="Mnemonico" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_TiposServicios">
+            <EntityTypeMapping TypeName="PuntoVentaModel.C_TiposServicios">
+              <MappingFragment StoreEntitySet="C_TiposServicios">
+                <ScalarProperty Name="IdTipoServicio" ColumnName="IdTipoServicio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Vehiculos">
+            <EntityTypeMapping TypeName="PuntoVentaModel.C_Vehiculos">
+              <MappingFragment StoreEntitySet="C_Vehiculos">
+                <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
+                <ScalarProperty Name="Placas" ColumnName="Placas" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="Linea" ColumnName="Linea" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="NoEconomico" ColumnName="NoEconomico" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facturas">
+            <EntityTypeMapping TypeName="PuntoVentaModel.Facturas">
+              <MappingFragment StoreEntitySet="Facturas">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+                <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+                <ScalarProperty Name="FechaCertificacion" ColumnName="FechaCertificacion" />
+                <ScalarProperty Name="CertificadoEmisor" ColumnName="CertificadoEmisor" />
+                <ScalarProperty Name="CertificadoSAT" ColumnName="CertificadoSAT" />
+                <ScalarProperty Name="CadenaOriginalCertificacionSAT" ColumnName="CadenaOriginalCertificacionSAT" />
+                <ScalarProperty Name="SelloDigitalEmisor" ColumnName="SelloDigitalEmisor" />
+                <ScalarProperty Name="SelloDigitalSAT" ColumnName="SelloDigitalSAT" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventario">
+            <EntityTypeMapping TypeName="PuntoVentaModel.Inventario">
+              <MappingFragment StoreEntitySet="Inventario">
+                <ScalarProperty Name="IdInventario" ColumnName="IdInventario" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="PrecioCompra" ColumnName="PrecioCompra" />
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pagos">
+            <EntityTypeMapping TypeName="PuntoVentaModel.Pagos">
+              <MappingFragment StoreEntitySet="Pagos">
+                <ScalarProperty Name="IdPago" ColumnName="IdPago" />
+                <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PagosDetalle">
+            <EntityTypeMapping TypeName="PuntoVentaModel.PagosDetalle">
+              <MappingFragment StoreEntitySet="PagosDetalle">
+                <ScalarProperty Name="IdPagoDetalle" ColumnName="IdPagoDetalle" />
+                <ScalarProperty Name="IdPago" ColumnName="IdPago" />
+                <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
+                <ScalarProperty Name="Institucion" ColumnName="Institucion" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Precios">
+            <EntityTypeMapping TypeName="PuntoVentaModel.Precios">
+              <MappingFragment StoreEntitySet="Precios">
+                <ScalarProperty Name="IdPrecio" ColumnName="IdPrecio" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventas">
+            <EntityTypeMapping TypeName="PuntoVentaModel.Ventas">
+              <MappingFragment StoreEntitySet="Ventas">
+                <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="TotalLetras" ColumnName="TotalLetras" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
+                <ScalarProperty Name="Kilometraje" ColumnName="Kilometraje" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VentasDetalle">
+            <EntityTypeMapping TypeName="PuntoVentaModel.VentasDetalle">
+              <MappingFragment StoreEntitySet="VentasDetalle">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+                <ScalarProperty Name="IdVentaDetalle" ColumnName="IdVentaDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

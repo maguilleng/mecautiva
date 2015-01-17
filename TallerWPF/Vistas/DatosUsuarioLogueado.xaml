@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="TallerWPF.Vistas.DatosUsuarioLogueado"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="300"
+             x:Name="ucUsuarioLogueado">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2" VerticalAlignment="Top">
+        <telerik:RadDropDownButton Content="{Binding UsuarioLogueado.Nombre}" FontStyle="Oblique" Height="30" 
+                                HorizontalAlignment="Right" BorderBrush="Transparent" Background="Transparent">
+            <telerik:RadDropDownButton.DropDownContent>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <Border BorderThickness="2" BorderBrush="{StaticResource AccentMainBrush}">
+                            <Image Source="/Recursos/Imagenes/Comunes/defaultUserIcon.png" Height="100" Width="100"></Image>
+                        </Border>                      
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="10">
+                            <TextBlock Text="{Binding UsuarioLogueado.Nombre}" FontSize="20" Foreground="Gray" FontStyle="Normal" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding UsuarioLogueado.Rol}" Foreground="Gray" FontStyle="Italic"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <telerik:RadButton x:Name="btnCerrarSesion" Click="btnCerrarSesion_Click" Margin="10">
+                        <telerik:RadButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Recursos/Imagenes/Comunes/Salir.png" Width="25" Height="25"></Image>
+                                <TextBlock Text="Cerrar Sesión" Margin="15,0,0,0"></TextBlock>
+                            </StackPanel>
+                        </telerik:RadButton.Content>
+                    </telerik:RadButton>
+                </StackPanel>
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <Image Source="/Recursos/Imagenes/Comunes/defaultUserIcon.png" Width="30" Height="30" HorizontalAlignment="Right" Margin="5,0,10,0"></Image>
+    </StackPanel>
+</UserControl>

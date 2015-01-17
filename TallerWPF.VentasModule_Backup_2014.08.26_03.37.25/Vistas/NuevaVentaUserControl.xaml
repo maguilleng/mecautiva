@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="TallerWPF.VentasModule.Vistas.NuevaVentaUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:views="clr-namespace:TallerWPF.VentasModule.Vistas"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="CeldaEliminarProductoTemplate">
+                <Image Source="/TallerWPF.VentasModule;component/Recursos/Imagenes/EliminarProducto_64.png" Width="24" Height="24"></Image>            
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.5*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+            <StackPanel Orientation="Vertical">
+                <views:BuscarCliente />
+                <Separator/>
+                <views:SeleccionarProductos />
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <views:ResumenVenta Grid.Column="0"/>
+        </Grid>
+
+        <telerik:RadGridView x:Name="grdProductosVenta" ItemsSource="{Binding VentaActual.Productos}" 
+                             Deleted="grdProductosVenta_Deleted" RowEditEnded="grdProductosVenta_RowEditEnded"
+                             AutoGenerateColumns="False"
+                             Grid.Row="1" Grid.Column="1">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="Código" Width="110" IsReadOnly="True"
+                        DataMemberBinding="{Binding Codigo}"></telerik:GridViewDataColumn>
+                
+                <telerik:GridViewDataColumn Header="Cantidad" DataMemberBinding="{Binding Cantidad}"></telerik:GridViewDataColumn>
+                
+                <telerik:GridViewDataColumn Header="Descripción" IsReadOnly="True" 
+                        DataMemberBinding="{Binding Descripcion}" MinWidth="200"></telerik:GridViewDataColumn>
+                
+                <telerik:GridViewDataColumn Header="Tipo" IsReadOnly="True"
+                        DataMemberBinding="{Binding Categoria}"></telerik:GridViewDataColumn>
+                
+                <telerik:GridViewDataColumn Header="Precio Unit" IsReadOnly="True"
+                        DataMemberBinding="{Binding PrecioUnitario}"></telerik:GridViewDataColumn>
+                
+                <telerik:GridViewDataColumn Header="Importe" IsReadOnly="True"
+                        DataMemberBinding="{Binding Importe}"></telerik:GridViewDataColumn>
+                
+                <telerik:GridViewColumn Header="Opciones">
+                    <telerik:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <telerik:RadButton Command="telerik:RadGridViewCommands.Delete" CommandParameter="{Binding}" 
+                                               ToolTip="Quitar Producto" Template="{StaticResource CeldaEliminarProductoTemplate}"/>
+                        </DataTemplate>
+                    </telerik:GridViewColumn.CellTemplate>
+                </telerik:GridViewColumn>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>                                 
+    </Grid>
+</UserControl>

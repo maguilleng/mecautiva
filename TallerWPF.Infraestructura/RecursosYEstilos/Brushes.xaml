@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
+    
+    <Color x:Key="AccentMainColor">#3399FF</Color>
+    <Color x:Key="AccentDarkColor">#007ACC</Color>
+    <Color x:Key="SelectedColor">#FFFFFF</Color>
+    <Color x:Key="ValidationColor">#FF3333</Color>
+    <Color x:Key="AccentColor">#007ACC</Color>
+    <Color x:Key="MarkerColor">#1E1E1E</Color>
+    <Color x:Key="StrongColor">#717171</Color>
+    <Color x:Key="MainColor">#FFFFFF</Color>
+    <Color x:Key="PrimaryColor">#EEEEF2</Color>
+    <Color x:Key="AlternativeColor">#F5F5F5</Color>
+    <Color x:Key="MouseOverColor">#C9DEF5</Color>
+    <Color x:Key="BasicColor">#CCCEDB</Color>
+    <Color x:Key="SemiBasicColor">#CCCEDB</Color>
+    <Color x:Key="HeaderColor">#007ACC</Color>
+    <Color x:Key="ComplementaryColor">#DBDDE6</Color>
+    <Color x:Key="DefaultForegroundColor">#1E1E1E</Color>
+
+    <SolidColorBrush x:Key="AccentMainBrush" Color="{StaticResource AccentMainColor}"/>
+    <SolidColorBrush x:Key="AccentDarkBrush" Color="{StaticResource AccentDarkColor}"/>
+    <SolidColorBrush x:Key="SelectedBrush" Color="{StaticResource SelectedColor}"/>
+    <SolidColorBrush x:Key="ValidationBrush" Color="{StaticResource ValidationColor}"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+    <SolidColorBrush x:Key="MarkerBrush" Color="{StaticResource MarkerColor}"/>
+    <SolidColorBrush x:Key="StrongBrush" Color="{StaticResource StrongColor}"/>
+    <SolidColorBrush x:Key="MainBrush" Color="{StaticResource MainColor}"/>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+    <SolidColorBrush x:Key="AlternativeBrush" Color="{StaticResource AlternativeColor}"/>
+    <SolidColorBrush x:Key="MouseOverBrush" Color="{StaticResource MouseOverColor}"/>
+    <SolidColorBrush x:Key="BasicBrush" Color="{StaticResource BasicColor}"/>
+    <SolidColorBrush x:Key="SemiBasicBrush" Color="{StaticResource SemiBasicColor}"/>
+    <SolidColorBrush x:Key="HeaderBrush" Color="{StaticResource HeaderColor}"/>
+    <SolidColorBrush x:Key="ComplementaryBrush" Color="{StaticResource ComplementaryColor}"/>
+    <SolidColorBrush x:Key="DefaultForegroundBrush" Color="{StaticResource DefaultForegroundColor}"/>
+</ResourceDictionary>
