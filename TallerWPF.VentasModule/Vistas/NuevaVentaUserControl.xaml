@@ -14,6 +14,7 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -23,7 +24,10 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+        <Label Content="Nueva Venta" Foreground="{StaticResource AccentDarkBrush}" FontSize="16" 
+               Grid.ColumnSpan="2" Margin="4" FontWeight="Bold"/>
+        
+        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
             <StackPanel Orientation="Vertical">
                 <!--<views:BuscarClienteControl ClienteSeleccionado="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.ClienteSeleccionado, Mode=TwoWay}"></views:BuscarClienteControl>-->
                 <views:BuscarClienteControl ></views:BuscarClienteControl>
@@ -36,7 +40,7 @@
         <telerik:RadGridView x:Name="grdProductosVenta" ItemsSource="{Binding DetallesVenta}" 
                              Deleted="grdProductosVenta_Deleted" RowEditEnded="grdProductosVenta_RowEditEnded"
                              AutoGenerateColumns="False"
-                             Grid.Row="0" Grid.Column="1">
+                             Grid.Row="1" Grid.Column="1">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="Código" Width="110" IsReadOnly="True"
                         DataMemberBinding="{Binding C_Servicios.Codigo}"></telerik:GridViewDataColumn>
@@ -66,7 +70,7 @@
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
 
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -75,7 +79,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
                 <Label Content="Folio" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" Margin="2"
                     FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
-                <Label Content="{Binding VentaActual.Subtotal}" Grid.Row="0" Grid.Column="1" Margin="2"
+                <Label Content="{Binding VentaActual.Folio}" Grid.Row="0" Grid.Column="1" Margin="2"
                    FontSize="20" FontWeight="Bold" Foreground="{StaticResource StrongBrush}"
                    VerticalAlignment="Center"/>
             </StackPanel>

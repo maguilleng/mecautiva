@@ -49,7 +49,9 @@
                                         LargeImage="/Recursos/Imagenes/Ventas/pago_64_64.png"
                                          SmallImage="/Recursos/Imagenes/Ventas/pago_64_64.png"
                                          Size="Medium"
-                                         Text="Pagar"/>
+                                         Text="Pagar"
+                                         Command="{Binding BotonMenuCommand}"
+                                         CommandParameter="PagarVentaActual"/>
                 <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium" 
                                         LargeImage="/Recursos/Imagenes/Comunes/print.png"
                                          SmallImage="/Recursos/Imagenes/Comunes/imprimir.png"

@@ -22,8 +22,11 @@ namespace TallerWPF
         IRegionManager regionManager;
 
         #region Commands
+
         public DelegateCommand<SelectionChangedEventArgs> TabMenuCommand { get; set; }
         public DelegateCommand<string> BotonMenuCommand { get; set; }
+        public Microsoft.Practices.Prism.Commands.DelegateCommand PagarVentaCommand { get; set; }
+
         #endregion
 
         #region Properties
@@ -107,6 +110,9 @@ namespace TallerWPF
                     break;
                 case "LimpiarProductosVentaActual":
                     servicioVenta.LimpiarProductosVentaActual();
+                    break;
+                case "PagarVentaActual":
+                    servicioVenta.PagarVentaActual();
                     break;
                 default:
                     break;

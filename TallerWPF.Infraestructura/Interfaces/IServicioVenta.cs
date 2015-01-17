@@ -9,6 +9,7 @@ namespace TallerWPF.Infraestructura.Interfaces
         void ActualizarVentaActual(VentaDto ventaActual, ObservableCollection<VentaDetalleDto> detalles);
         void ActualizarImporteVenta(VentaDto ventaActual, ObservableCollection<VentaDetalleDto> detalles);
         void LimpiarProductosVentaActual();
+        void PagarVentaActual();
         bool EstaRealizandoVenta();
     }
 }

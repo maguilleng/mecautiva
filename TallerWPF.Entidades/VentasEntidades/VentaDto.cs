@@ -13,6 +13,13 @@ namespace TallerWPF.Entidades.VentasEntidades
         public int IdVenta{get;set;}
         public DateTime Fecha { get; set; }
         public string Folio { get; set; }
+
+        private bool ventaPagada;
+        public bool VentaPagada
+        {
+            get { return ventaPagada; }
+            set { SetProperty(ref this.ventaPagada, value); }
+        }
         
         double subtotal;
         public double Subtotal
@@ -35,7 +42,7 @@ namespace TallerWPF.Entidades.VentasEntidades
           set { SetProperty(ref this.total, value); }
         }
 
-        public C_Clientes C_Clientes{get;set;}
-        public C_Vehiculos C_Vehiculos{get;set;}
+        public C_Clientes Cliente{get;set;}
+        public C_Vehiculos Vehiculo{get;set;}
     }
 }

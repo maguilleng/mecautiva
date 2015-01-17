@@ -18,12 +18,11 @@ namespace TallerWPF.VentasModule.SharedServices
     {
         //VentaDto VentaActual { get; set; }
         VentaDto VentaActual { get; set; }
-        ObservableCollection<VentaDetalleDto> DetallesVenta { get; set; }   
+        ObservableCollection<VentaDetalleDto> DetallesVenta { get; set; }
 
         [ImportingConstructor]
         public ServicioVenta()
         { 
-        
         }
 
         public VentaDto ObtenerVentaActual()
@@ -48,9 +47,12 @@ namespace TallerWPF.VentasModule.SharedServices
 
         public void ActualizarImporteVenta(VentaDto ventaParam, ObservableCollection<VentaDetalleDto> detalles)
         {
-            ventaParam.Subtotal = CalcularSubtotalServicios(detalles);
-            ventaParam.IVA = Convert.ToDouble(CalcularIvaDelSubtotal(ventaParam.Subtotal));
-            ventaParam.Total = Convert.ToDouble(CalcularTotalVenta(ventaParam));
+            //ventaParam.Subtotal = CalcularSubtotalServicios(detalles);
+            //ventaParam.IVA = Convert.ToDouble(CalcularIvaDelSubtotal(ventaParam.Subtotal));
+            //ventaParam.Total = Convert.ToDouble(CalcularTotalVenta(ventaParam));
+            VentaActual.Subtotal = CalcularSubtotalServicios(DetallesVenta);
+            VentaActual.IVA = Convert.ToDouble(CalcularIvaDelSubtotal(VentaActual.Subtotal));
+            VentaActual.Total = Convert.ToDouble(CalcularTotalVenta(VentaActual));
         }
 
         protected double CalcularSubtotalServicios(ICollection<VentaDetalleDto> detallesVenta)
@@ -80,7 +82,12 @@ namespace TallerWPF.VentasModule.SharedServices
             DetallesVenta.Clear();
             ActualizarImporteVenta(VentaActual, DetallesVenta);
         }
-        
+
+        public void PagarVentaActual()
+        {
+            int i = 0;
+        }
+
         #region Dispose
         public void Dispose()
         {
@@ -102,5 +109,8 @@ namespace TallerWPF.VentasModule.SharedServices
             Dispose(false);
         }
         #endregion        
+    
+
+        
     }
 }

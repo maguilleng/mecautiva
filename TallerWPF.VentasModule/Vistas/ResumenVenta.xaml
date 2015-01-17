@@ -37,14 +37,14 @@
 
         <Label Content="IVA" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2" Margin="2"
                FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
-        <Label Content="{Binding VentaActual.Iva}" Grid.Row="0" Grid.Column="3" Margin="2"
+        <Label Content="{Binding VentaActual.IVA}" Grid.Row="0" Grid.Column="3" Margin="2"
                FontSize="20" FontWeight="Bold" Foreground="{StaticResource StrongBrush}"
                VerticalAlignment="Center"/>
 
         <Label Content="TOTAL" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="4" Margin="2"
                FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
         <Label Content="{Binding VentaActual.Total}" Grid.Row="0" Grid.Column="5" Margin="2"
-               FontSize="20" FontWeight="Bold" Foreground="{StaticResource AccentDarkBrush}"
+               FontSize="28" FontWeight="Bold" Foreground="{StaticResource AccentDarkBrush}"
                VerticalAlignment="Center"/>
 
         
