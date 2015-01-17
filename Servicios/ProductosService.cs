@@ -24,7 +24,6 @@ namespace Servicios
             
             var producto = new C_Servicios() 
             { 
-            Serie = "111",
             Descripcion = "Balatas",
             IdMarca = 1,
             IdTipoServicio = 2,

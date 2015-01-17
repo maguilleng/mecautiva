@@ -11,7 +11,6 @@ namespace TallerWPF.Entidades.VentasEntidades
         public int IdServicio { get; set; }
         public string Descripcion { get; set; }
         public int idUnidadMedida { get; set; }
-        public string Serie { get; set; }
         public bool SeAlmacena { get; set; }
         public bool SeCompra { get; set; }
         public bool SeVende { get; set; }
@@ -33,7 +32,6 @@ namespace TallerWPF.Entidades.VentasEntidades
             IdServicio = servicio.IdServicio;
             Descripcion = servicio.Descripcion;
             idUnidadMedida = servicio.IdUnidadMedida;
-            Serie = servicio.Serie;
             SeAlmacena = servicio.SeAlmacena.Value;
             SeCompra = servicio.SeCompra.Value;
             SeVende = servicio.SeVende.Value;
@@ -43,7 +41,7 @@ namespace TallerWPF.Entidades.VentasEntidades
             FechaModificacion = servicio.FechaModificacion.Value;
             IdUsuarioCreacion = servicio.IdUsuarioCreacion.Value;
             IdUsuarioModificacion = servicio.IdUsuarioModificacion.Value;
-            Estatus = servicio.Estatus.Value;
+            Estatus = servicio.Estatus;
             Codigo = servicio.Codigo;
 
             C_Marcas = servicio.C_Marcas;
