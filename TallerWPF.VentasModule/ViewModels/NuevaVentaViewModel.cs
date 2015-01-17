@@ -19,17 +19,24 @@ namespace TallerWPF.VentasModule.ViewModels
     [Export]
     public class NuevaVentaViewModel : BindableBase
     {
+        #region ATRIBUTOS PRIVADOS
+
         IEventAggregator eventAggregator;
-        IServicioVenta servicioVenta;       
+        IServicioVenta servicioVenta;
         ProductosService servicioProductos;
         PreciosService preciosService;
         ClientesController clientesCtrl;
 
+        #endregion       
+
+        #region COMMANDS
+
         public DelegateCommand ProductoEliminadoCommand { get; set; }
         public DelegateCommand ProductoActualizadoCommand { get; set; }
-        
 
-        #region PROPIEDADES
+        #endregion
+
+        #region PROPIEDADES       
 
         VentaDto ventaActual;
         public VentaDto VentaActual

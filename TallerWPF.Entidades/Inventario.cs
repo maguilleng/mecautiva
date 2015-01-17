@@ -18,13 +18,14 @@ namespace TallerWPF.Entidades
         public int IdServicio { get; set; }
         public double PrecioCompra { get; set; }
         public double PrecioVenta { get; set; }
-        public int Cantidad { get; set; }
+        public double Cantidad { get; set; }
         public System.DateTime FechaCompra { get; set; }
         public Nullable<System.DateTime> FechaAlta { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public Nullable<int> IdUsuarioCreacion { get; set; }
         public Nullable<int> IdUsuarioModificacion { get; set; }
         public Nullable<int> Estatus { get; set; }
+        public string Serie { get; set; }
     
         public virtual C_Servicios C_Servicios { get; set; }
     }

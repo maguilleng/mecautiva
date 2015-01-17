@@ -16,8 +16,8 @@ namespace TallerWPF.Entidades
     {
         public C_Clientes()
         {
-            this.Ventas = new HashSet<Ventas>();
             this.C_Vehiculos = new HashSet<C_Vehiculos>();
+            this.Ventas = new HashSet<Ventas>();
         }
     
         public int IdCliente { get; set; }
@@ -40,7 +40,7 @@ namespace TallerWPF.Entidades
         public Nullable<int> IdUsuarioModificacion { get; set; }
     
         public virtual C_TiposPersona C_TiposPersona { get; set; }
-        public virtual ICollection<Ventas> Ventas { get; set; }
         public virtual ICollection<C_Vehiculos> C_Vehiculos { get; set; }
+        public virtual ICollection<Ventas> Ventas { get; set; }
     }
 }

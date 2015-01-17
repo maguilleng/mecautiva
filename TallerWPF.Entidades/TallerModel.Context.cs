@@ -26,8 +26,10 @@ namespace TallerWPF.Entidades
         }
     
         public DbSet<C_Clientes> C_Clientes { get; set; }
+        public DbSet<C_Estados> C_Estados { get; set; }
         public DbSet<C_FormasPago> C_FormasPago { get; set; }
         public DbSet<C_Marcas> C_Marcas { get; set; }
+        public DbSet<C_Municipios> C_Municipios { get; set; }
         public DbSet<C_Servicios> C_Servicios { get; set; }
         public DbSet<C_TiposPersona> C_TiposPersona { get; set; }
         public DbSet<C_TiposServicios> C_TiposServicios { get; set; }

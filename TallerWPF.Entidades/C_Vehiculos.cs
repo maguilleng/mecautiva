@@ -22,7 +22,6 @@ namespace TallerWPF.Entidades
         public int IdVehiculo { get; set; }
         public string Placas { get; set; }
         public string Marca { get; set; }
-        public int IdTipo { get; set; }
         public string Linea { get; set; }
         public Nullable<int> Modelo { get; set; }
         public string Color { get; set; }
@@ -34,7 +33,7 @@ namespace TallerWPF.Entidades
         public Nullable<int> IdUsuarioCreacion { get; set; }
         public Nullable<int> IdUsuarioModificacion { get; set; }
     
-        public virtual ICollection<Ventas> Ventas { get; set; }
         public virtual C_Clientes C_Clientes { get; set; }
+        public virtual ICollection<Ventas> Ventas { get; set; }
     }
 }

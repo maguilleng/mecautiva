@@ -76,10 +76,16 @@
     <Compile Include="C_Clientes.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="C_Estados.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="C_FormasPago.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="C_Marcas.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_Municipios.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="C_Servicios.cs">

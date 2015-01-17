@@ -24,7 +24,6 @@ namespace TallerWPF.Entidades
         public int IdServicio { get; set; }
         public string Descripcion { get; set; }
         public int IdUnidadMedida { get; set; }
-        public string Serie { get; set; }
         public Nullable<bool> SeAlmacena { get; set; }
         public Nullable<bool> SeCompra { get; set; }
         public Nullable<bool> SeVende { get; set; }
@@ -34,7 +33,7 @@ namespace TallerWPF.Entidades
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public Nullable<int> IdUsuarioCreacion { get; set; }
         public Nullable<int> IdUsuarioModificacion { get; set; }
-        public Nullable<int> Estatus { get; set; }
+        public int Estatus { get; set; }
         public string Codigo { get; set; }
     
         public virtual C_Marcas C_Marcas { get; set; }

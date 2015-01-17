@@ -4,34 +4,37 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f469863ddc904fa0864e7d9b57d5b90e" Name="Diagrama1">
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Clientes" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_FormasPago" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Marcas" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Servicios" Width="1.5" PointX="8.25" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_TiposPersona" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_TiposServicios" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Vehiculos" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.Facturas" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.Inventario" Width="1.5" PointX="10.5" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.Pagos" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.PagosDetalle" Width="1.5" PointX="9.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.Precios" Width="1.5" PointX="10.5" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuntoVentaModel.Ventas" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
-        <AssociationConnector Association="PuntoVentaModel.FK_C_Clientes_C_TiposPersona" ManuallyRouted="false" />
-        <AssociationConnector Association="PuntoVentaModel.FK_Ventas_C_Clientes" ManuallyRouted="false" />
-        <AssociationConnector Association="PuntoVentaModel.FK_PagosDetalle_C_FormasPago" ManuallyRouted="false" />
-        <AssociationConnector Association="PuntoVentaModel.FK_C_Servicios_C_Marcas" ManuallyRouted="false" />
-        <AssociationConnector Association="PuntoVentaModel.FK_C_Servicios_C_TiposServicios" ManuallyRouted="false" />
-        <AssociationConnector Association="PuntoVentaModel.FK_Inventario_C_Servicios" ManuallyRouted="false" />
-        <AssociationConnector Association="PuntoVentaModel.FK_Precios_C_Servicios" ManuallyRouted="false" />
-        <AssociationConnector Association="PuntoVentaModel.FK_Ventas_C_Vehiculos" ManuallyRouted="false" />
-        <AssociationConnector Association="PuntoVentaModel.FK_Facturas_Ventas" ManuallyRouted="false" />
-        <AssociationConnector Association="PuntoVentaModel.FK_Pagos_Ventas" ManuallyRouted="false" />
-        <AssociationConnector Association="PuntoVentaModel.FK_PagosDetalle_Pagos" ManuallyRouted="false" />
+      <Diagram DiagramId="f469863ddc904fa0864e7d9b57d5b90e" Name="Diagrama1" ZoomLevel="21">
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Clientes" Width="1.5" PointX="11.88249132776749" PointY="19.666348079064093" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Estados" Width="1.5" PointX="11.71753248931725" PointY="1.3906540579119018" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_FormasPago" Width="1.5" PointX="1.6736423511401017" PointY="5.19004956129475" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Marcas" Width="1.5" PointX="11.565174747055945" PointY="8.77974921873759" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Municipios" Width="1.5" PointX="9.02931427444765" PointY="6.1738816975494295" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Servicios" Width="1.5" PointX="10.569685046826344" PointY="21.231516177408171" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_TiposPersona" Width="1.5" PointX="9.3669419611650255" PointY="23.59135515596315" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_TiposServicios" Width="1.5" PointX="0.6550124681810906" PointY="1.0999166970606504" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Vehiculos" Width="1.5" PointX="8.2996000779325136" PointY="4.6001076719724141" />
+        <EntityTypeShape EntityType="PuntoVentaModel.Facturas" Width="1.5" PointX="9.6266281798605924" PointY="9.1501052571228261" />
+        <EntityTypeShape EntityType="PuntoVentaModel.Inventario" Width="1.5" PointX="3.9418679959801342" PointY="20.518902370947835" />
+        <EntityTypeShape EntityType="PuntoVentaModel.Pagos" Width="1.5" PointX="7.7193944024478061" PointY="13.610097802062564" />
+        <EntityTypeShape EntityType="PuntoVentaModel.PagosDetalle" Width="1.5" PointX="3.6227630188794633" PointY="27.157420394549806" />
+        <EntityTypeShape EntityType="PuntoVentaModel.Precios" Width="1.5" PointX="4.7713354904071128" PointY="3.7975218164723" />
+        <EntityTypeShape EntityType="PuntoVentaModel.Ventas" Width="1.5" PointX="6.8534803757693066" PointY="24.217058714580283" />
+        <EntityTypeShape EntityType="PuntoVentaModel.VentasDetalle" Width="1.5" PointX="5.6666636661005505" PointY="30.051952793287093" />
+        <AssociationConnector Association="PuntoVentaModel.FK_C_Clientes_C_TiposPersona" />
         <AssociationConnector Association="PuntoVentaModel.FK_C_Vehiculos_C_Clientes" />
-        <EntityTypeShape EntityType="PuntoVentaModel.VentasDetalle" Width="1.5" PointX="4.3538972271391643" PointY="5.1606378281305716" />
+        <AssociationConnector Association="PuntoVentaModel.FK_Ventas_C_Clientes" />
+        <AssociationConnector Association="PuntoVentaModel.FK_C_Municipios_C_Estados" />
+        <AssociationConnector Association="PuntoVentaModel.FK_PagosDetalle_C_FormasPago" />
+        <AssociationConnector Association="PuntoVentaModel.FK_C_Servicios_C_Marcas" />
+        <AssociationConnector Association="PuntoVentaModel.FK_C_Servicios_C_TiposServicios" />
+        <AssociationConnector Association="PuntoVentaModel.FK_Inventario_C_Servicios" />
+        <AssociationConnector Association="PuntoVentaModel.FK_Precios_C_Servicios" />
         <AssociationConnector Association="PuntoVentaModel.FK_VentasDetalle_C_Servicios" />
+        <AssociationConnector Association="PuntoVentaModel.FK_Ventas_C_Vehiculos" />
+        <AssociationConnector Association="PuntoVentaModel.FK_Facturas_Ventas" />
+        <AssociationConnector Association="PuntoVentaModel.FK_Pagos_Ventas" />
+        <AssociationConnector Association="PuntoVentaModel.FK_PagosDetalle_Pagos" />
         <AssociationConnector Association="PuntoVentaModel.FK_VentasDetalle_Ventas" />
       </Diagram>
     </edmx:Diagrams>
