@@ -7,5 +7,6 @@ namespace TallerWPF.VentasModule
     public class ModuloVentas : IModule
     {
         public void Initialize() { }
+
     }
 }
