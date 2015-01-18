@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using TallerWPF.Infraestructura;
 using TallerWPF.VentasModule.ViewModels;
+using TallerWPF.Entidades.VentasEntidades;
 
 namespace TallerWPF.VentasModule.Vistas
 {
@@ -45,13 +46,34 @@ namespace TallerWPF.VentasModule.Vistas
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            //throw new System.NotImplementedException();
-            int i = 0;
+            var vm = this.DataContext as NuevaVentaViewModel;
+
+            if (vm.VentaActual == null && vm.DetallesVenta == null)
+            {
+                vm.OnCrearNuevaVenta(false);
+            }
+
+            vm.ActualizarVentaActual();
+
         }
 
         public void ConfirmNavigationRequest(NavigationContext navigationContext, System.Action<bool> continuationCallback)
         {
-            continuationCallback(MessageBox.Show("No ha finalizado la Venta Actual, perderá los cambios si continúa navegando a otra sección.\nDesea Continuar?", "Venta No Finalizada", MessageBoxButton.YesNo) == MessageBoxResult.Yes); ;
+            bool salir = false;
+
+            var vm = this.DataContext as NuevaVentaViewModel;
+            if(vm.DetallesVenta != null && vm.DetallesVenta.Count > 0)
+            {
+                salir = MessageBox.Show("No ha finalizado la Venta Actual, perderá los cambios si continúa navegando a otra sección.\nDesea Continuar?", "Venta No Finalizada", MessageBoxButton.YesNo) == MessageBoxResult.Yes;
+            }
+                         
+            if (salir)
+            {
+                vm.DetallesVenta = null;
+                vm.VentaActual = null;
+            }
+
+            continuationCallback(salir);
         }
 
         private void grdProductosVenta_Deleted(object sender, Telerik.Windows.Controls.GridViewDeletedEventArgs e)

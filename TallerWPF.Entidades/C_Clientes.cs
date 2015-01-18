@@ -42,5 +42,6 @@ namespace TallerWPF.Entidades
         public virtual C_TiposPersona C_TiposPersona { get; set; }
         public virtual ICollection<C_Vehiculos> C_Vehiculos { get; set; }
         public virtual ICollection<Ventas> Ventas { get; set; }
+        public virtual C_Municipios C_Municipios { get; set; }
     }
 }

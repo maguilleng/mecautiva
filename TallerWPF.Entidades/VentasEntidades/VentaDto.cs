@@ -44,5 +44,12 @@ namespace TallerWPF.Entidades.VentasEntidades
 
         public C_Clientes Cliente{get;set;}
         public C_Vehiculos Vehiculo{get;set;}
+
+        private bool esFactura;
+        public bool EsFactura
+        {
+            get { return esFactura; }
+            set { SetProperty(ref this.esFactura, value); }
+        }
     }
 }

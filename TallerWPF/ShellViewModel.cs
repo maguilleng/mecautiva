@@ -3,12 +3,16 @@ using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using Servicios;
+using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using TallerWPF.Entidades;
 using TallerWPF.Infraestructura;
 using TallerWPF.Infraestructura.Interfaces;
 using Telerik.Windows.Controls;
+using TallerWPF.VentasModule.Vistas;
+using System.Windows;
 
 namespace TallerWPF
 {
@@ -86,7 +90,17 @@ namespace TallerWPF
                 switch (nombreModulo)
                 {
                     case "ModuloVentas":
-                        regionManager.RequestNavigate(RegionNames.MainRegion, "VentasPrincipal");
+                        var vistaActiva = regionManager.Regions[RegionNames.MainRegion].ActiveViews.First();
+                        
+                        if (vistaActiva is NuevaVentaUserControl)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            regionManager.RequestNavigate(RegionNames.MainRegion, "NuevaVentaUserControl");
+                        }
+
                         break;
                     case "ModuloInventarios":
                         regionManager.RequestNavigate(RegionNames.MainRegion, "InventariosPrincipal");
@@ -105,8 +119,11 @@ namespace TallerWPF
         {
             switch (parametroBoton)
             {
-                case "NuevaVenta":
-                    regionManager.RequestNavigate(RegionNames.MainRegion, "NuevaVentaUserControl");
+                case "VentaConFactura":
+                    EventoNuevaVenta(parametroBoton);
+                    break;
+                case "VentaSencilla":
+                    EventoNuevaVenta(parametroBoton);
                     break;
                 case "LimpiarProductosVentaActual":
                     servicioVenta.LimpiarProductosVentaActual();
@@ -123,6 +140,31 @@ namespace TallerWPF
         {
             UsuarioLogueado = usrLogueado;
             EsUsuarioLogueado = true;            
+        }
+
+        public void EventoNuevaVenta(string tipoVenta)
+        {
+            bool requiereFactura = tipoVenta == "VentaConFactura" ? true : false;
+            var vistaActiva = regionManager.Regions[RegionNames.MainRegion].ActiveViews.First();
+            if (vistaActiva is NuevaVentaUserControl)
+            {
+                var ventaDetalles = servicioVenta.ObtenerDetallesVenta();
+                if (ventaDetalles != null && ventaDetalles.Count > 0)
+                {
+                    bool limpiarVenta = MessageBox.Show("No ha finalizado la Venta Actual, perderá los cambios si continúa navegando a otra sección.\nDesea Continuar?", "Venta No Finalizada", MessageBoxButton.YesNo) == MessageBoxResult.Yes;
+                    if (limpiarVenta)
+                        eventAggregator.GetEvent<CrearNuevaVenta>().Publish(requiereFactura);
+                }
+                else
+                {
+                    eventAggregator.GetEvent<CrearNuevaVenta>().Publish(requiereFactura);
+                }               
+            }
+            else
+            {
+                eventAggregator.GetEvent<CrearNuevaVenta>().Publish(requiereFactura);
+                regionManager.RequestNavigate(RegionNames.MainRegion, "NuevaVentaUserControl");
+            }           
         }
     }
 }

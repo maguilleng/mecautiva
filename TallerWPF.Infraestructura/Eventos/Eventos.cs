@@ -8,4 +8,6 @@ namespace TallerWPF.Infraestructura
     public class CerrarSesionEvent : PubSubEvent<object>{}
     public class ClienteSeleccionadoEvent : PubSubEvent<C_Clientes> { }
     public class VehiculoSeleccionadoEvent : PubSubEvent<C_Vehiculos> { }
+
+    public class CrearNuevaVenta : PubSubEvent<bool> { }
 }

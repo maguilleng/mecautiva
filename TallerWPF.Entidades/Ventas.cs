@@ -36,6 +36,7 @@ namespace TallerWPF.Entidades
         public Nullable<int> IdUsuarioCreacion { get; set; }
         public Nullable<int> IdUsuarioModificacion { get; set; }
         public Nullable<int> Estatus { get; set; }
+        public bool EsFactura { get; set; }
     
         public virtual C_Clientes C_Clientes { get; set; }
         public virtual C_Vehiculos C_Vehiculos { get; set; }

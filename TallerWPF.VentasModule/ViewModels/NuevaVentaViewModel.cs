@@ -53,10 +53,14 @@ namespace TallerWPF.VentasModule.ViewModels
                         IVA = 0,
                         Total = 0
                     };
+                    ActualizarDatosVenta();
                 }
                 return this.ventaActual;
             }
-            set { SetProperty(ref this.ventaActual, value); }
+            set 
+            { 
+                SetProperty(ref this.ventaActual, value);
+            }
         }
 
         ObservableCollection<VentaDetalleDto> detallesVenta;
@@ -136,7 +140,14 @@ namespace TallerWPF.VentasModule.ViewModels
                 SetProperty(ref this.productosSearchText, value);
             }
         }
-        
+
+        string tituloVenta;
+        public string TituloVenta
+        {
+            get { return tituloVenta; }
+            set { SetProperty(ref this.tituloVenta, value); }
+        }
+
         #endregion
 
         #region CONSTRUCTOR
@@ -158,9 +169,10 @@ namespace TallerWPF.VentasModule.ViewModels
 
             this.eventAggregator.GetEvent<ClienteSeleccionadoEvent>().Subscribe(OnClienteSeleccionado);
             this.eventAggregator.GetEvent<VehiculoSeleccionadoEvent>().Subscribe(OnVehiculoSeleccionado);
+            this.eventAggregator.GetEvent<CrearNuevaVenta>().Subscribe(OnCrearNuevaVenta);
 
-            VentaActual = new VentaDto();
             servicioVenta.ActualizarVentaActual(VentaActual, DetallesVenta);
+            ActualizarDatosVenta();
         }
 
         #endregion
@@ -182,11 +194,13 @@ namespace TallerWPF.VentasModule.ViewModels
                 {
                     var precioActual = preciosService.ObtenerPrecioActualServicio(c_servicioAgregado.IdServicio);
 
+                    var precioUnitario = VentaActual.EsFactura ? precioActual.Precio : precioActual.PrecioNota;
+
                     VentaDetalleDto ventaDetalle = new VentaDetalleDto()
                     {
                         C_Servicios = c_servicioAgregado,
                         Cantidad = 1,
-                        PrecioUnitario = precioActual.Precio,
+                        PrecioUnitario = precioUnitario,
                         Importe = precioActual.Precio
                     };
 
@@ -196,9 +210,14 @@ namespace TallerWPF.VentasModule.ViewModels
             }
         }
 
+        public void ActualizarVentaActual()
+        {
+            servicioVenta.ActualizarVentaActual(VentaActual, DetallesVenta);
+        }
+        
         public void ActualizarImporteVenta()
         {
-            servicioVenta.ActualizarImporteVenta(VentaActual, DetallesVenta);
+            servicioVenta.ActualizarImporteVenta();
         }
 
         public bool PuedePagarVenta()
@@ -219,6 +238,28 @@ namespace TallerWPF.VentasModule.ViewModels
             VehiculoSeleccionado = vehiculo;
         }
 
+        public void OnCrearNuevaVenta(bool requiereFactura)
+        {
+            DetallesVenta = new ObservableCollection<VentaDetalleDto>();
+            VentaActual = new VentaDto()
+            {
+                EsFactura = requiereFactura,
+                Fecha = DateTime.Now,
+                IdVenta = 0,
+                Subtotal = 0,
+                IVA = 0,
+                Total = 0
+            };
+
+            servicioVenta.ActualizarVentaActual(VentaActual, DetallesVenta);
+
+            ActualizarDatosVenta();
+        }
+
+        public void ActualizarDatosVenta()
+        {
+            TituloVenta = VentaActual.EsFactura ? "Venta Con Factura" : "Venta Con Nota Sencilla";
+        }
         #endregion        
     }
 }

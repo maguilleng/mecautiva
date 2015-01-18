@@ -23,7 +23,7 @@
           <EntitySet Name="Ventas" EntityType="PuntoVentaModel.Store.Ventas" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="VentasDetalle" EntityType="PuntoVentaModel.Store.VentasDetalle" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_C_Clientes_C_TiposPersona" Association="PuntoVentaModel.Store.FK_C_Clientes_C_TiposPersona">
-            <End Role="C_TiposPersona" EntitySet="C_TiposPersona" />
+            <End Role="C_Municipios" EntitySet="C_Municipios" />
             <End Role="C_Clientes" EntitySet="C_Clientes" />
           </AssociationSet>
           <AssociationSet Name="FK_C_Municipios_C_Estados" Association="PuntoVentaModel.Store.FK_C_Municipios_C_Estados">
@@ -287,6 +287,7 @@
           <Property Name="IdUsuarioCreacion" Type="int" />
           <Property Name="IdUsuarioModificacion" Type="int" />
           <Property Name="Estatus" Type="int" />
+          <Property Name="PrecioNota" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
@@ -307,6 +308,7 @@
           <Property Name="IdUsuarioCreacion" Type="int" />
           <Property Name="IdUsuarioModificacion" Type="int" />
           <Property Name="Estatus" Type="int" />
+          <Property Name="EsFactura" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="VentasDetalle">
           <Key>
@@ -325,14 +327,14 @@
           <Property Name="Estatus" Type="int" />
         </EntityType>
         <Association Name="FK_C_Clientes_C_TiposPersona">
-          <End Role="C_TiposPersona" Type="PuntoVentaModel.Store.C_TiposPersona" Multiplicity="1" />
+          <End Role="C_Municipios" Type="PuntoVentaModel.Store.C_Municipios" Multiplicity="1" />
           <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="C_TiposPersona">
-              <PropertyRef Name="IdTipoPersona" />
+            <Principal Role="C_Municipios">
+              <PropertyRef Name="IdMunicipio" />
             </Principal>
             <Dependent Role="C_Clientes">
-              <PropertyRef Name="IdTipoPersona" />
+              <PropertyRef Name="IdMunicipio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -585,6 +587,10 @@
             <End Role="Ventas" EntitySet="Ventas" />
             <End Role="VentasDetalle" EntitySet="VentasDetalle" />
           </AssociationSet>
+          <AssociationSet Name="FK_C_Clientes_C_TiposPersona1" Association="PuntoVentaModel.FK_C_Clientes_C_TiposPersona1">
+            <End Role="C_Municipios" EntitySet="C_Municipios" />
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C_Clientes">
           <Key>
@@ -611,6 +617,7 @@
           <NavigationProperty Name="C_TiposPersona" Relationship="PuntoVentaModel.FK_C_Clientes_C_TiposPersona" FromRole="C_Clientes" ToRole="C_TiposPersona" />
           <NavigationProperty Name="C_Vehiculos" Relationship="PuntoVentaModel.FK_C_Vehiculos_C_Clientes" FromRole="C_Clientes" ToRole="C_Vehiculos" />
           <NavigationProperty Name="Ventas" Relationship="PuntoVentaModel.FK_Ventas_C_Clientes" FromRole="C_Clientes" ToRole="Ventas" />
+          <NavigationProperty Name="C_Municipios" Relationship="PuntoVentaModel.FK_C_Clientes_C_TiposPersona1" FromRole="C_Clientes" ToRole="C_Municipios" />
         </EntityType>
         <EntityType Name="C_Estados">
           <Key>
@@ -658,6 +665,7 @@
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Estatus" Nullable="false" />
           <NavigationProperty Name="C_Estados" Relationship="PuntoVentaModel.FK_C_Municipios_C_Estados" FromRole="C_Municipios" ToRole="C_Estados" />
+          <NavigationProperty Name="C_Clientes" Relationship="PuntoVentaModel.FK_C_Clientes_C_TiposPersona1" FromRole="C_Municipios" ToRole="C_Clientes" />
         </EntityType>
         <EntityType Name="C_Servicios">
           <Key>
@@ -813,6 +821,7 @@
           <Property Type="Int32" Name="IdUsuarioModificacion" />
           <Property Type="Int32" Name="Estatus" />
           <NavigationProperty Name="C_Servicios" Relationship="PuntoVentaModel.FK_Precios_C_Servicios" FromRole="Precios" ToRole="C_Servicios" />
+          <Property Type="Double" Name="PrecioNota" Nullable="false" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
@@ -838,6 +847,7 @@
           <NavigationProperty Name="Facturas" Relationship="PuntoVentaModel.FK_Facturas_Ventas" FromRole="Ventas" ToRole="Facturas" />
           <NavigationProperty Name="Pagos" Relationship="PuntoVentaModel.FK_Pagos_Ventas" FromRole="Ventas" ToRole="Pagos" />
           <NavigationProperty Name="VentasDetalle" Relationship="PuntoVentaModel.FK_VentasDetalle_Ventas" FromRole="Ventas" ToRole="VentasDetalle" />
+          <Property Type="Boolean" Name="EsFactura" Nullable="false" />
         </EntityType>
         <EntityType Name="VentasDetalle">
           <Key>
@@ -1034,6 +1044,18 @@
             </Principal>
             <Dependent Role="VentasDetalle">
               <PropertyRef Name="IdVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_Clientes_C_TiposPersona1">
+          <End Type="PuntoVentaModel.C_Municipios" Role="C_Municipios" Multiplicity="1" />
+          <End Type="PuntoVentaModel.C_Clientes" Role="C_Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Municipios">
+              <PropertyRef Name="IdMunicipio" />
+            </Principal>
+            <Dependent Role="C_Clientes">
+              <PropertyRef Name="IdMunicipio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1251,6 +1273,7 @@
           <EntitySetMapping Name="Precios">
             <EntityTypeMapping TypeName="PuntoVentaModel.Precios">
               <MappingFragment StoreEntitySet="Precios">
+                <ScalarProperty Name="PrecioNota" ColumnName="PrecioNota" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
                 <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
@@ -1265,6 +1288,7 @@
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="PuntoVentaModel.Ventas">
               <MappingFragment StoreEntitySet="Ventas">
+                <ScalarProperty Name="EsFactura" ColumnName="EsFactura" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
                 <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />

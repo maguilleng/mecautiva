@@ -14,11 +14,17 @@ namespace TallerWPF.Entidades
     
     public partial class C_Municipios
     {
+        public C_Municipios()
+        {
+            this.C_Clientes = new HashSet<C_Clientes>();
+        }
+    
         public int IdMunicipio { get; set; }
         public int IdEstado { get; set; }
         public string Descripcion { get; set; }
         public int Estatus { get; set; }
     
         public virtual C_Estados C_Estados { get; set; }
+        public virtual ICollection<C_Clientes> C_Clientes { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace TallerWPF.Entidades
         public Nullable<int> IdUsuarioCreacion { get; set; }
         public Nullable<int> IdUsuarioModificacion { get; set; }
         public Nullable<int> Estatus { get; set; }
+        public double PrecioNota { get; set; }
     
         public virtual C_Servicios C_Servicios { get; set; }
     }

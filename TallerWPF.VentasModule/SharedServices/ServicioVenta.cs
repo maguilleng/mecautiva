@@ -25,9 +25,27 @@ namespace TallerWPF.VentasModule.SharedServices
         { 
         }
 
+        public void CrearNuevaVenta(bool requiereFactura)
+        {
+            VentaActual = new VentaDto()
+            {
+                EsFactura = requiereFactura,
+                Cliente = null,
+                Vehiculo = null,
+                VentaPagada = false
+            };
+
+            DetallesVenta = new ObservableCollection<VentaDetalleDto>();
+        }
+
         public VentaDto ObtenerVentaActual()
         {
             return VentaActual;
+        }
+
+        public ObservableCollection<VentaDetalleDto> ObtenerDetallesVenta()
+        {
+            return DetallesVenta;
         }
 
         public void ActualizarVentaActual(VentaDto ventaActual, ObservableCollection<VentaDetalleDto> detalles)
@@ -45,11 +63,8 @@ namespace TallerWPF.VentasModule.SharedServices
             return false;
         }
 
-        public void ActualizarImporteVenta(VentaDto ventaParam, ObservableCollection<VentaDetalleDto> detalles)
+        public void ActualizarImporteVenta()
         {
-            //ventaParam.Subtotal = CalcularSubtotalServicios(detalles);
-            //ventaParam.IVA = Convert.ToDouble(CalcularIvaDelSubtotal(ventaParam.Subtotal));
-            //ventaParam.Total = Convert.ToDouble(CalcularTotalVenta(ventaParam));
             VentaActual.Subtotal = CalcularSubtotalServicios(DetallesVenta);
             VentaActual.IVA = Convert.ToDouble(CalcularIvaDelSubtotal(VentaActual.Subtotal));
             VentaActual.Total = Convert.ToDouble(CalcularTotalVenta(VentaActual));
@@ -80,7 +95,7 @@ namespace TallerWPF.VentasModule.SharedServices
         public void LimpiarProductosVentaActual()
         {
             DetallesVenta.Clear();
-            ActualizarImporteVenta(VentaActual, DetallesVenta);
+            ActualizarImporteVenta();
         }
 
         public void PagarVentaActual()
