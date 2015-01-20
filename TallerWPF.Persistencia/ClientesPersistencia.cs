@@ -17,14 +17,26 @@ namespace TallerWPF.Persistencia
         }
 
         //public IQueryable<cliente> ObtenerListaClientes()
+
         public List<C_Clientes> ObtenerListaClientes()
         {
             return contexto.C_Clientes.Include("C_Vehiculos").ToList();
         }
 
+        public List<C_Vehiculos> ObtenerListaVehiculosxCliente(int idCliente)
+        {
+
+            return contexto.C_Vehiculos.Where(v => v.IdCliente == idCliente).ToList();
+        }
+
         public void registrar_nuevo_cliente(C_Clientes nuevo_cliente)
-        {           
-            
+        {
+
+        }
+
+        public List<C_TiposPersona> ObtenerListaTiposPersona()
+        {
+            return contexto.C_TiposPersona.ToList();
         }
     }
 }

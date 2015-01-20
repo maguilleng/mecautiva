@@ -23,5 +23,26 @@ namespace TallerWPF.Vistas
         {
             InitializeComponent();
         }
+
+        private void RadRibbonButton_Click(object sender, RoutedEventArgs e)
+        {
+            RadRBImprimir.Visibility = System.Windows.Visibility.Collapsed;
+            rbtnToolBar.Visibility = System.Windows.Visibility.Visible;
+            rbtnToolBar.Header = "Cliente Actual";
+        }
+
+        private void rbtnCarteraClientes_Click(object sender, RoutedEventArgs e)
+        {
+            RadRBImprimir.Visibility = System.Windows.Visibility.Visible;
+            rbtnToolBar.Visibility = System.Windows.Visibility.Collapsed;
+            RadRBImprimir.Header = "Clientes - Vehiculos";
+        }
+
+        private void rbtnNuevoVehiculo_Click(object sender, RoutedEventArgs e)
+        {
+            RadRBImprimir.Visibility = System.Windows.Visibility.Collapsed;
+            rbtnToolBar.Visibility = System.Windows.Visibility.Visible;
+            rbtnToolBar.Header = "Vehiculo Actual";
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace TallerWPF
     {
         IEventAggregator eventAggregator;
         IServicioVenta servicioVenta;
+        IServicioCliente servicioCliente;
         
         [Import]
         IRegionManager regionManager;
@@ -65,7 +66,7 @@ namespace TallerWPF
         
 
         [ImportingConstructor]
-        public ShellViewModel(IEventAggregator evtAggregator, IServicioVenta servicioVenta)
+        public ShellViewModel(IEventAggregator evtAggregator, IServicioVenta servicioVenta, IServicioCliente servicioCliente)
         {
             eventAggregator = evtAggregator;
             this.servicioVenta = servicioVenta;
@@ -131,6 +132,23 @@ namespace TallerWPF
                 case "PagarVentaActual":
                     servicioVenta.PagarVentaActual();
                     break;
+                //CLIENTES
+                case "CarteraClientes":
+                    //Necesario mandar a guardar, editar, etc. (Se puede con los metodos?) y Necesario poder cambiar de Regiones (Exit)
+                    servicioCliente.LimpiarCarteraClientes();
+                    //Dispara una región
+                    regionManager.RequestNavigate(RegionNames.MainRegion, "ucClientesPrincipal");
+                    break;
+                case "NuevoCliente":
+                    regionManager.RequestNavigate(RegionNames.MainRegion, "ucClientes");
+                    break;
+                case "Guardar":
+                    eventAggregator.GetEvent<GuardarEvent>().Publish(null);
+                    break;
+                case "NuevoVehiculo":
+                    regionManager.RequestNavigate(RegionNames.MainRegion, "ucVehiculos");
+                    break;
+                //end CLIENTES
                 default:
                     break;
             }

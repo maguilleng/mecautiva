@@ -6,6 +6,7 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:cal="http://www.codeplex.com/prism"
+             xmlns:CompCompartido ="clr-namespace:TallerWPF.Infraestructura.ComponentesCompartidos;assembly=TallerWPF.Infraestructura"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <telerik:RadRibbonView x:Name="MenuPrincipal" ApplicationButtonContent="Configuración" 
@@ -72,11 +73,49 @@
                                          Text="Generar Factura"/>
             </telerik:RadRibbonGroup>
         </telerik:RadRibbonTab>
-        <telerik:RadRibbonTab Header="Inventarios" Tag="ModuloInventarios"/>
+        <telerik:RadRibbonTab Header="CLIENTES" Tag="ModuloClientes">
+            <telerik:RadRibbonGroup Header="Opciones de Clientes">
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium" x:Name="rbtnCarteraClientes"
+                                            LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
+                                            Size="Large"
+                                            Text="Cartera"
+                                             Click="rbtnCarteraClientes_Click"
+                                             Command="{Binding BotonMenuCommand}"                                         
+                                            CommandParameter="CarteraClientes">
+                </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"
+                                            LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
+                                            Size="Large"
+                                            Text="Nuevo Cliente"
+                                             Command="{Binding BotonMenuCommand}"
+                                             CommandParameter="NuevoCliente"                                     
+                                            Click="RadRibbonButton_Click"   >
+                    </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium" x:Name="rbtnNuevoVehiculo"
+                                            LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
+                                            Size="Large"
+                                            Text="Nuevo Vehiculo"
+                                            Command="{Binding BotonMenuCommand}"
+                                            CommandParameter="NuevoVehiculo"  
+                                            Click="rbtnNuevoVehiculo_Click">
+                    </telerik:RadRibbonButton>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup  Header="Clientes - Vehiculos" AlternationCount="1" x:Name="RadRBImprimir">
+                    <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium" 
+                                        LargeImage="/Recursos/Imagenes/Ventas/discount-icon.png"
+                                         SmallImage="/Recursos/Imagenes/Ventas/discount-icon.png"
+                                         Size="Medium"
+                                         Text="Imprimir"
+                                         Command="{Binding BotonMenuCommand}"/>
+                </telerik:RadRibbonGroup >
+                <telerik:RadRibbonGroup  Header="" AlternationCount="2" x:Name="rbtnToolBar" Visibility="Collapsed">
+                    <CompCompartido:ucToolBarCRUD >
+                    </CompCompartido:ucToolBarCRUD>
+                </telerik:RadRibbonGroup>
+        </telerik:RadRibbonTab>
         <telerik:RadRibbonTab Header="Servicios" Tag="ModuloServicios"/>
         <telerik:RadRibbonTab Header="Administración" Tag="ModuloServicios"/>
         <telerik:RadRibbonTab Header="Clientes" Tag="ModuloClientes">
-
             <telerik:RadRibbonGroup Header="Opciones de Clientes">
                 <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"
                                            
@@ -88,6 +127,6 @@
                 </telerik:RadRibbonButton>
             </telerik:RadRibbonGroup>
         </telerik:RadRibbonTab>
-            <telerik:RadRibbonTab Header="Tablero" Tag="ModuloTableroControl"/>
+        <telerik:RadRibbonTab Header="Tablero" Tag="ModuloTableroControl"/>
     </telerik:RadRibbonView>
 </UserControl>

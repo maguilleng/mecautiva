@@ -10,4 +10,7 @@ namespace TallerWPF.Infraestructura
     public class VehiculoSeleccionadoEvent : PubSubEvent<C_Vehiculos> { }
 
     public class CrearNuevaVenta : PubSubEvent<bool> { }
+
+    //Componentes Compartidos
+    public class GuardarEvent : PubSubEvent<object> { }
 }

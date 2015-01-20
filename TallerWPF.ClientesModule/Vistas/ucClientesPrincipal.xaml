@@ -2,10 +2,58 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <!--<UserControl.Resources>
+        <ResourceDictionary>
+            <infra:TipoPersonaConverter x:Key="tipoPersonaConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>-->
     <Grid>
-        <TextBlock Text="Tabla con todos los clientes CLIENTES " FontSize="30"></TextBlock>
+        <TextBlock Text="CARTERA DE CLIENTES " FontSize="30"></TextBlock>
+        <telerik:RadGridView x:Name="grdClientes" ItemsSource="{Binding Clientes}" 
+                             AutoGenerateColumns="False"
+                             ShowGroupFooters="false" Margin="0,0,-753,0">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="No. Clientes" Width="110" IsReadOnly="True"
+                        DataMemberBinding="{Binding NumeroCliente}"></telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="RFC" DataMemberBinding="{Binding RFC}"></telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="Nombre" IsReadOnly="True" 
+                        DataMemberBinding="{Binding Nombre}" MinWidth="200"></telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="Tipo Persona" IsReadOnly="True"
+                        DataMemberBinding="{Binding C_TiposPersona.Descripcion}">
+                </telerik:GridViewDataColumn>
+                <!--DataMemberBinding="{Binding IdTipoPersona, Converter={StaticResource tipoPersonaConverter }}">-->
+                <telerik:GridViewDataColumn Header="Dirección" IsReadOnly="True"
+                        DataMemberBinding="{Binding Direccion}"></telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="CP" IsReadOnly="True"
+                        DataMemberBinding="{Binding CodigoPostal}"></telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="Ciudad" IsReadOnly="True"
+                        DataMemberBinding="{Binding CodigoPostal}"></telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="Municipio" IsReadOnly="True"
+                        DataMemberBinding="{Binding C_Municipios.Descripcion}"></telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="Estado" IsReadOnly="True"
+                        DataMemberBinding="{Binding C_Municipios.C_Estados.Descripcion}"></telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="Movil" IsReadOnly="True"
+                        DataMemberBinding="{Binding Movil}"></telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="Tel. Casa" IsReadOnly="True"
+                        DataMemberBinding="{Binding Casa}"></telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Tel. Trabajo" IsReadOnly="True"
+                        DataMemberBinding="{Binding Trabajo}"></telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="E-mail" IsReadOnly="True"
+                        DataMemberBinding="{Binding Email}"></telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
     </Grid>
 </UserControl>

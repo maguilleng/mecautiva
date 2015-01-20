@@ -112,10 +112,14 @@
     <Compile Include="Behaviors\ViewExportAttribute.cs" />
     <Compile Include="Behaviors\WindowDialogActivationBehavior.Desktop.cs" />
     <Compile Include="Behaviors\WindowWrapper.Desktop.cs" />
+    <Compile Include="ComponentesCompartidos\ucToolBarCRUD.xaml.cs">
+      <DependentUpon>ucToolBarCRUD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\ExistenciaAColorBrushConverter.cs" />
     <Compile Include="Converters\FalseToVisibilityConverter.cs" />
     <Compile Include="Eventos\Eventos.cs" />
+    <Compile Include="Interfaces\IServicioCliente.cs" />
     <Compile Include="Interfaces\IServicioVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -150,6 +154,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ComponentesCompartidos\ucToolBarCRUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RecursosYEstilos\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,6 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="RecursosYEstilos\Imagenes\Ventas\EliminarProducto_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosYEstilos\Imagenes\ComponentesCompartidos\Guardar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

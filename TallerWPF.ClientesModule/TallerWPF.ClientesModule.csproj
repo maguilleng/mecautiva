@@ -65,22 +65,70 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart">
+      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.RibbonView">
+      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.RibbonView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModuloClientes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedServices\ServicioCliente.cs" />
+    <Compile Include="ViewModels\vmClientes.cs" />
+    <Compile Include="Vistas\ucClientes.xaml.cs">
+      <DependentUpon>ucClientes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\ucClientesPrincipal.xaml.cs">
       <DependentUpon>ucClientesPrincipal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\ucVehiculos.xaml.cs">
+      <DependentUpon>ucVehiculos.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Vistas\ucClientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\ucClientesPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ucVehiculos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Servicios\TallerWPF.Modelo.csproj">
+      <Project>{47e1c38b-5680-4261-b01c-96529ffd2cb1}</Project>
+      <Name>TallerWPF.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TallerWPF.Entidades\TallerWPF.Entidades.csproj">
+      <Project>{6385cfee-4096-46f6-a52e-f2ea1116322c}</Project>
+      <Name>TallerWPF.Entidades</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TallerWPF.Infraestructura\TallerWPF.Infraestructura.csproj">
       <Project>{0646bc9e-5fab-4c59-9f3a-f7ee9559b69b}</Project>
       <Name>TallerWPF.Infraestructura</Name>
