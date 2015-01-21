@@ -135,7 +135,6 @@ namespace TallerWPF
                 //CLIENTES
                 case "CarteraClientes":
                     //Necesario mandar a guardar, editar, etc. (Se puede con los metodos?) y Necesario poder cambiar de Regiones (Exit)
-                    servicioCliente.LimpiarCarteraClientes();
                     //Dispara una región
                     regionManager.RequestNavigate(RegionNames.MainRegion, "ucClientesPrincipal");
                     break;
