@@ -53,24 +53,23 @@
         <Label Content="Datos del Vehiculo: " Foreground="Blue" FontSize="16" Margin="15,0,0,0"  Grid.RowSpan="2" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
 
         <Label Content="Placa :" Grid.Row="8" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBox Width="150" Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="9" Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtPlaca" IsEnabled="False" Width="150" Grid.Column="0" Text="{Binding VehiculoSeleccionado.Placas, Mode=TwoWay}"  FontWeight="Bold" FontSize="12"  Grid.Row="9" Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label Content="Marca :" Grid.Row="8" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBox Width="150" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox  x:Name="txtMarca" IsEnabled="False" Width="150" Grid.Column="2" Text="{Binding VehiculoSeleccionado.Marca}"  Grid.Row="9" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label Content="Linea :" Grid.Row="8" Grid.Column="4" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
-        <TextBox Width="150" Grid.Column="4" Grid.Row="9"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtLinea" IsEnabled="False" Width="150" Grid.Column="4"   Text="{Binding VehiculoSeleccionado.Linea}"  Grid.Row="9"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
 
         <Label Content="Modelo :" Grid.Row="10" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
-        <TextBox Width="150" Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="11" Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox  x:Name="txtModelo" IsEnabled="False" Width="150"  Text="{Binding VehiculoSeleccionado.Modelo}"  Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="11" Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label Content="Color :" Grid.Row="10" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBox Width="150" Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
-        <Label Content="No: Economico :" Grid.Row="10" Grid.Column="4" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" ></Label>
-        <TextBox Width="150" Grid.Column="4" Grid.Row="11"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtColor" IsEnabled="False" Width="150"  Text="{Binding VehiculoSeleccionado.Color}"  Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <Label Content="No: Economico :"  Grid.Row="10" Grid.Column="4" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" ></Label>
+        <TextBox x:Name="txtNoEconomica" IsEnabled="False" Width="150"  Text="{Binding VehiculoSeleccionado.NoEconomico}"  Grid.Column="4" Grid.Row="11"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
 
         <Label Content="Cliente: " FontSize="14" Grid.Column="6" Grid.Row="1" Margin="30,0,0,0" HorizontalAlignment="Left"></Label>
         <telerik:RadAutoCompleteBox x:Name="cmbClientes" Grid.Column="6" Margin="110,0,0,0" Grid.Row="1" Width="300" HorizontalAlignment="Left"
-                                    ItemsSource="{Binding Clientes}" SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}"
-                                    SelectionMode="Single"  DisplayMemberPath="Nombre"
-                                     Visibility="{Binding BuscarPorIdCliente, Converter={StaticResource falseToVisibilityConverter}}">
+                                    ItemsSource="{Binding Clientes}" SelectionChanged="cmbClientes_SelectionChanged"  SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}" 
+                                    SelectionMode="Single"  DisplayMemberPath="Nombre">
             <telerik:RadAutoCompleteBox.DropDownItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -82,15 +81,13 @@
             </telerik:RadAutoCompleteBox.DropDownItemTemplate>
         </telerik:RadAutoCompleteBox>
 
-        <Label Content="{Binding ClienteSeleccionado.IdCliente}" Grid.Row="2" Grid.Column="6" Margin="2" FontWeight="Bold"/>
-
-        <telerik:RadGridView x:Name="grdClientes" AutoGenerateColumns="False"  ItemsSource="{Binding VehiculosxCliente}" 
-                             Grid.Row="3" Grid.Column="6" Grid.RowSpan="16">
+        <telerik:RadGridView x:Name="grdVehiculos" AutoGenerateColumns="False"  ItemsSource="{Binding VehiculosxCliente}" 
+                             Grid.Row="3" Grid.Column="6" Grid.RowSpan="16" SelectionChanged="grdVehiculos_SelectionChanged" SelectedItem="{Binding VehiculoSeleccionado, Mode=TwoWay}">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="" Width="40" IsReadOnly="True" IsVisible="False" 
                         DataMemberBinding="{Binding IdVehiculo}"></telerik:GridViewDataColumn>
 
-                <telerik:GridViewDataColumn Header="Placa" Width="100" IsReadOnly="True"
+                <telerik:GridViewDataColumn Header="Placa" Width="100" IsReadOnly="True" 
                         DataMemberBinding="{Binding Placas}"></telerik:GridViewDataColumn>
 
                 <telerik:GridViewDataColumn Header="Marca"  Width="100" DataMemberBinding="{Binding Marca}"></telerik:GridViewDataColumn>

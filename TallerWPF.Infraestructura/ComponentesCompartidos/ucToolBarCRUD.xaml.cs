@@ -27,7 +27,7 @@ namespace TallerWPF.Infraestructura.ComponentesCompartidos
 
         public void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Hello MessageBox");
+           // MessageBoxResult result = MessageBox.Show("Hello MessageBox");
         }
     }
 }

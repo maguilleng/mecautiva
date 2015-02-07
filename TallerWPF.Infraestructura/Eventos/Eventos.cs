@@ -13,4 +13,7 @@ namespace TallerWPF.Infraestructura
 
     //Componentes Compartidos
     public class GuardarEvent : PubSubEvent<object> { }
+
+    //Modulo Clientes
+    public class NuevoClienteEvent : PubSubEvent<object> { }
 }

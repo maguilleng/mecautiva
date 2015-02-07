@@ -41,10 +41,13 @@ namespace TallerWPF.ClientesModule.Vistas
             {
                 this.DataContext = value;
             }
+
+         
         }
 
-        private void cmbTipoPersona_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void grdClientes_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {
+            txtRFC.IsEnabled = false;
 
         }
     }

@@ -140,6 +140,7 @@ namespace TallerWPF
                     break;
                 case "NuevoCliente":
                     regionManager.RequestNavigate(RegionNames.MainRegion, "ucClientes");
+                    eventAggregator.GetEvent<NuevoClienteEvent>().Publish(null);
                     break;
                 case "Guardar":
                     eventAggregator.GetEvent<GuardarEvent>().Publish(null);

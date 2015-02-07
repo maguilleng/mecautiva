@@ -12,22 +12,19 @@ namespace TallerWPF.Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class C_TiposPersona
+    public partial class C_Ciudades
     {
-        public C_TiposPersona()
+        public C_Ciudades()
         {
             this.C_Clientes = new HashSet<C_Clientes>();
         }
     
-        public int IdTipoPersona { get; set; }
+        public int idCiudad { get; set; }
         public string Descripcion { get; set; }
-        public string Mnemonico { get; set; }
-        public Nullable<System.DateTime> FechaAlta { get; set; }
-        public Nullable<System.DateTime> FechaModificacion { get; set; }
         public Nullable<int> Estatus { get; set; }
-        public Nullable<int> IdUsuarioCreacion { get; set; }
-        public Nullable<int> IdUsuarioModificacion { get; set; }
+        public Nullable<int> IdMunicipio { get; set; }
     
+        public virtual C_Municipios C_Municipios { get; set; }
         public virtual ICollection<C_Clientes> C_Clientes { get; set; }
     }
 }

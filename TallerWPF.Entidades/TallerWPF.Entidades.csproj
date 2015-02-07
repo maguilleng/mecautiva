@@ -73,6 +73,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="C_Ciudades.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="C_Clientes.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
@@ -127,6 +130,8 @@
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs" />
+    <Compile Include="VehiculosEntidades\C_ClientesDTO.cs" />
+    <Compile Include="VehiculosEntidades\C_VehiculosDTO.cs" />
     <Compile Include="Ventas.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>

@@ -5,19 +5,41 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="833.459">
     <!--<UserControl.Resources>
         <ResourceDictionary>
             <infra:TipoPersonaConverter x:Key="tipoPersonaConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>-->
+
+
     <Grid>
+      <!-- <Grid.Resources>
+            <DataTemplate x:Key="RowDetailsTemplate">
+                <telerik:RadGridView Name="playersGrid" 
+                                ItemsSource="{Binding Clientes}" 
+                                AutoGenerateColumns="False">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding RFC}"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Nombre}"/>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+            </DataTemplate>
+        </Grid.Resources>
+        -->
         <TextBlock Text="CARTERA DE CLIENTES " FontSize="30"></TextBlock>
         <telerik:RadGridView x:Name="grdClientes" ItemsSource="{Binding Clientes}" 
-                             AutoGenerateColumns="False"
-                             ShowGroupFooters="false" Margin="0,0,-753,0">
+                             AutoGenerateColumns="False"   
+                             ShowGroupFooters="false" Margin="0,0,-753,0" >
+            <telerik:RadGridView.ChildTableDefinitions>
+                <telerik:GridViewTableDefinition>
+                    <telerik:GridViewTableDefinition.Relation>
+                        <telerik:PropertyRelation ParentPropertyName="C_Vehiculos.Placas" />
+                    </telerik:GridViewTableDefinition.Relation>
+                </telerik:GridViewTableDefinition>
+            </telerik:RadGridView.ChildTableDefinitions>
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn Header="No. Clientes" Width="110" IsReadOnly="True"
+                <telerik:GridViewDataColumn Header="No." Width="110" IsReadOnly="True"
                         DataMemberBinding="{Binding NumeroCliente}"></telerik:GridViewDataColumn>
 
                 <telerik:GridViewDataColumn Header="RFC" DataMemberBinding="{Binding RFC}"></telerik:GridViewDataColumn>
@@ -35,8 +57,8 @@
                 <telerik:GridViewDataColumn Header="CP" IsReadOnly="True"
                         DataMemberBinding="{Binding CodigoPostal}"></telerik:GridViewDataColumn>
 
-                <telerik:GridViewDataColumn Header="Ciudad" IsReadOnly="True"
-                        DataMemberBinding="{Binding CodigoPostal}"></telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Ciudad" IsReadOnly="True" MaxWidth="100"
+                        DataMemberBinding="{Binding C_Ciudades.Descripcion}"></telerik:GridViewDataColumn>
 
                 <telerik:GridViewDataColumn Header="Municipio" IsReadOnly="True"
                         DataMemberBinding="{Binding C_Municipios.Descripcion}"></telerik:GridViewDataColumn>

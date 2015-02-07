@@ -37,5 +37,32 @@ namespace TallerWPF.ClientesModule.Vistas
                 this.DataContext = value;
             }
         }
+
+        private void grdVehiculos_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
+        {
+           i
+        }
+
+        private void cmbClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbClientes.SelectedItem != null)
+            {
+                txtColor.IsEnabled = true;
+                txtLinea.IsEnabled = true;
+                txtMarca.IsEnabled = true;
+                txtModelo.IsEnabled = true;
+                txtNoEconomica.IsEnabled = true;
+                txtPlaca.IsEnabled = true;
+            }
+            else
+            {
+                txtColor.IsEnabled = false;
+                txtLinea.IsEnabled = false;
+                txtMarca.IsEnabled = false;
+                txtModelo.IsEnabled = false;
+                txtNoEconomica.IsEnabled = false;
+                txtPlaca.IsEnabled = false;
+            }
+        }
     }
 }

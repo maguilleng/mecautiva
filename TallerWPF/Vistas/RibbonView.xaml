@@ -114,19 +114,7 @@
                 </telerik:RadRibbonGroup>
         </telerik:RadRibbonTab>
         <telerik:RadRibbonTab Header="Servicios" Tag="ModuloServicios"/>
-        <telerik:RadRibbonTab Header="Administración" Tag="ModuloServicios"/>
-        <telerik:RadRibbonTab Header="Clientes" Tag="ModuloClientes">
-            <telerik:RadRibbonGroup Header="Opciones de Clientes">
-                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"
-                                           
-                                            Size="Large"
-                                            Text="Nuevo Cliente"
-                                             Command="{Binding BotonMenuCommand}"
-                                             CommandParameter="NuevaVenta">
-
-                </telerik:RadRibbonButton>
-            </telerik:RadRibbonGroup>
-        </telerik:RadRibbonTab>
-        <telerik:RadRibbonTab Header="Tablero" Tag="ModuloTableroControl"/>
+        <telerik:RadRibbonTab Header="Administración" Tag="ModuloServicios" Visibility="Collapsed"/>
+        <telerik:RadRibbonTab Header="Tablero" Tag="ModuloTableroControl" Visibility="Collapsed"/>
     </telerik:RadRibbonView>
 </UserControl>
