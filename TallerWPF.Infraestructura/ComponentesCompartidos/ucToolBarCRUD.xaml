@@ -19,21 +19,27 @@
         <telerik:RadButton x:Name="btnBuscar" Grid.Column="0" Content="Buscar" Visibility="Collapsed">
 
         </telerik:RadButton>
+         <telerik:RadButton  x:Name="btnEditar"  Grid.Column="2"  Visibility="Collapsed">
+                <telerik:RadButton.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/RecursosYEstilos/Imagenes/ComponentesCompartidos/Guardar.png" Width="25" Height="25"/>
+                        <Label Content=" Editar " />
+                    </StackPanel>
+                </telerik:RadButton.Content>
+            </telerik:RadButton>
         <telerik:RadButton  x:Name="btnGuardar" Grid.Column="1" Click="btnGuardar_Click" 
                 Command="{Binding BotonMenuCommand}"  CommandParameter="Guardar">
-
-
             <telerik:RadButton.Content>
                 <StackPanel Orientation="Vertical">
-                    <Image Source="RecursosYEstilos/Imagenes/ComponentesCompartidos/Guardar.png" Width="25" Height="25" />
+                    <Image Source="/RecursosYEstilos/Imagenes/ComponentesCompartidos/Guardar.png" Width="25" Height="25" />
                     <Label Content="Guardar " />
                 </StackPanel>
             </telerik:RadButton.Content>
         </telerik:RadButton>
-        <telerik:RadButton x:Name="btnEditar" Grid.Column="2" Content="Editar">
+        
+        <telerik:RadButton x:Name="btnEliminar" Content="Eliminar" Grid.Column="3" Visibility="Collapsed">
 
-        </telerik:RadButton>
-        <telerik:RadButton x:Name="btnEliminar" Content="Eliminar" Grid.Column="3">
+
 
         </telerik:RadButton>
     </Grid>

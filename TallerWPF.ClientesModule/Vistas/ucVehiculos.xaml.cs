@@ -9,6 +9,7 @@ using TallerWPF.Infraestructura;
 using Microsoft.Practices.Prism.Regions;
 using System.Windows;
 using TallerWPF.ClientesModule.ViewModels;
+using TallerWPF.Entidades;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -24,13 +25,23 @@ namespace TallerWPF.ClientesModule.Vistas
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public partial class ucVehiculos : UserControl
     {
-        public ucVehiculos()
+
+        IEventAggregator eventAggregator;
+
+        [ImportingConstructor]
+        public ucVehiculos(IEventAggregator evtAggregator)
         {
             InitializeComponent();
+            eventAggregator = evtAggregator;
+            eventAggregator.GetEvent<GuardarEvent>().Subscribe(ValidaDatos);
+            
+
+            this.txtModelo.NumberFormatInfo = new System.Globalization.NumberFormatInfo();
+            this.txtModelo.NumberFormatInfo.NumberGroupSeparator = "";
         }
 
-        [Import]
-        vmClientes ViewModel
+      [Import]
+        vmVehiculos ViewModelVehiculos
         {
             set
             {
@@ -40,7 +51,7 @@ namespace TallerWPF.ClientesModule.Vistas
 
         private void grdVehiculos_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {
-           i
+            txtPlaca.IsEnabled = false;
         }
 
         private void cmbClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,7 +62,7 @@ namespace TallerWPF.ClientesModule.Vistas
                 txtLinea.IsEnabled = true;
                 txtMarca.IsEnabled = true;
                 txtModelo.IsEnabled = true;
-                txtNoEconomica.IsEnabled = true;
+                txtNoEconomico.IsEnabled = true;
                 txtPlaca.IsEnabled = true;
             }
             else
@@ -60,8 +71,34 @@ namespace TallerWPF.ClientesModule.Vistas
                 txtLinea.IsEnabled = false;
                 txtMarca.IsEnabled = false;
                 txtModelo.IsEnabled = false;
-                txtNoEconomica.IsEnabled = false;
+                txtNoEconomico.IsEnabled = false;
                 txtPlaca.IsEnabled = false;
+            }
+        }
+        
+        public void ValidaDatos(object objeto)
+        {
+            string mensajeErrores = "Existen errores en los datos a guardar, verifiquelos por favor";
+            if (Validation.GetHasError(txtPlaca))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+            else if (cmbClientes.SelectedItem == null)
+                {
+                    MessageBox.Show("Debe seleccionar un cliente");
+                }
+            else   if (Validation.GetHasError(txtMarca))
+                {
+                    MessageBox.Show("mensajeErrores");
+                }
+            else if (Validation.GetHasError(txtLinea))
+                {
+                    MessageBox.Show("mensajeErrores");
+                }
+            else
+            {
+                vmVehiculos VMClientes = this.DataContext as vmVehiculos;
+                VMClientes.GuardarDatosCommand.Execute();
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TallerWPF.Entidades;
+using System.Data;
 using TallerWPF.Entidades.VehiculosEntidades;
 
 namespace TallerWPF.Persistencia
@@ -16,9 +17,7 @@ namespace TallerWPF.Persistencia
         {
             contexto = new PuntoVentaEntities();
         }
-
-        //public IQueryable<cliente> ObtenerListaClientes()
-
+        
         public List<C_Clientes> ObtenerListaClientes()
         {
             return contexto.C_Clientes.Include("C_Vehiculos").ToList();
@@ -57,21 +56,34 @@ namespace TallerWPF.Persistencia
 
         public string GuardarVehiculo(C_Vehiculos vehiculo)
         {
-            try {
-                contexto.C_Vehiculos.Add(vehiculo);
-                contexto.SaveChanges();
-                return "El cliente a sido Guardado Exitosamente";
-            }
-            catch {
-                return "Se produjo un error al intentar guardar el nuevo cliente";
-            }
 
+            using (var ctx = new PuntoVentaEntities())
+            {
+                try
+                {
+                    if (vehiculo.IdVehiculo == 0)
+                    {
+                        ctx.C_Vehiculos.Add(vehiculo);
+                    }
+                    else
+                    {
+                        ctx.C_Vehiculos.Attach(vehiculo);
+                        ctx.Entry(vehiculo).State = EntityState.Modified;
+                    }
+
+                    ctx.SaveChanges();
+                    return "El cliente a sido Guardado Exitosamente";
+                }
+                catch (InvalidOperationException e)
+                {
+                    return "Se produjo un error al intentar guardar el nuevo cliente: " + e.Message;
+                }
+            }
         }
 
-        public bool ValidarPlaca(string placa)
+        public bool buscarPlacaEnBD(string placa)
         {
             return contexto.C_Vehiculos.Where(v => v.Placas.ToUpper().Equals(placa.ToUpper())).Any();
         }
-
     }
 }

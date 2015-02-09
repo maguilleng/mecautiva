@@ -5,23 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f469863ddc904fa0864e7d9b57d5b90e" Name="Diagrama1" ZoomLevel="94">
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Ciudades" Width="1.5" PointX="0.42938381639746193" PointY="3.721519755069874" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Clientes" Width="1.5" PointX="2.8374594090680869" PointY="25.858134728790322" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Estados" Width="1.5" PointX="6.3191860049586683" PointY="16.379766531465467" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_FormasPago" Width="1.5" PointX="3.1836623638792254" PointY="3.4466859267310639" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Marcas" Width="1.5" PointX="10.15842199426071" PointY="5.5278711195699266" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Municipios" Width="1.5" PointX="0.93537706552789412" PointY="2.8254660977169248" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Servicios" Width="1.5" PointX="5.9558906340766189" PointY="29.687245516892173" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_TiposPersona" Width="1.5" PointX="6.5022945471584315" PointY="7.0779783907709541" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_TiposServicios" Width="1.5" PointX="8.3244191838076418" PointY="1.148930222331048" />
-        <EntityTypeShape EntityType="PuntoVentaModel.C_Vehiculos" Width="1.5" PointX="0.66358562962319034" PointY="28.079475490413362" />
-        <EntityTypeShape EntityType="PuntoVentaModel.Facturas" Width="1.5" PointX="2.3671041961606147" PointY="26.557828930466357" />
-        <EntityTypeShape EntityType="PuntoVentaModel.Inventario" Width="1.5" PointX="6.0414281292080076" PointY="2.584805057656395" />
-        <EntityTypeShape EntityType="PuntoVentaModel.Pagos" Width="1.5" PointX="7.1646167166366315" PointY="28.654716192118226" />
-        <EntityTypeShape EntityType="PuntoVentaModel.PagosDetalle" Width="1.5" PointX="4.5373947678773643" PointY="30.646072834099677" />
-        <EntityTypeShape EntityType="PuntoVentaModel.Precios" Width="1.5" PointX="0.32389060236694783" PointY="28.88014721725143" />
-        <EntityTypeShape EntityType="PuntoVentaModel.Ventas" Width="1.5" PointX="3.0461425683676" PointY="16.695458256032065" />
-        <EntityTypeShape EntityType="PuntoVentaModel.VentasDetalle" Width="1.5" PointX="6.5932095975583467" PointY="18.608438917719031" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Ciudades" Width="1.5" PointX="4.9354857881253054" PointY="20.538417244580767" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Clientes" Width="1.5" PointX="11.91699738237867" PointY="2.0115390131303759" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Estados" Width="1.5" PointX="11.000460633542604" PointY="6.9724297853989663" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_FormasPago" Width="1.5" PointX="8.1942676176290341" PointY="28.213745830680125" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Marcas" Width="1.5" PointX="1.7517686289510543" PointY="24.577463504195894" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Municipios" Width="1.5" PointX="7.3599546287953643" PointY="15.316944427470185" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Servicios" Width="1.5" PointX="3.1777691986308292" PointY="22.49789176438837" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_TiposPersona" Width="1.5" PointX="8.1301722489903554" PointY="27.366468889343771" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_TiposServicios" Width="1.5" PointX="5.1177254175384181" PointY="24.358883019703853" />
+        <EntityTypeShape EntityType="PuntoVentaModel.C_Vehiculos" Width="1.5" PointX="6.8630784428040865" PointY="28.188913343562238" />
+        <EntityTypeShape EntityType="PuntoVentaModel.Facturas" Width="1.5" PointX="9.7896461215753323" PointY="19.461056256415816" />
+        <EntityTypeShape EntityType="PuntoVentaModel.Inventario" Width="1.5" PointX="10.628017057957136" PointY="5.9982999740160539" />
+        <EntityTypeShape EntityType="PuntoVentaModel.Pagos" Width="1.5" PointX="11.257089938622475" PointY="25.534827408164194" />
+        <EntityTypeShape EntityType="PuntoVentaModel.PagosDetalle" Width="1.5" PointX="4.1934224330789514" PointY="31.917961001357977" />
+        <EntityTypeShape EntityType="PuntoVentaModel.Precios" Width="1.5" PointX="0.61791530466541433" PointY="0.10874716942605897" />
+        <EntityTypeShape EntityType="PuntoVentaModel.Ventas" Width="1.5" PointX="3.1535383179567464" PointY="7.247199806965515" />
+        <EntityTypeShape EntityType="PuntoVentaModel.VentasDetalle" Width="1.5" PointX="1.0037501105124831" PointY="29.777880742111186" />
         <AssociationConnector Association="PuntoVentaModel.FK_C_Ciudades_C_Municipios" />
         <AssociationConnector Association="PuntoVentaModel.FK_C_Clientes_C_Ciudades" />
         <AssociationConnector Association="PuntoVentaModel.FK_C_Clientes_C_Municipios" />

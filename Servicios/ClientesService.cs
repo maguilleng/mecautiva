@@ -53,10 +53,10 @@ namespace Servicios
         {
             return persistencia.GuardarVehiculo(vehiculo);
         }
-
-        public bool ValidarPlaca(string placa)
+        
+        public bool buscarPlacaEnBD(string placa)
         {
-            return persistencia.ValidarPlaca(placa);
+         return persistencia.buscarPlacaEnBD(placa);
         }
     }
 }
