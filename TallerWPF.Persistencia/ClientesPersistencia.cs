@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TallerWPF.Entidades;
 using System.Data;
 using TallerWPF.Entidades.VehiculosEntidades;
+using System.Windows;
 
 namespace TallerWPF.Persistencia
 {
@@ -15,18 +16,20 @@ namespace TallerWPF.Persistencia
 
         public ClientesPersistencia()
         {
-            contexto = new PuntoVentaEntities();
+           contexto = new PuntoVentaEntities();
         }
         
         public List<C_Clientes> ObtenerListaClientes()
         {
-            return contexto.C_Clientes.Include("C_Vehiculos").ToList();
+               return contexto.C_Clientes.Include("C_Vehiculos").ToList();    
         }
 
         public List<C_Vehiculos> ObtenerListaVehiculosxCliente(int idCliente)
         {
-
-            return contexto.C_Vehiculos.Where(v => v.IdCliente == idCliente).ToList();
+            using (var ctx = new PuntoVentaEntities())
+            {
+                return ctx.C_Vehiculos.Where(v => v.IdCliente == idCliente).ToList();
+            }       
         }
 
         public void registrar_nuevo_cliente(C_Clientes nuevo_cliente)
@@ -36,54 +39,68 @@ namespace TallerWPF.Persistencia
 
         public List<C_TiposPersona> ObtenerListaTiposPersona()
         {
-            return contexto.C_TiposPersona.ToList();
+            using (var ctx = new PuntoVentaEntities())
+            {
+                return ctx.C_TiposPersona.ToList();
+            }
         }
 
         public List<C_Municipios> ObtenerListaMunicipiosPorEstado(int idEstado)
         {
-            return contexto.C_Municipios.Include("C_Ciudades").Where(m => m.IdEstado == idEstado).ToList();
+            using (var ctx = new PuntoVentaEntities())
+            {
+                return ctx.C_Municipios.Include("C_Ciudades").Where(m => m.IdEstado == idEstado).ToList();
+            }
         }
 
         public List<C_Estados> ObtenerListaEstados()
         {
-            return contexto.C_Estados.Include("C_Municipios").ToList();
+            using (var ctx = new PuntoVentaEntities())
+            {
+                return ctx.C_Estados.Include("C_Municipios").ToList();
+            }
         }
 
         public List<C_Ciudades> ObtenerListaCiudadesPorMunicipio(int idMunicipio)
         {
-            return contexto.C_Ciudades.Where(municipio => municipio.IdMunicipio == idMunicipio).ToList();
+            using (var ctx = new PuntoVentaEntities())
+            {
+                return ctx.C_Ciudades.Where(municipio => municipio.IdMunicipio == idMunicipio).ToList();
+            }
         }
 
         public string GuardarVehiculo(C_Vehiculos vehiculo)
-        {
-
-            using (var ctx = new PuntoVentaEntities())
+        {            
+            try
             {
-                try
-                {
-                    if (vehiculo.IdVehiculo == 0)
+               using (var ctx = new PuntoVentaEntities())
                     {
-                        ctx.C_Vehiculos.Add(vehiculo);
-                    }
-                    else
-                    {
+                        if (vehiculo.IdVehiculo == 0)
+                        {
+                         ctx.C_Vehiculos.Add(vehiculo);
+                         ctx.SaveChanges();
+                        }
+                        else{
                         ctx.C_Vehiculos.Attach(vehiculo);
                         ctx.Entry(vehiculo).State = EntityState.Modified;
-                    }
-
-                    ctx.SaveChanges();
-                    return "El cliente a sido Guardado Exitosamente";
-                }
-                catch (InvalidOperationException e)
-                {
-                    return "Se produjo un error al intentar guardar el nuevo cliente: " + e.Message;
-                }
+                        }
+                        ctx.SaveChanges();
+                        return "El cliente a sido Guardado Exitosamente";
+                    }                    
+                }               
+            
+            catch (InvalidOperationException e)
+            {
+                return  "Se produjo un error al intentar guardar el nuevo cliente: " + e.Message;
             }
         }
 
         public bool buscarPlacaEnBD(string placa)
         {
-            return contexto.C_Vehiculos.Where(v => v.Placas.ToUpper().Equals(placa.ToUpper())).Any();
+            using (var ctx = new PuntoVentaEntities())
+            {
+                return ctx.C_Vehiculos.Where(v => v.Placas.ToUpper().Equals(placa.ToUpper())).Any();
+            }
         }
     }
 }

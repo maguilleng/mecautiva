@@ -109,7 +109,7 @@
           <Key>
             <PropertyRef Name="IdCliente" />
           </Key>
-          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="RFC" Type="nvarchar" Nullable="false" MaxLength="13" />
           <Property Name="NumeroCliente" Type="nvarchar" MaxLength="10" />
           <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="200" />
@@ -675,7 +675,7 @@
           <Key>
             <PropertyRef Name="IdCliente" />
           </Key>
-          <Property Type="Int32" Name="IdCliente" Nullable="false" />
+          <Property Type="Int32" Name="IdCliente" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="RFC" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="NumeroCliente" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />

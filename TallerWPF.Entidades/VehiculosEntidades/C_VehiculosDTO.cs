@@ -148,7 +148,7 @@ namespace TallerWPF.Entidades.VehiculosEntidades
                 }
                 else if (name == "Modelo")
                 {
-                    if (this.modelo < 1900 || this.modelo > DateTime.Now.Year + 1)
+                    if (this.modelo < 1950 || this.modelo > DateTime.Now.Year + 1)
                     {
                         result = "El Modelo es incorrecto";
                     }

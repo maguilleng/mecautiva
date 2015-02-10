@@ -54,19 +54,19 @@
                 </TextBox.Text>
         </TextBox>
         <Label Content="Marca :" Grid.Row="8" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBox  x:Name="txtMarca" IsEnabled="False" Width="150" Grid.Column="2" Text="{Binding VehiculoSeleccionado.Marca, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="9" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox  x:Name="txtMarca" IsEnabled="False" Width="150" Grid.Column="2" Text="{Binding VehiculoSeleccionado.Marca, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="9" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label Content="Linea :" Grid.Row="8" Grid.Column="4" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
-        <TextBox x:Name="txtLinea" IsEnabled="False" Width="150" Grid.Column="4"   Text="{Binding VehiculoSeleccionado.Linea, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="9"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtLinea" IsEnabled="False" Width="150" Grid.Column="4"   Text="{Binding VehiculoSeleccionado.Linea, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="9"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
 
         <Label Content="Modelo :" Grid.Row="10" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
-        <telerik:RadNumericUpDown x:Name="txtModelo" Value="{Binding VehiculoSeleccionado.Modelo, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" NumberDecimalDigits="0" IsInteger="true" Maximum="9999"
+        <telerik:RadNumericUpDown x:Name="txtModelo" Value="{Binding VehiculoSeleccionado.Modelo, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" NumberDecimalDigits="0" IsInteger="true" Maximum="9999"
          IsEnabled="False" Width="150"  Grid.Column="0" FontSize="14"  Grid.Row="11"  Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left"  Height="16">
         </telerik:RadNumericUpDown>
         
         <Label Content="Color :" Grid.Row="10" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBox x:Name="txtColor" IsEnabled="False" Width="150"  Text="{Binding VehiculoSeleccionado.Color}"  Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtColor" IsEnabled="False" Width="150"  Text="{Binding VehiculoSeleccionado.Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label Content="No: Economico :"  Grid.Row="10" Grid.Column="4" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" ></Label>
-        <TextBox x:Name="txtNoEconomico" IsEnabled="False" Width="150"  Text="{Binding VehiculoSeleccionado.NoEconomico}"  Grid.Column="4" Grid.Row="11"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtNoEconomico" IsEnabled="False" Width="150"  Text="{Binding VehiculoSeleccionado.NoEconomico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="4" Grid.Row="11"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
         <Label Content="Cliente: " FontSize="14" Grid.Column="6" Grid.Row="1" Margin="30,0,0,0" HorizontalAlignment="Left"></Label>
         <telerik:RadAutoCompleteBox x:Name="cmbClientes" Grid.Column="6" Margin="110,0,0,0" Grid.Row="1" Width="300" HorizontalAlignment="Left"
                                     ItemsSource="{Binding Clientes}" SelectionChanged="cmbClientes_SelectionChanged"  SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}" 

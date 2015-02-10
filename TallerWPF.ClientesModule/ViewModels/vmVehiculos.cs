@@ -43,7 +43,7 @@ namespace TallerWPF.ClientesModule.ViewModels
             nuevoVehiculo.Placas = VehiculoSeleccionado.Placas;
             nuevoVehiculo.Marca = VehiculoSeleccionado.Marca;
             nuevoVehiculo.Linea = VehiculoSeleccionado.Linea;
-            nuevoVehiculo.IdCliente = VehiculoSeleccionado.IdCliente;
+            nuevoVehiculo.IdCliente = ClienteSeleccionado.IdCliente;
             nuevoVehiculo.Color = VehiculoSeleccionado.Color;
             nuevoVehiculo.Modelo = VehiculoSeleccionado.Modelo;
             nuevoVehiculo.NoEconomico = VehiculoSeleccionado.NoEconomico;
