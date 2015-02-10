@@ -41,9 +41,7 @@ namespace TallerWPF.ClientesModule.Vistas
             {
                 this.DataContext = value;
             }
-
-         
-        }
+       }
 
         private void grdClientes_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {

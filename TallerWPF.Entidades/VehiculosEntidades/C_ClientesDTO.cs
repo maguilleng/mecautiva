@@ -10,7 +10,7 @@ namespace TallerWPF.Entidades.VehiculosEntidades
     public class C_ClientesDTO : BindableBase
     {
 
-
+        
         public int IdCliente { get; set; }
         //public string RFC { get; set; }
         //public string NumeroCliente { get; set; }

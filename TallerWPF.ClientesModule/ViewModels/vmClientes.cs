@@ -8,10 +8,11 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Servicios;
 using TallerWPF.Infraestructura;
 using TallerWPF.Entidades;
 using TallerWPF.Entidades.VehiculosEntidades;
-using Servicios;
+
 using TallerWPF.ClientesModule.SharedServices;
 using TallerWPF.Infraestructura.Interfaces;
 using System.Windows;
@@ -23,40 +24,24 @@ namespace TallerWPF.ClientesModule.ViewModels
     class vmClientes : BindableBase
     {
         IServicioCliente servicioCliente;
-        IEventAggregator eventAggregator;
         ClientesService clientesCtrl = new ClientesService();
 
+        #region COMMANDS
+        #endregion
 
+        #region CONSTRUCTORES
+        public vmClientes()
+        { 
+        }
 
         [ImportingConstructor]
-        public vmClientes(IServicioCliente servicioCliente, IEventAggregator evtAggregator)
+        public vmClientes(IServicioCliente servicioCliente)
         {
             this.servicioCliente = servicioCliente;
-            eventAggregator = evtAggregator;
-            eventAggregator.GetEvent<GuardarEvent>().Subscribe(MensajeExitoso);
-            this.eventAggregator.GetEvent<NuevoClienteEvent>().Subscribe(LimpiarCliente);
         }
+        #endregion
 
-
-        public void MensajeExitoso(object objeto)
-        {
-            C_Vehiculos nuevoVehiculo = new C_Vehiculos();
-            nuevoVehiculo.Placas = VehiculoSeleccionado.Placas;
-            nuevoVehiculo.Marca = VehiculoSeleccionado.Marca;
-            nuevoVehiculo.Linea = VehiculoSeleccionado.Linea;
-            nuevoVehiculo.IdCliente = ClienteSeleccionado.IdCliente;
-            nuevoVehiculo.Color = VehiculoSeleccionado.Color;
-            nuevoVehiculo.Modelo = VehiculoSeleccionado.Modelo;
-            nuevoVehiculo.NoEconomico = VehiculoSeleccionado.NoEconomico;
-            MessageBox.Show(clientesCtrl.GuardarVehiculo(nuevoVehiculo));            
-        }
-
-        public void LimpiarCliente(object objeto)
-        {
-    //        ClienteSeleccionado = null;
-        }
-
-        //Metodos para la persistencia
+        #region METODOS A LA PERSISTENCIA
         private ObservableCollection<C_ClientesDTO> ListadoClientes()
         {
             ObservableCollection<C_ClientesDTO> clientes = new ObservableCollection<C_ClientesDTO>();
@@ -64,14 +49,6 @@ namespace TallerWPF.ClientesModule.ViewModels
              return clientes;
         }
 
-        private ObservableCollection<C_VehiculosDTO> ListadoVehiculos(int idCliente)
-        {
-            ObservableCollection<C_VehiculosDTO> vehiculos = new ObservableCollection<C_VehiculosDTO>();
-            
-            clientesCtrl.ObtenerListaVehiculosxCliente(idCliente).ForEach(v => vehiculos.Add( new C_VehiculosDTO( v)));
-
-            return vehiculos;
-        }
 
         public List<C_TiposPersona> ListadoTiposPersona()
         {
@@ -96,6 +73,7 @@ namespace TallerWPF.ClientesModule.ViewModels
             clientesCtrl.ObtenerListaCiudadesPorMunicipio(idMunicipio).ForEach(c => ciudades.Add(c));
             return ciudades;
         }
+        #endregion
 
         //Esta lista es la que toma el binding del radgrid de la cartera de clientes
         ObservableCollection<C_ClientesDTO> clientes;
@@ -113,8 +91,6 @@ namespace TallerWPF.ClientesModule.ViewModels
             set { SetProperty(ref this.clientes, value); }
         }
 
-        //ANTES FUNCIONABA CORRECTAMENTE
-        
         C_ClientesDTO clienteSeleccionado;
         public C_ClientesDTO ClienteSeleccionado
         {
@@ -122,151 +98,10 @@ namespace TallerWPF.ClientesModule.ViewModels
             set
             {
                 SetProperty(ref this.clienteSeleccionado, value);
-
-                if (clienteSeleccionado != null)
-                {
-                    VehiculosxCliente = ListadoVehiculos(clienteSeleccionado.IdCliente);
-                }
-                else
-                {
-                    VehiculosxCliente.Clear();
-                }
             }
-        }
-        
-        /*
-        C_ClientesDTO clienteSeleccionado;
-        public C_ClientesDTO ClienteSeleccionado
-        {
-
-            get
-            {
-                if (clienteSeleccionado == null)
-                {
-                    C_Clientes cliente = new C_Clientes();
-                    clienteSeleccionado = new C_ClientesDTO(cliente)
-                    {
-                     /*  IdCliente = 0,
-                        NumeroCliente = "",
-                        Nombre = "",
-                        IdTipoPersona = 0,
-                        Direccion = "",
-                        IdCiudad = 0,
-                        CodigoPostal = 0,
-                        IdMunicipio = 0,
-                        Movil = 0,
-                        Trabajo = 0,
-                        Casa = 0,
-                        Email = "",
-                        IdEstado = 0
-                    };
-
-                }
-                return this.clienteSeleccionado;
-            }
-            set
-            {
-                SetProperty(ref this.clienteSeleccionado, value);
-
-
-                if (clienteSeleccionado != null)
-                {
-                    VehiculosxCliente = ListadoVehiculos(clienteSeleccionado.IdCliente);
-                }
-                else
-                {
-                    VehiculosxCliente.Clear();
-                }
-            } 
-        }*/
-        //MODULO VEHICULOS
-        //Esta lista es la que toma el binding del radgrid filtrado por el id del cliente
-        //ANTES con la entidad del model
-       /* ObservableCollection<C_Vehiculos> vehiculosxCliente;
-        public ObservableCollection<C_Vehiculos> VehiculosxCliente
-        {
-            get
-            {
-                if (this.vehiculosxCliente == null)
-                {
-                    if (clienteSeleccionado != null)
-                    {
-                        vehiculosxCliente = ListadoVehiculos(clienteSeleccionado.IdCliente);
-                    }
-                }
-
-                return this.vehiculosxCliente;
-            }
-            set { SetProperty(ref this.vehiculosxCliente, value); }
-        }*/
-
-        //Ahora con la entidad del DTO
-        ObservableCollection<C_VehiculosDTO> vehiculosxCliente;
-        public ObservableCollection<C_VehiculosDTO> VehiculosxCliente
-        {
-            get
-            {
-                if (this.vehiculosxCliente == null)
-                {
-                    if (clienteSeleccionado != null)
-                    {
-                        vehiculosxCliente = ListadoVehiculos(clienteSeleccionado.IdCliente);
-                    }
-                }
-
-                return this.vehiculosxCliente;
-            }
-            set { SetProperty(ref this.vehiculosxCliente, value); }
-        }
-
-        string placaActual;
-        public string PlacaActual
-        {
-            get { return placaActual; }
-            set { placaActual = value; 
-            
-            }
-        }
-
-        //VEHICULO seleccionado ahora
-        C_VehiculosDTO vehiculoSeleccionado;
-        public C_VehiculosDTO VehiculoSeleccionado
-        {       
-            get
-              {
-                  if (vehiculoSeleccionado == null)
-                  {
-                      C_Vehiculos vehiculo = new C_Vehiculos();
-                      vehiculoSeleccionado = new C_VehiculosDTO(vehiculo)
-                      {
-                          Placas = "",
-                          Marca = "",
-                          Linea = "",
-                          Modelo = 0,
-                          Color = "",
-                          NoEconomico = "",
-                          IdCliente = 0 
-                      };
-                      
-                  }
-                  return this.vehiculoSeleccionado;
-            }
-            set
-            {
-                SetProperty(ref this.vehiculoSeleccionado, value);
-                PlacaActual = VehiculoSeleccionado.Placas;
-            }
-        }
-
-      
-
-        public bool ValidarPlaca(string placa)
-        {
-            return clientesCtrl.ValidarPlaca(placa);
         }
 
         //TRAEMOS LOS TIPOS DE PERSONAS
-
         List<C_TiposPersona> tiposPersona;
         public List<C_TiposPersona> TiposPersona
         {
@@ -371,7 +206,7 @@ namespace TallerWPF.ClientesModule.ViewModels
             }
         }
 
-        //TRAEMOS LOS MUNICIPIOS
+        //TRAEMOS LAS CIUDADES
         ObservableCollection<C_Ciudades> ciudadesPorMunicipio;
         public ObservableCollection<C_Ciudades> CiudadesPorMunicipio
         {
