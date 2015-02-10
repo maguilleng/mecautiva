@@ -66,28 +66,25 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.Windows.Controls">
-      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Windows.Controls.Chart">
-      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Chart.dll</HintPath>
+      <HintPath>..\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Data">
-      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Data.dll</HintPath>
+      <HintPath>..\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Data.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.GridView">
-      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.GridView.dll</HintPath>
+      <HintPath>..\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.GridView.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Input">
-      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Input.dll</HintPath>
+      <HintPath>..\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.Navigation">
-      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <HintPath>..\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.RibbonView">
-      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.RibbonView.dll</HintPath>
+      <HintPath>..\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Controls.RibbonView.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Data">
-      <HintPath>..\..\..\..\RoGer\Laboral\Proyectos Personales\Desarrollo de Software\Meztlit\TallerWPF\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Data.dll</HintPath>
+      <HintPath>..\lib\RCWPF\2014.2.729.45.NoXaml\Telerik.Windows.Data.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>

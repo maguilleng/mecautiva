@@ -32,10 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism.Composition">
       <HintPath>..\packages\Prism.Composition.5.0.0\lib\NET45\Microsoft.Practices.Prism.Composition.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Prism.Interactivity.5.0.0\lib\NET45\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions">
@@ -60,6 +65,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -133,17 +142,29 @@
     <Compile Include="Vistas\BuscarVehiculo.xaml.cs">
       <DependentUpon>BuscarVehiculo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\FormaPago.xaml.cs">
-      <DependentUpon>FormaPago.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vistas\NuevaVentaUserControl.xaml.cs">
       <DependentUpon>NuevaVentaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\PagoVentaUserControl.xaml.cs">
+      <DependentUpon>PagoVentaUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\ResumenVenta.xaml.cs">
       <DependentUpon>ResumenVenta.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\SeleccionarProductos.xaml.cs">
       <DependentUpon>SeleccionarProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\TipoPago\PagoChequeUserControl.xaml.cs">
+      <DependentUpon>PagoChequeUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\TipoPago\PagoEfectivoUserControl.xaml.cs">
+      <DependentUpon>PagoEfectivoUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\TipoPago\PagoTarjetaUserControl.xaml.cs">
+      <DependentUpon>PagoTarjetaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\TipoPago\PagoTransferenciaUserControl.xaml.cs">
+      <DependentUpon>PagoTransferenciaUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\VentasPrincipal.xaml.cs">
       <DependentUpon>VentasPrincipal.xaml</DependentUpon>
@@ -186,11 +207,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\FormaPago.xaml">
+    <Page Include="Vistas\NuevaVentaUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\NuevaVentaUserControl.xaml">
+    <Page Include="Vistas\PagoVentaUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,6 +220,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\SeleccionarProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\TipoPago\PagoChequeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\TipoPago\PagoEfectivoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\TipoPago\PagoTarjetaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\TipoPago\PagoTransferenciaUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +250,7 @@
   <ItemGroup>
     <Resource Include="Vistas\EliminarProducto_64.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

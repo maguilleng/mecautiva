@@ -36,5 +36,9 @@ namespace TallerWPF.Entidades.VentasEntidades
 
         public C_Servicios C_Servicios { get; set; }
 
+        public Pagos PagoVenta { get; set; }
+
+        public PagosDetalle DetallesPagoVenta { get; set; }
+
     }
 }

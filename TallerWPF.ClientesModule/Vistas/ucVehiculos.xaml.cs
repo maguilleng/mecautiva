@@ -40,7 +40,7 @@ namespace TallerWPF.ClientesModule.Vistas
 
         private void grdVehiculos_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {
-           i
+           
         }
 
         private void cmbClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)

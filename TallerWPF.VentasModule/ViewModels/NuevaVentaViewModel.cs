@@ -13,6 +13,7 @@ using TallerWPF.Entidades;
 using TallerWPF.Infraestructura.Interfaces;
 using TallerWPF.Infraestructura;
 using TallerWPF.Entidades.VentasEntidades;
+using System.Windows;
 
 namespace TallerWPF.VentasModule.ViewModels
 {
@@ -23,8 +24,10 @@ namespace TallerWPF.VentasModule.ViewModels
 
         IEventAggregator eventAggregator;
         IServicioVenta servicioVenta;
+
         ProductosService servicioProductos;
         PreciosService preciosService;
+        TipoPagoService tipoPagoService;
         ClientesController clientesCtrl;
 
         #endregion       
@@ -33,11 +36,57 @@ namespace TallerWPF.VentasModule.ViewModels
 
         public DelegateCommand ProductoEliminadoCommand { get; set; }
         public DelegateCommand ProductoActualizadoCommand { get; set; }
+        public DelegateCommand VerDetalleVentaCommand { get; set; }
 
         #endregion
 
         #region PROPIEDADES       
 
+        bool estaPagandoVentaActual;
+        public bool EstaPagandoVentaActual
+        {
+            get { return estaPagandoVentaActual; }
+            set { 
+                SetProperty(ref this.estaPagandoVentaActual, value);
+                EstadoDetalleVentas = EstaPagandoVentaActual ? false : true;
+            }
+        }
+
+        bool estadoDetalleVentas;
+        public bool EstadoDetalleVentas
+        {
+            get { return estadoDetalleVentas; }
+            set { SetProperty(ref this.estadoDetalleVentas, value); }
+        }
+
+        ObservableCollection<C_FormasPago> catalogoTiposPago;
+        public ObservableCollection<C_FormasPago> CatalogoTiposPago
+        {
+            get
+            {
+                if (catalogoTiposPago == null)
+                {
+                    catalogoTiposPago = ObtenerTiposDePago();
+                }
+                return catalogoTiposPago;
+            }
+            set { SetProperty(ref this.catalogoTiposPago, value); }
+        }
+
+        C_FormasPago tipoPagoSeleccionado;
+        public C_FormasPago TipoPagoSeleccionado
+        {
+            get { return tipoPagoSeleccionado; }
+            set { SetProperty(ref this.tipoPagoSeleccionado, value); }
+        }
+
+        string mnemonicoTipoPagoSeleccionado;
+        public string MnemonicoTipoPagoSeleccionado
+        {
+            get { return mnemonicoTipoPagoSeleccionado; }
+            set { SetProperty(ref this.mnemonicoTipoPagoSeleccionado, value); }
+        }
+        
         VentaDto ventaActual;
         public VentaDto VentaActual
         {
@@ -118,6 +167,34 @@ namespace TallerWPF.VentasModule.ViewModels
             set { SetProperty(ref vehiculoSeleccionado, value); }
         }
 
+        Pagos pagoVentaActual;
+        public Pagos PagoVentaActual1
+        {
+            get { return pagoVentaActual; }
+            set { SetProperty(ref this.pagoVentaActual, value); }
+        }
+
+        ObservableCollection<PagosDetalle> detallesPagoVentaActual;
+        public ObservableCollection<PagosDetalle> DetallesPagoVentaActual
+        {
+            get { return detallesPagoVentaActual; }
+            set { SetProperty(ref this.detallesPagoVentaActual, value); }
+        }
+
+        PagosDetalleDto detallePagoSeleccionado;
+        public PagosDetalleDto DetallePagoSeleccionado
+        {
+            get { return detallePagoSeleccionado; }
+            set { SetProperty(ref this.detallePagoSeleccionado, value); }
+        }
+
+        PagoEfectivoDto pagoEfectivoHelper;
+        public PagoEfectivoDto PagoEfectivoHelper
+        {
+            get { return pagoEfectivoHelper; }
+            set { SetProperty(ref this.pagoEfectivoHelper, value); }
+        }
+
         bool buscarPorDescripcionProducto;
         public bool BuscarPorDescripcionProducto
         {
@@ -157,27 +234,44 @@ namespace TallerWPF.VentasModule.ViewModels
             IEventAggregator eventAggregator, 
             ProductosService servicioProductos, 
             ClientesController clientesCtrl,
-            PreciosService preciosService)
+            PreciosService preciosService,
+            TipoPagoService tipoPagoService)
         {
             this.servicioVenta = servicioVenta;
             this.eventAggregator = eventAggregator;
             this.servicioProductos = servicioProductos;
             this.preciosService = preciosService;
+            this.tipoPagoService = tipoPagoService;
+
             this.ProductoEliminadoCommand = new DelegateCommand(ActualizarImporteVenta);
             this.ProductoActualizadoCommand = new DelegateCommand(ActualizarImporteVenta);
+            this.VerDetalleVentaCommand = new DelegateCommand(VerDetalleVenta);
+            
             this.clientesCtrl = clientesCtrl;
 
             this.eventAggregator.GetEvent<ClienteSeleccionadoEvent>().Subscribe(OnClienteSeleccionado);
             this.eventAggregator.GetEvent<VehiculoSeleccionadoEvent>().Subscribe(OnVehiculoSeleccionado);
             this.eventAggregator.GetEvent<CrearNuevaVenta>().Subscribe(OnCrearNuevaVenta);
+            this.eventAggregator.GetEvent<PagarVentaActualEvent>().Subscribe(OnPagarVentaActual);
 
             servicioVenta.ActualizarVentaActual(VentaActual, DetallesVenta);
             ActualizarDatosVenta();
+
+            EstadoDetalleVentas = true;
         }
 
         #endregion
 
         #region MÉTODOS
+
+        private ObservableCollection<C_FormasPago> ObtenerTiposDePago()
+        {
+            var tiposPago = tipoPagoService.ObtenerTiposPago();
+            
+            ObservableCollection<C_FormasPago> TiposPago = new ObservableCollection<C_FormasPago>(tiposPago);
+
+            return TiposPago;
+        }
 
         public void VerificarProductoEnCarrito(C_Servicios c_servicioAgregado)
         {
@@ -220,6 +314,11 @@ namespace TallerWPF.VentasModule.ViewModels
             servicioVenta.ActualizarImporteVenta();
         }
 
+        public void VerDetalleVenta()
+        {
+            EstaPagandoVentaActual = false;
+        }
+
         public bool PuedePagarVenta()
         {
             return DetallesVenta.Count > 0;
@@ -259,6 +358,17 @@ namespace TallerWPF.VentasModule.ViewModels
         public void ActualizarDatosVenta()
         {
             TituloVenta = VentaActual.EsFactura ? "Venta Con Factura" : "Venta Con Nota Sencilla";
+        }
+
+        public void OnPagarVentaActual(object obj)
+        { 
+            if(!EstaPagandoVentaActual){
+                EstaPagandoVentaActual = true;
+            }
+            else if (EstaPagandoVentaActual) 
+            {
+                MessageBox.Show("Saca la lana");
+            }
         }
         #endregion        
     }

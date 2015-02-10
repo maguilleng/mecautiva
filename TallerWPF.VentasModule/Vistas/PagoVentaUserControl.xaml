@@ -1,0 +1,156 @@
+﻿<UserControl x:Class="TallerWPF.VentasModule.Vistas.PagoVentaUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:views="clr-namespace:TallerWPF.VentasModule.Vistas"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="20">
+        <i:Interaction.Triggers>
+            <ei:DataTrigger Binding="{Binding TipoPagoSeleccionado.Mnemonico}" Value="EF">
+                <ei:GoToStateAction StateName="PagoEfectivo" UseTransitions="False"></ei:GoToStateAction>
+            </ei:DataTrigger>
+            
+            <ei:DataTrigger Binding="{Binding TipoPagoSeleccionado.Mnemonico}" Value="TI">
+                <ei:GoToStateAction StateName="PagoTransferencia" UseTransitions="False"></ei:GoToStateAction>
+            </ei:DataTrigger>
+            
+            <ei:DataTrigger Binding="{Binding TipoPagoSeleccionado.Mnemonico}" Value="CH">
+                <ei:GoToStateAction StateName="PagoCheque" UseTransitions="False"></ei:GoToStateAction>
+            </ei:DataTrigger>
+
+            <ei:DataTrigger Binding="{Binding TipoPagoSeleccionado.Mnemonico}" Value="TC">
+                <ei:GoToStateAction StateName="PagoTarjeta" UseTransitions="False"></ei:GoToStateAction>
+            </ei:DataTrigger>
+        </i:Interaction.Triggers>
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="grupoTipoPago">
+                
+                <VisualState x:Name="PagoEfectivo">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Visibility)" Storyboard.TargetName="ucPagoEfectivo">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                
+                <VisualState x:Name="PagoTransferencia">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Visibility)" Storyboard.TargetName="ucPagoTransferencia">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                
+                <VisualState x:Name="PagoCheque">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Visibility)" Storyboard.TargetName="ucPagoCheque">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="PagoTarjeta">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Visibility)" Storyboard.TargetName="ucPagoTarjeta">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Datos de Pago" HorizontalAlignment="Center"  Foreground="Black" FontSize="16" FontWeight="Bold"
+               Margin="4" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0"/>
+        <Button Content="Regresar" Command="{Binding VerDetalleVentaCommand}" Grid.Row="0" Grid.Column="1" Width="80" HorizontalAlignment="Right"></Button>
+        
+        
+        <!--RESUMEN TOTAL VENTA-->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" FontWeight="Bold" FontSize="18">Subtotal</Label>
+            <Label Grid.Row="1" Content="{Binding VentaActual.Subtotal}" ContentStringFormat="C"
+                   FontSize="24" FontWeight="Bold" Foreground="{StaticResource StrongBrush}"></Label>
+
+            <Label Grid.Row="2" FontWeight="Bold" FontSize="18" Margin="0,35,0,0">IVA</Label>
+            <Label Grid.Row="3" Content="{Binding VentaActual.IVA}" ContentStringFormat="C"
+                   FontSize="24" FontWeight="Bold" Foreground="{StaticResource StrongBrush}"></Label>
+
+            <Label Grid.Row="4" FontWeight="Bold" FontSize="20" Margin="0,35,0,0">TOTAL</Label>
+            <Label Grid.Row="5" Content="{Binding VentaActual.Total}" ContentStringFormat="C"
+                   FontSize="32" FontWeight="Bold" Foreground="{StaticResource AccentDarkBrush}"></Label>
+        </Grid>
+
+
+        <!--DATOS FORMA DE PAGO-->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">Tipo Pago</Label>
+            <telerik:RadComboBox ItemsSource="{Binding CatalogoTiposPago}" SelectedItem="{Binding TipoPagoSeleccionado, Mode=TwoWay}"
+                                    EmptyText="Seleccione el Tipo de Pago" DisplayMemberPath="Descripcion"
+                                 Grid.Row="0" Grid.Column="1"></telerik:RadComboBox>
+            
+            <views:PagoEfectivoUserControl x:Name="ucPagoEfectivo" Visibility="Collapsed" HorizontalAlignment="Stretch"
+                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></views:PagoEfectivoUserControl>
+            
+            <views:PagoTransferenciaUserControl x:Name="ucPagoTransferencia" Visibility="Collapsed" HorizontalAlignment="Stretch"
+                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></views:PagoTransferenciaUserControl>
+            
+            <views:PagoChequeUserControl x:Name="ucPagoCheque" Visibility="Collapsed" HorizontalAlignment="Stretch"
+                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></views:PagoChequeUserControl>
+            
+            <views:PagoTarjetaUserControl x:Name="ucPagoTarjeta" Visibility="Collapsed" HorizontalAlignment="Stretch"
+                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></views:PagoTarjetaUserControl>
+            
+        </Grid>
+    </Grid>
+</UserControl>

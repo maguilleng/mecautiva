@@ -130,7 +130,8 @@ namespace TallerWPF
                     servicioVenta.LimpiarProductosVentaActual();
                     break;
                 case "PagarVentaActual":
-                    servicioVenta.PagarVentaActual();
+                    //servicioVenta.PagarVentaActual();
+                    eventAggregator.GetEvent<PagarVentaActualEvent>().Publish(null);
                     break;
                 //CLIENTES
                 case "CarteraClientes":

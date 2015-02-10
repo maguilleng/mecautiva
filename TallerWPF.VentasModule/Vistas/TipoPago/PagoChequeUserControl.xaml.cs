@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TallerWPF.VentasModule.Vistas
 {
     /// <summary>
-    /// Lógica de interacción para FormaPago.xaml
+    /// Lógica de interacción para PagoChequeUserControl.xaml
     /// </summary>
-    public partial class FormaPago : UserControl
+    public partial class PagoChequeUserControl : UserControl
     {
-        public FormaPago()
+        public PagoChequeUserControl()
         {
             InitializeComponent();
         }

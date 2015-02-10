@@ -139,6 +139,8 @@
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VentasEntidades\C_ServiciosDto.cs" />
+    <Compile Include="VentasEntidades\PagoEfectivoDto.cs" />
+    <Compile Include="VentasEntidades\PagosDetalleDto.cs" />
     <Compile Include="VentasEntidades\VentaDetalleDto.cs" />
     <Compile Include="VentasEntidades\VentaDto.cs" />
   </ItemGroup>

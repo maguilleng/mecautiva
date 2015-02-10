@@ -85,18 +85,21 @@
                     HorizontalAlignment="Stretch"
                     Grid.Row="0" Grid.Column="0"
                     DisplayMemberPath="Codigo"
-                    DropDownItemTemplate="{StaticResource BuscarProductoPorCodigoTemplate}"/>
+                    DropDownItemTemplate="{StaticResource BuscarProductoPorCodigoTemplate}"
+                    IsEnabled="{Binding EstadoDetalleVentas}"/>
                 
                 <telerik:RadAutoCompleteBox ItemsSource="{Binding Productos}" DisplayMemberPath="Descripcion" 
                     SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}"
                     Grid.Row="0" Grid.Column="0" SelectionMode="Single" 
                     Margin="2" FontWeight="Bold" FontSize="12"
                     Visibility="{Binding BuscarPorDescripcionProducto, Converter={StaticResource boolToVisibilityConverter}}"
-                    HorizontalAlignment="Stretch"/>
+                    HorizontalAlignment="Stretch"
+                    IsEnabled="{Binding EstadoDetalleVentas}"/>
                 
                 <CheckBox Content="Por Descripción" HorizontalAlignment="Right"
                           Grid.Row="0" Grid.Column="1"
-                          IsChecked="{Binding BuscarPorDescripcionProducto, Mode=TwoWay}"/>
+                          IsChecked="{Binding BuscarPorDescripcionProducto, Mode=TwoWay}"
+                          IsEnabled="{Binding EstadoDetalleVentas}"/>
             </Grid>                                              
 
             <Label Content="Descripción" Grid.Row="2" Grid.Column="0" Margin="2" HorizontalAlignment="Right"></Label>
