@@ -98,9 +98,9 @@
         </EntityContainer>
         <EntityType Name="C_Ciudades">
           <Key>
-            <PropertyRef Name="idCiudad" />
+            <PropertyRef Name="IdCiudad" />
           </Key>
-          <Property Name="idCiudad" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdCiudad" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="150" />
           <Property Name="Estatus" Type="int" />
           <Property Name="IdMunicipio" Type="int" />
@@ -366,7 +366,7 @@
           <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Ciudades">
-              <PropertyRef Name="idCiudad" />
+              <PropertyRef Name="IdCiudad" />
             </Principal>
             <Dependent Role="C_Clientes">
               <PropertyRef Name="IdCiudad" />
@@ -662,9 +662,9 @@
         </EntityContainer>
         <EntityType Name="C_Ciudades">
           <Key>
-            <PropertyRef Name="idCiudad" />
+            <PropertyRef Name="IdCiudad" />
           </Key>
-          <Property Type="Int32" Name="idCiudad" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdCiudad" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Estatus" />
           <Property Type="Int32" Name="IdMunicipio" />
@@ -966,7 +966,7 @@
           <End Type="PuntoVentaModel.C_Clientes" Role="C_Clientes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Ciudades">
-              <PropertyRef Name="idCiudad" />
+              <PropertyRef Name="IdCiudad" />
             </Principal>
             <Dependent Role="C_Clientes">
               <PropertyRef Name="IdCiudad" />
@@ -1177,7 +1177,7 @@
                 <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="idCiudad" ColumnName="idCiudad" />
+                <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -26,12 +26,17 @@ namespace TallerWPF.ClientesModule.Vistas
     public partial class ucClientes : UserControl
     {
 
+        IEventAggregator eventAggregator;
 
+        [Import]
+        IRegionManager regionManager;
 
         [ImportingConstructor]
-        public ucClientes()
+        public ucClientes(IEventAggregator evtAggregator)
         {
             InitializeComponent();
+            eventAggregator = evtAggregator;
+            eventAggregator.GetEvent<GuardarEvent>().Subscribe(ValidaDatos);            
         }
 
         [Import]
@@ -46,7 +51,61 @@ namespace TallerWPF.ClientesModule.Vistas
         private void grdClientes_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {
             txtRFC.IsEnabled = false;
+        }
 
+        public void ValidaDatos(object objeto)
+        {
+            var vistaActiva = regionManager.Regions[RegionNames.MainRegion].ActiveViews.First();
+
+            if (vistaActiva is ucClientes)
+            {
+                string mensajeErrores = "Existen errores en los datos a guardar, verifiquelos por favor";
+                if (Validation.GetHasError(txtNumeroCliente))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+                else if (Validation.GetHasError(txtRFC))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+                else if (Validation.GetHasError(txtNombre))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+                else if (Validation.GetHasError(txtDireccion))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+                else if (Validation.GetHasError(cmbMunicipios))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+                else if (Validation.GetHasError(cmbTipoPersona))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+                else if (Validation.GetHasError(cmbEstado))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+                else if (Validation.GetHasError(txtCasa))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+                else if (Validation.GetHasError(txtTelefono))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+                else if (Validation.GetHasError(txtMovil))
+                {
+                    MessageBox.Show(mensajeErrores);
+                }
+                else
+                {
+                   vmClientes VMClientes = this.DataContext as vmClientes;
+                   VMClientes.GuardarDatosCommand.Execute();
+                }
+            }
         }
     }
 }

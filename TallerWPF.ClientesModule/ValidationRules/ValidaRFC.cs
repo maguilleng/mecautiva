@@ -8,20 +8,19 @@ using Servicios;
 
 namespace TallerWPF.ClientesModule.ValidationRules
 {
-   
-    public class ValidaPlaca : ValidationRule
+    public class ValidaRFC : ValidationRule
     {
-        public ValidaPlaca()
+        public ValidaRFC()
         {}
 
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
              ClientesService clientesCtrl = new ClientesService();
-               bool existePlaca =  clientesCtrl.buscarPlacaEnBD(value.ToString());
-            if (!existePlaca)
+               bool existeRFC =  clientesCtrl.buscarRFCEnBD(value.ToString());
+               if (!existeRFC)
                 return new ValidationResult(true, null);
 
-            return new ValidationResult(false, "La placa ya esta dada de alta, verifique sus datos");
+            return new ValidationResult(false, "El RFC ya esta dado de alta, verifique sus datos");
         }
     }
 }

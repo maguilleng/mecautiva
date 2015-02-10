@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:ClientesVR="clr-namespace:TallerWPF.ClientesModule.ValidationRules"
              mc:Ignorable="d" 
              d:DesignHeight="390.789" d:DesignWidth="1059.868">
     <Grid>
@@ -45,58 +46,74 @@
             <Label Content="Datos del Cliente: " Foreground="{StaticResource AccentDarkBrush}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         </StackPanel>
         <Label Content="Nombre :" Grid.Row="2" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
-        <TextBox Width="250" x:Name="txtNombre"    Text="{Binding ClienteSeleccionado.Nombre, Mode=TwoWay}"     Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="3" Grid.ColumnSpan="3" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox Width="250" x:Name="txtNombre"    Text="{Binding ClienteSeleccionado.Nombre, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"     Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="3" Grid.ColumnSpan="3" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label Content="No. :" Grid.Row="2" Grid.Column="3" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
-        <TextBox Width="70" x:Name="txtNumeroCliente"  Text="{Binding ClienteSeleccionado.NumeroCliente}" Grid.Column="3" Grid.Row="3"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox Width="70" x:Name="txtNumeroCliente"  Grid.Column="3" Grid.Row="3"  Margin="15,0,0,0" HorizontalAlignment="Left">
+            <TextBox.Text>
+                <Binding  Mode="TwoWay" Path="ClienteSeleccionado.NumeroCliente"  ValidatesOnDataErrors="True"  UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <ClientesVR:ValidaNumeroCliente ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <Label Content="RFC :" Grid.Row="4" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBox x:Name="txtRFC" Width="200"  Text="{Binding ClienteSeleccionado.RFC, Mode=TwoWay}" Grid.Row="5" Margin="15,0,0,0" Grid.ColumnSpan="3" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtRFC" Width="200"   Grid.Row="5" Margin="15,0,0,0" Grid.ColumnSpan="3" HorizontalAlignment="Left">
+            <TextBox.Text>
+                <Binding  Mode="TwoWay" Path="ClienteSeleccionado.RFC"  ValidatesOnDataErrors="True"  UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <ClientesVR:ValidaRFC ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="Tipo Persona :" Grid.Row="4" Grid.Column="3"  Grid.ColumnSpan="2" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
         <telerik:RadComboBox  x:Name="cmbTipoPersona" Width="150" ItemsSource="{Binding TiposPersona}" DisplayMemberPath="Descripcion" SelectedIndex="0"
          Grid.Row="5" Margin="15,0,0,0" Grid.Column="3"   Grid.ColumnSpan="3" HorizontalAlignment="Left"  SelectedValuePath="IdTipoPersona"
-         SelectedValue="{Binding ClienteSeleccionado.C_TiposPersona.IdTipoPersona, Mode=OneWay}" IsEditable="True" IsTextSearchEnabled="True"> 
+         SelectedValue="{Binding ClienteSeleccionado.IdTipoPersona, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" IsEditable="True" IsTextSearchEnabled="True"> 
         </telerik:RadComboBox>
         <Label Content="Dirección :" Grid.Row="6" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
-        <TextBox x:Name="txtDireccion" Text="{Binding ClienteSeleccionado.Direccion}" Width="250" Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="7" Grid.ColumnSpan="3" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtDireccion" Text="{Binding ClienteSeleccionado.Direccion, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="250" Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="7" Grid.ColumnSpan="3" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label Content="CP :" Grid.Row="6" Grid.Column="3" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBox Width="70" Text="{Binding ClienteSeleccionado.CodigoPostal}" Grid.Column="3" Grid.Row="7"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
-
+        <TextBox Width="70" Text="{Binding ClienteSeleccionado.CodigoPostal, Mode=TwoWay}" Grid.Column="3" Grid.Row="7"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+      
         <Label Content="Estado :" Grid.Row="8" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
         <telerik:RadComboBox Width="150" Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="9" Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left"
-               ItemsSource="{Binding Estados}" DisplayMemberPath="Descripcion" SelectedValuePath="IdEstado" 
-                SelectedValue="{Binding ClienteSeleccionado.IdEstado, Mode=TwoWay}"    
+               ItemsSource="{Binding Estados}" DisplayMemberPath="Descripcion" SelectedValuePath="IdEstado" x:Name="cmbEstado"
+                SelectedValue="{Binding ClienteSeleccionado.IdEstado, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"    
                SelectedItem="{Binding EstadoSeleccionado, Mode=TwoWay}" IsEditable="True" IsTextSearchEnabled="True">
         </telerik:RadComboBox>
         <Label Content="{Binding ClienteSeleccionado.IdCliente}" Grid.Row="2" Grid.Column="6" Margin="2" FontWeight="Bold"/>
         <Label Content="Municipio :" Grid.Row="8" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
         <telerik:RadComboBox x:Name="cmbMunicipios" Width="150" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"
               ItemsSource="{Binding MunicipiosPorEstado, Mode=TwoWay}" DisplayMemberPath="Descripcion" SelectedValuePath="IdMunicipio" SelectedItem="{Binding MunicipioSeleccionado, Mode=TwoWay}"
-              SelectedValue="{Binding ClienteSeleccionado.IdMunicipio, Mode=TwoWay}" IsEditable="True" IsTextSearchEnabled="True">
+              SelectedValue="{Binding ClienteSeleccionado.IdMunicipio, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" IsEditable="True" IsTextSearchEnabled="True">
         </telerik:RadComboBox>
         <Label Content="Ciudad :" Grid.Row="8" Grid.Column="4" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
-        <telerik:RadComboBox Width="150" ItemsSource="{Binding CiudadesPorMunicipio, Mode=TwoWay}"
+        <telerik:RadComboBox Width="150" ItemsSource="{Binding CiudadesPorMunicipio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="cmbCiudad"
                              SelectedValuePath="IdCiudad"  DisplayMemberPath="Descripcion"  
-                             SelectedValue="{Binding ClienteSeleccionado.C_Ciudades.IdCiudad, Mode=TwoWay}" 
+                             SelectedValue="{Binding ClienteSeleccionado.IdCiudad, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" 
                              Grid.Column="4" Grid.Row="9"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                              IsEditable="True" IsTextSearchEnabled="True"></telerik:RadComboBox>
 
         <Label Content="Telefono Movil :" Grid.Row="10" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
-        <TextBox Width="150"  Text="{Binding ClienteSeleccionado.Movil}" Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="11" Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtMovil" Width="150"  Text="{Binding ClienteSeleccionado.Movil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="11" Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label Content="Telefono Casa :" Grid.Row="10" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBox Width="150" Grid.Column="2" Text="{Binding ClienteSeleccionado.Casa}" Grid.Row="11" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtCasa" Width="150" Grid.Column="2" Text="{Binding ClienteSeleccionado.Casa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="11" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label Content="Telefono Trabajo :" Grid.Row="10" Grid.Column="4" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" ></Label>
-        <TextBox Width="150" Text="{Binding ClienteSeleccionado.Trabajo}" Grid.Column="4" Grid.Row="11"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtTelefono" Width="150" Text="{Binding ClienteSeleccionado.Trabajo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="11"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
 
         <Label Content="E-Mail :" Grid.Row="12"  Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBox Width="300" Text="{Binding ClienteSeleccionado.Email}" Grid.Row="13"  Margin="15,0,0,0" Grid.ColumnSpan="4" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtEmail" Width="300" Text="{Binding ClienteSeleccionado.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="13"  Margin="15,0,0,0" Grid.ColumnSpan="4" HorizontalAlignment="Left"></TextBox>
 
-        <telerik:RadGridView x:Name="grdClientes" AutoGenerateColumns="False"  ItemsSource="{Binding Clientes}"  SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}"
+        <telerik:RadGridView x:Name="grdClientes" AutoGenerateColumns="False"  ItemsSource="{Binding Clientes}"  SelectedItem="{Binding ClienteSeleccionado}"
                              Grid.Row="2" Grid.Column="6" Grid.RowSpan="19" SelectionChanged="grdClientes_SelectionChanged">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="" Width="40" IsReadOnly="True" IsVisible="False" 
                         DataMemberBinding="{Binding IdCliente}"></telerik:GridViewDataColumn>
 
-                <telerik:GridViewDataColumn Header="No" Width="40" IsReadOnly="True"
+                <telerik:GridViewDataColumn Header="No" IsReadOnly="True"
                         DataMemberBinding="{Binding NumeroCliente}"></telerik:GridViewDataColumn>
 
                 <telerik:GridViewDataColumn Header="Nombre"  Width="210"

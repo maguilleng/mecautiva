@@ -42,7 +42,9 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Datos del Vehiculo: " Foreground="Blue" FontSize="16" Margin="15,0,0,0"  Grid.RowSpan="2" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="7" VerticalAlignment="Center" >
+            <Label Content="Datos del Vehiculo: " Foreground="{StaticResource AccentDarkBrush}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        </StackPanel>
         <Label Content="Placa :"   Grid.Row="8" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
         <TextBox x:Name="txtPlaca"  IsEnabled="False" Width="150" Grid.Column="0"  FontWeight="Bold" FontSize="12"  Grid.Row="9" Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left">
                 <TextBox.Text>
@@ -67,8 +69,8 @@
         <TextBox x:Name="txtColor" IsEnabled="False" Width="150"  Text="{Binding VehiculoSeleccionado.Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label Content="No: Economico :"  Grid.Row="10" Grid.Column="4" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" ></Label>
         <TextBox x:Name="txtNoEconomico" IsEnabled="False" Width="150"  Text="{Binding VehiculoSeleccionado.NoEconomico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="4" Grid.Row="11"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
-        <Label Content="Cliente: " FontSize="14" Grid.Column="6" Grid.Row="1" Margin="30,0,0,0" HorizontalAlignment="Left"></Label>
-        <telerik:RadAutoCompleteBox x:Name="cmbClientes" Grid.Column="6" Margin="110,0,0,0" Grid.Row="1" Width="300" HorizontalAlignment="Left"
+        <Label Content="Cliente: " FontSize="14" Grid.Column="6" Grid.Row="2" Margin="30,0,0,0" HorizontalAlignment="Left"></Label>
+        <telerik:RadAutoCompleteBox x:Name="cmbClientes" Grid.Column="6" Margin="110,0,0,0" Grid.Row="2" Width="300" HorizontalAlignment="Left"
                                     ItemsSource="{Binding Clientes}" SelectionChanged="cmbClientes_SelectionChanged"  SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}" 
                                     SelectionMode="Single"  DisplayMemberPath="Nombre">
             <telerik:RadAutoCompleteBox.DropDownItemTemplate>
@@ -83,7 +85,7 @@
         </telerik:RadAutoCompleteBox>
 
         <telerik:RadGridView x:Name="grdVehiculos" AutoGenerateColumns="False"  ItemsSource="{Binding VehiculosxCliente}" 
-                             Grid.Row="3" Grid.Column="6" Grid.RowSpan="16" SelectionChanged="grdVehiculos_SelectionChanged" SelectedItem="{Binding VehiculoSeleccionado, Mode=TwoWay}">
+                             Grid.Row="4" Grid.Column="6" Grid.RowSpan="16" SelectionChanged="grdVehiculos_SelectionChanged" SelectedItem="{Binding VehiculoSeleccionado, Mode=TwoWay}">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="" Width="40" IsReadOnly="True" IsVisible="False" 
                         DataMemberBinding="{Binding IdVehiculo}"></telerik:GridViewDataColumn>

@@ -11,7 +11,7 @@ using System.ComponentModel;
 
 namespace TallerWPF.Entidades.VehiculosEntidades
 {
-    [MetadataType(typeof(C_VehiculosDTO))]
+   
     public class C_VehiculosDTO : BindableBase , IDataErrorInfo
     {
         int idVehiculo;
@@ -67,7 +67,6 @@ namespace TallerWPF.Entidades.VehiculosEntidades
                 SetProperty(ref this.linea, value);
             }
         }
-        #endregion
 
         public int? Modelo
         {
@@ -77,6 +76,7 @@ namespace TallerWPF.Entidades.VehiculosEntidades
                 SetProperty(ref this.modelo, value);
             }
         }
+        #endregion
 
         public string Color
         {
@@ -129,7 +129,7 @@ namespace TallerWPF.Entidades.VehiculosEntidades
                 {
                     if (this.placas == "" || this.placas == null)
                     {
-                        result = "El campo de la Placa no puede quedar vacio";
+                        result = "El campo Placa no puede quedar vacio";
                     }
                 }
                 else if(name == "Marca")

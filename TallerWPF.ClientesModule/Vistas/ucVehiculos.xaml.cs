@@ -13,6 +13,7 @@ using TallerWPF.Entidades;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
+using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
 
 using System.Threading.Tasks;
@@ -27,6 +28,9 @@ namespace TallerWPF.ClientesModule.Vistas
     {
 
         IEventAggregator eventAggregator;
+
+        [Import]
+        IRegionManager regionManager;
 
         [ImportingConstructor]
         public ucVehiculos(IEventAggregator evtAggregator)
@@ -78,27 +82,32 @@ namespace TallerWPF.ClientesModule.Vistas
         
         public void ValidaDatos(object objeto)
         {
-            string mensajeErrores = "Existen errores en los datos a guardar, verifiquelos por favor";
-            if (Validation.GetHasError(txtPlaca))
+            var vistaActiva = regionManager.Regions[RegionNames.MainRegion].ActiveViews.First();
+
+            if (vistaActiva is ucVehiculos)
+            {
+                string mensajeErrores = "Existen errores en los datos a guardar, verifiquelos por favor";
+                if (Validation.GetHasError(txtPlaca))
                 {
                     MessageBox.Show(mensajeErrores);
                 }
-            else if (cmbClientes.SelectedItem == null)
+                else if (cmbClientes.SelectedItem == null)
                 {
                     MessageBox.Show("Debe seleccionar un cliente");
                 }
-            else   if (Validation.GetHasError(txtMarca))
+                else if (Validation.GetHasError(txtMarca))
                 {
                     MessageBox.Show("mensajeErrores");
                 }
-            else if (Validation.GetHasError(txtLinea))
+                else if (Validation.GetHasError(txtLinea))
                 {
                     MessageBox.Show("mensajeErrores");
                 }
-            else
-            {
-                vmVehiculos VMClientes = this.DataContext as vmVehiculos;
-                VMClientes.GuardarDatosCommand.Execute();
+                else
+                {
+                    vmVehiculos VMVehiculos = this.DataContext as vmVehiculos;
+                    VMVehiculos.GuardarDatosCommand.Execute();
+                }
             }
         }
     }

@@ -13,20 +13,21 @@ namespace Servicios
     [Export]
     public class ClientesService
     {
+        #region ATRIBUTOS PRIVADOS
         ClientesPersistencia persistencia;
+        #endregion
+
+        #region CONSTRUCTORES
         public ClientesService()
         {
             persistencia = new ClientesPersistencia();
         }
+        #endregion
 
+        #region METODOS CLIENTES
         public List<C_Clientes> ObtenerListaClientes()
         {
             return persistencia.ObtenerListaClientes().ToList();
-        }
-
-        public List<C_Vehiculos> ObtenerListaVehiculosxCliente(int idCliente)
-        {
-            return persistencia.ObtenerListaVehiculosxCliente(idCliente).ToList();
         }
 
         public List<C_TiposPersona> ObtenerListaTiposPersona()
@@ -49,6 +50,29 @@ namespace Servicios
             return persistencia.ObtenerListaCiudadesPorMunicipio(idMunicipio);
         }
 
+        public bool buscarRFCEnBD(string rfc)
+        {
+            return persistencia.buscarRFCEnBD(rfc);
+        }
+
+        public bool buscarNumeroClienteEnBD(string noCliente)
+        {
+            return persistencia.buscarNumeroClienteEnBD(noCliente);
+        }
+
+        public String GuardarCliente(C_Clientes cliente)
+        {
+            return persistencia.GuardarCliente(cliente);
+        }
+#endregion
+
+        #region METODOS VEHICULOS
+
+        public List<C_Vehiculos> ObtenerListaVehiculosxCliente(int idCliente)
+        {
+            return persistencia.ObtenerListaVehiculosxCliente(idCliente).ToList();
+        }
+
         public String GuardarVehiculo(C_Vehiculos vehiculo)
         {
             return persistencia.GuardarVehiculo(vehiculo);
@@ -58,5 +82,7 @@ namespace Servicios
         {
          return persistencia.buscarPlacaEnBD(placa);
         }
+
+        #endregion 
     }
 }

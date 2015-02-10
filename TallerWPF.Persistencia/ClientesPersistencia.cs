@@ -12,29 +12,49 @@ namespace TallerWPF.Persistencia
 {
     public class ClientesPersistencia
     {
+        #region ATRIBUTOS PRIVADOS
         private PuntoVentaEntities contexto;
+        #   endregion
 
+        #region METODOS CLIENTES
         public ClientesPersistencia()
         {
-           contexto = new PuntoVentaEntities();
+            contexto = new PuntoVentaEntities();
         }
         
         public List<C_Clientes> ObtenerListaClientes()
         {
-               return contexto.C_Clientes.Include("C_Vehiculos").ToList();    
+          return contexto.C_Clientes.Include("C_Vehiculos").ToList();
         }
 
-        public List<C_Vehiculos> ObtenerListaVehiculosxCliente(int idCliente)
+        public String GuardarCliente(C_Clientes cliente)
         {
-            using (var ctx = new PuntoVentaEntities())
+            DateTime fechaTransaccion = DateTime.Now;
+            try
             {
-                return ctx.C_Vehiculos.Where(v => v.IdCliente == idCliente).ToList();
-            }       
-        }
-
-        public void registrar_nuevo_cliente(C_Clientes nuevo_cliente)
-        {
-
+               using (var ctx = new PuntoVentaEntities())
+                    {
+                        if (cliente.IdCliente == 0)
+                        {
+                             cliente.FechaAlta = fechaTransaccion;
+                             ctx.C_Clientes.Add(cliente);
+                             ctx.SaveChanges();
+                        }
+                        else
+                        {
+                             cliente.FechaModificacion = fechaTransaccion;
+                             ctx.C_Clientes.Attach(cliente);
+                             ctx.Entry(cliente).State = EntityState.Modified;
+                        }
+                        ctx.SaveChanges();
+                        return "Los datos del CLIENTE han sido guardados EXITOSAMENTE";
+                    }                    
+                }               
+            
+            catch (InvalidOperationException e)
+            {
+                return  "Se produjo un error al intentar guardar los datos del CLIENTE " + e.Message;
+            }
         }
 
         public List<C_TiposPersona> ObtenerListaTiposPersona()
@@ -69,29 +89,59 @@ namespace TallerWPF.Persistencia
             }
         }
 
+        public bool buscarRFCEnBD(string rfc)
+        {
+            using (var ctx = new PuntoVentaEntities())
+            {
+                return ctx.C_Clientes.Where(v => v.RFC.ToUpper().Equals(rfc.ToUpper())).Any();
+            }
+        }
+
+        public bool buscarNumeroClienteEnBD(string numeroCliente)
+        {
+            using (var ctx = new PuntoVentaEntities())
+            {
+                return ctx.C_Clientes.Where(v => v.NumeroCliente.ToUpper().Equals(numeroCliente.ToUpper())).Any();
+            }
+        }
+        #endregion
+
+        #region METODOS VEHICULOS
+        public List<C_Vehiculos> ObtenerListaVehiculosxCliente(int idCliente)
+        {
+            using (var ctx = new PuntoVentaEntities())
+            {
+                return ctx.C_Vehiculos.Where(v => v.IdCliente == idCliente).ToList();
+            }
+        }
+
         public string GuardarVehiculo(C_Vehiculos vehiculo)
-        {            
+        {
+            DateTime fechaTransaccion = DateTime.Now;
             try
             {
                using (var ctx = new PuntoVentaEntities())
                     {
                         if (vehiculo.IdVehiculo == 0)
                         {
-                         ctx.C_Vehiculos.Add(vehiculo);
-                         ctx.SaveChanges();
+                             vehiculo.FechaAlta = fechaTransaccion;
+                             ctx.C_Vehiculos.Add(vehiculo);
+                             ctx.SaveChanges();
                         }
-                        else{
-                        ctx.C_Vehiculos.Attach(vehiculo);
-                        ctx.Entry(vehiculo).State = EntityState.Modified;
+                        else
+                        {
+                             vehiculo.FechaModificacion = fechaTransaccion;
+                             ctx.C_Vehiculos.Attach(vehiculo);
+                             ctx.Entry(vehiculo).State = EntityState.Modified;
                         }
                         ctx.SaveChanges();
-                        return "El cliente a sido Guardado Exitosamente";
+                        return "Los datos del VEHICULO han sido guardados EXITOSAMENTE";
                     }                    
                 }               
             
             catch (InvalidOperationException e)
             {
-                return  "Se produjo un error al intentar guardar el nuevo cliente: " + e.Message;
+                return  "Se produjo un error al intentar guardar los datos del VEHICULO " + e.Message;
             }
         }
 
@@ -102,5 +152,6 @@ namespace TallerWPF.Persistencia
                 return ctx.C_Vehiculos.Where(v => v.Placas.ToUpper().Equals(placa.ToUpper())).Any();
             }
         }
+        #endregion
     }
 }

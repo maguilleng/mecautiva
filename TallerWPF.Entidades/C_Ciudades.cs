@@ -19,7 +19,7 @@ namespace TallerWPF.Entidades
             this.C_Clientes = new HashSet<C_Clientes>();
         }
     
-        public int idCiudad { get; set; }
+        public int IdCiudad { get; set; }
         public string Descripcion { get; set; }
         public Nullable<int> Estatus { get; set; }
         public Nullable<int> IdMunicipio { get; set; }

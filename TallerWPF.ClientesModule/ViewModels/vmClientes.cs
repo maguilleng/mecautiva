@@ -23,21 +23,20 @@ namespace TallerWPF.ClientesModule.ViewModels
     [Export]
     class vmClientes : BindableBase
     {
+        #region ATRIBUTOS PRIVADOS
         IServicioCliente servicioCliente;
         ClientesService clientesCtrl = new ClientesService();
+        #endregion
 
         #region COMMANDS
+        public DelegateCommand GuardarDatosCommand;
         #endregion
 
         #region CONSTRUCTORES
-        public vmClientes()
-        { 
-        }
-
         [ImportingConstructor]
-        public vmClientes(IServicioCliente servicioCliente)
+        public vmClientes()
         {
-            this.servicioCliente = servicioCliente;
+            GuardarDatosCommand = new DelegateCommand(guardarDatosCliente);
         }
         #endregion
 
@@ -73,7 +72,30 @@ namespace TallerWPF.ClientesModule.ViewModels
             clientesCtrl.ObtenerListaCiudadesPorMunicipio(idMunicipio).ForEach(c => ciudades.Add(c));
             return ciudades;
         }
+        public void guardarDatosCliente()
+        {
+            C_Clientes nuevoCliente = new C_Clientes();
+
+            nuevoCliente.IdCliente = ClienteSeleccionado.IdCliente;
+            nuevoCliente.Nombre = ClienteSeleccionado.Nombre;
+            nuevoCliente.NumeroCliente = ClienteSeleccionado.NumeroCliente;
+            nuevoCliente.RFC = ClienteSeleccionado.RFC;
+            nuevoCliente.Direccion = ClienteSeleccionado.Direccion;
+            nuevoCliente.IdTipoPersona = ClienteSeleccionado.IdTipoPersona;
+            nuevoCliente.CodigoPostal = ClienteSeleccionado.CodigoPostal;
+            nuevoCliente.IdEstado = ClienteSeleccionado.IdEstado;
+            nuevoCliente.IdMunicipio = ClienteSeleccionado.IdMunicipio;
+            nuevoCliente.IdCiudad = ClienteSeleccionado.IdCiudad;
+            nuevoCliente.Movil = ClienteSeleccionado.Movil;
+            nuevoCliente.Trabajo = ClienteSeleccionado.Trabajo;
+            nuevoCliente.Casa = ClienteSeleccionado.Casa;
+            nuevoCliente.Email = ClienteSeleccionado.Email;
+            nuevoCliente.Estatus = 1;
+            MessageBox.Show(clientesCtrl.GuardarCliente(nuevoCliente));
+        }
         #endregion
+
+        #region PROPIEDADES
 
         //Esta lista es la que toma el binding del radgrid de la cartera de clientes
         ObservableCollection<C_ClientesDTO> clientes;
@@ -94,7 +116,21 @@ namespace TallerWPF.ClientesModule.ViewModels
         C_ClientesDTO clienteSeleccionado;
         public C_ClientesDTO ClienteSeleccionado
         {
-            get { return this.clienteSeleccionado; }
+            get
+            {
+                if (clienteSeleccionado == null)
+                {
+                    clienteSeleccionado = new C_ClientesDTO()
+                    {
+                        RFC = "",
+                        Nombre = "",
+                        NumeroCliente = "",
+                        Direccion = "",
+                        IdCliente = 0
+                    };
+                }
+                return this.clienteSeleccionado;
+            }
             set
             {
                 SetProperty(ref this.clienteSeleccionado, value);
@@ -229,5 +265,6 @@ namespace TallerWPF.ClientesModule.ViewModels
             set { SetProperty(ref this.ciudadesPorMunicipio, value); }
         }
     }
+        #endregion
 }
 

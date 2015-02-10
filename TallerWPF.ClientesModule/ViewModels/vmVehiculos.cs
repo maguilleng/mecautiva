@@ -20,7 +20,9 @@ namespace TallerWPF.ClientesModule.ViewModels
     class vmVehiculos : BindableBase
     {
 
+        #region ATRIBUTOS PRIVAODOS
         ClientesService clientesCtrl = new ClientesService();
+        #endregion
 
         #region COMMANDS
         public DelegateCommand GuardarDatosCommand;
@@ -36,6 +38,7 @@ namespace TallerWPF.ClientesModule.ViewModels
         #endregion
 
         #region METODOS A LA PERSISTENCIA
+
         public void guardarDatosVehiculo()
         {
             C_Vehiculos nuevoVehiculo = new C_Vehiculos();
@@ -47,6 +50,7 @@ namespace TallerWPF.ClientesModule.ViewModels
             nuevoVehiculo.Color = VehiculoSeleccionado.Color;
             nuevoVehiculo.Modelo = VehiculoSeleccionado.Modelo;
             nuevoVehiculo.NoEconomico = VehiculoSeleccionado.NoEconomico;
+            nuevoVehiculo.Estatus = 1;
             MessageBox.Show(clientesCtrl.GuardarVehiculo(nuevoVehiculo));
         }
 
@@ -60,12 +64,11 @@ namespace TallerWPF.ClientesModule.ViewModels
         }
         #endregion
 
-       
-
-
+        #region PROPIEDADES
         ObservableCollection<C_ClientesDTO> clientes;
         public ObservableCollection<C_ClientesDTO> Clientes
         {
+
             get
             {
                 if (this.clientes == null)
@@ -82,14 +85,9 @@ namespace TallerWPF.ClientesModule.ViewModels
         
         C_ClientesDTO clienteSeleccionado;
         public C_ClientesDTO ClienteSeleccionado
-        {
+        {  // Aqui deberia ir el MOdelLocator
             get
             {
-                if (this.clienteSeleccionado == null)
-                {
-                    vmClientes ViewModelClientes = new vmClientes();
-                    clienteSeleccionado = ViewModelClientes.ClienteSeleccionado;
-                }
                 return this.clienteSeleccionado;
             }
             set
@@ -152,4 +150,5 @@ namespace TallerWPF.ClientesModule.ViewModels
             }
         }
     }
+        #endregion
 }

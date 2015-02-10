@@ -92,7 +92,9 @@
     <Compile Include="ModuloClientes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedServices\ServicioCliente.cs" />
+    <Compile Include="ValidationRules\ValidaNumeroCliente.cs" />
     <Compile Include="ValidationRules\ValidaPlaca.cs" />
+    <Compile Include="ValidationRules\ValidaRFC.cs" />
     <Compile Include="ViewModels\vmClientes.cs" />
     <Compile Include="ViewModels\vmVehiculos.cs" />
     <Compile Include="Vistas\ucClientes.xaml.cs">

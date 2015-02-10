@@ -8,20 +8,19 @@ using Servicios;
 
 namespace TallerWPF.ClientesModule.ValidationRules
 {
-   
-    public class ValidaPlaca : ValidationRule
+    public class ValidaNumeroCliente : ValidationRule
     {
-        public ValidaPlaca()
-        {}
+        public ValidaNumeroCliente()
+        { }
 
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
-             ClientesService clientesCtrl = new ClientesService();
-               bool existePlaca =  clientesCtrl.buscarPlacaEnBD(value.ToString());
-            if (!existePlaca)
+            ClientesService clientesCtrl = new ClientesService();
+            bool existeNumeroCliente = clientesCtrl.buscarNumeroClienteEnBD(value.ToString());
+            if (!existeNumeroCliente)
                 return new ValidationResult(true, null);
 
-            return new ValidationResult(false, "La placa ya esta dada de alta, verifique sus datos");
+            return new ValidationResult(false, "El Numero de cliente ya esta dado de alta, verifique sus datos");
         }
     }
 }
