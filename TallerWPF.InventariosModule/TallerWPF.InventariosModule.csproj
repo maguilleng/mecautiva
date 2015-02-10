@@ -91,6 +91,12 @@
     <Compile Include="Vistas\InventariosPrincipal.xaml.cs">
       <DependentUpon>InventariosPrincipal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\ucInventario.xaml.cs">
+      <DependentUpon>ucInventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\ucServicios.xaml.cs">
+      <DependentUpon>ucServicios.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -111,6 +117,14 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="Vistas\InventariosPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ucInventario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ucServicios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

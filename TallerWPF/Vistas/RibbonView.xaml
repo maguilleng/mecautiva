@@ -20,7 +20,7 @@
             <telerik:QuickAccessToolBar>
             </telerik:QuickAccessToolBar>
         </telerik:RadRibbonView.QuickAccessToolBar>
-        <telerik:RadRibbonTab Header="Ventas" Tag="ModuloVentas">
+        <telerik:RadRibbonTab Header="VENTAS" Tag="ModuloVentas">
             <telerik:RadRibbonGroup Header="Opciones de Ventas">
                 <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"
                                             LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
@@ -113,8 +113,47 @@
                     </CompCompartido:ucToolBarCRUD>
                 </telerik:RadRibbonGroup>
         </telerik:RadRibbonTab>
-        <telerik:RadRibbonTab Header="Servicios" Tag="ModuloServicios"/>
-        <telerik:RadRibbonTab Header="Administración" Tag="ModuloServicios" Visibility="Collapsed"/>
+        <telerik:RadRibbonTab Header="SERVICIOS" Tag="ModuloServicios">
+            <telerik:RadRibbonGroup Header="Opciones de Servicios">
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium" x:Name="rbtnCatalogoServicios"
+                                            LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
+                                            Size="Large"
+                                            Text="Catalogo"                                            
+                                             Command="{Binding BotonMenuCommand}"                                         
+                                            CommandParameter="CatalogoServicios"
+                                            Click="rbtnCatalogoServicios_Click">
+                </telerik:RadRibbonButton>
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"  x:Name="rbtNuevoServcio"
+                                            LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
+                                            Size="Large"
+                                            Text="Nuevo Servicio"
+                                             Command="{Binding BotonMenuCommand}"
+                                             CommandParameter="NuevoServicio"
+                                            Click="rbtNuevoServcio_Click">
+                </telerik:RadRibbonButton>
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"  x:Name="rbtInventario"
+                                            LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
+                                            Size="Large"
+                                            Text="Inventario"
+                                            Command="{Binding BotonMenuCommand}"
+                                            CommandParameter="Inventario"
+                                            Click="rbtInventario_Click">
+                </telerik:RadRibbonButton>
+            </telerik:RadRibbonGroup>
+            <telerik:RadRibbonGroup  Header="Productos - Servicios" AlternationCount="1" x:Name="RadRBImprimirCatalogo">
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"   
+                                        LargeImage="/Recursos/Imagenes/Ventas/discount-icon.png"
+                                         SmallImage="/Recursos/Imagenes/Ventas/discount-icon.png"
+                                         Size="Medium"
+                                         Text="Imprimir"
+                                         Command="{Binding BotonMenuCommand}"/>
+            </telerik:RadRibbonGroup >
+            <telerik:RadRibbonGroup  Header="" AlternationCount="2" x:Name="rbtnToolBarServicios" Visibility="Collapsed">
+                <CompCompartido:ucToolBarCRUD >
+                </CompCompartido:ucToolBarCRUD>
+            </telerik:RadRibbonGroup>
+        </telerik:RadRibbonTab>
+                <telerik:RadRibbonTab Header="Administración" Tag="ModuloServicios" Visibility="Collapsed"/>
         <telerik:RadRibbonTab Header="Tablero" Tag="ModuloTableroControl" Visibility="Collapsed"/>
     </telerik:RadRibbonView>
 </UserControl>

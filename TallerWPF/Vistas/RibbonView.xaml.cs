@@ -44,5 +44,23 @@ namespace TallerWPF.Vistas
             rbtnToolBar.Visibility = System.Windows.Visibility.Visible;
             rbtnToolBar.Header = "Vehiculo Actual";
         }
+
+        private void rbtNuevoServcio_Click(object sender, RoutedEventArgs e)
+        {
+            RadRBImprimirCatalogo.Visibility = System.Windows.Visibility.Collapsed;
+            rbtnToolBarServicios.Visibility = System.Windows.Visibility.Visible;
+        }     
+
+        private void rbtInventario_Click(object sender, RoutedEventArgs e)
+        {
+            RadRBImprimirCatalogo.Visibility = System.Windows.Visibility.Collapsed;
+            rbtnToolBarServicios.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void rbtnCatalogoServicios_Click(object sender, RoutedEventArgs e)
+        {
+            RadRBImprimirCatalogo.Visibility = System.Windows.Visibility.Visible;
+            rbtnToolBarServicios.Visibility = System.Windows.Visibility.Collapsed;
+        }
     }
 }

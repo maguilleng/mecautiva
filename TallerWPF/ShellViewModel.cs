@@ -101,14 +101,13 @@ namespace TallerWPF
                         {
                             regionManager.RequestNavigate(RegionNames.MainRegion, "NuevaVentaUserControl");
                         }
-
-                        break;
-                    case "ModuloInventarios":
-                        regionManager.RequestNavigate(RegionNames.MainRegion, "InventariosPrincipal");
                         break;
                     case "ModuloClientes":
                         regionManager.RequestNavigate(RegionNames.MainRegion, "ucClientesPrincipal");
-                        break;  
+                        break;
+                    case "ModuloServicios":
+                        regionManager.RequestNavigate(RegionNames.MainRegion, "InventariosPrincipal");
+                        break;
                     default:
                         regionManager.RequestNavigate(RegionNames.MainRegion, "VentasPrincipal");
                         break;
@@ -139,7 +138,7 @@ namespace TallerWPF
                     break;
                 case "NuevoCliente":
                     regionManager.RequestNavigate(RegionNames.MainRegion, "ucClientes");
-                    eventAggregator.GetEvent<NuevoClienteEvent>().Publish(null);
+                    eventAggregator.GetEvent<NuevoClienteEvent>().Publish(null);  //Se utilizara para limpiar las cajas del cliente
                     break;
                 case "Guardar":
                     eventAggregator.GetEvent<GuardarEvent>().Publish(null);
@@ -148,6 +147,17 @@ namespace TallerWPF
                     regionManager.RequestNavigate(RegionNames.MainRegion, "ucVehiculos");
                     break;
                 //end CLIENTES
+                //SERVICIOS
+                case "CatalogoServicios":
+                    regionManager.RequestNavigate(RegionNames.MainRegion, "InventariosPrincipal");
+                    break;
+                case "NuevoServicio":
+                    regionManager.RequestNavigate(RegionNames.MainRegion, "ucServicios");
+                    break;
+                case "Inventario":
+                    regionManager.RequestNavigate(RegionNames.MainRegion, "ucInventario");
+                    break;
+                //end SERVICIOS
                 default:
                     break;
             }
