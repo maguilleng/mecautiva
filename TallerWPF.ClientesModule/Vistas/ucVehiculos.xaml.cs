@@ -13,7 +13,6 @@ using TallerWPF.Entidades;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
 
 using System.Threading.Tasks;

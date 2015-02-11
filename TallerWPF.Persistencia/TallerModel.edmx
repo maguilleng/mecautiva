@@ -15,6 +15,7 @@
           <EntitySet Name="C_Servicios" EntityType="PuntoVentaModel.Store.C_Servicios" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="C_TiposPersona" EntityType="PuntoVentaModel.Store.C_TiposPersona" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="C_TiposServicios" EntityType="PuntoVentaModel.Store.C_TiposServicios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="C_UnidadesMedida" EntityType="PuntoVentaModel.Store.C_UnidadesMedida" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="C_Vehiculos" EntityType="PuntoVentaModel.Store.C_Vehiculos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Facturas" EntityType="PuntoVentaModel.Store.Facturas" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Inventario" EntityType="PuntoVentaModel.Store.Inventario" store:Type="Tables" Schema="dbo" />
@@ -49,6 +50,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_C_Servicios_C_TiposServicios" Association="PuntoVentaModel.Store.FK_C_Servicios_C_TiposServicios">
             <End Role="C_TiposServicios" EntitySet="C_TiposServicios" />
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Servicios_C_UnidadesMedida" Association="PuntoVentaModel.Store.FK_C_Servicios_C_UnidadesMedida">
+            <End Role="C_UnidadesMedida" EntitySet="C_UnidadesMedida" />
             <End Role="C_Servicios" EntitySet="C_Servicios" />
           </AssociationSet>
           <AssociationSet Name="FK_C_Vehiculos_C_Clientes" Association="PuntoVentaModel.Store.FK_C_Vehiculos_C_Clientes">
@@ -215,6 +220,19 @@
           <Property Name="IdUsuarioCreacion" Type="int" />
           <Property Name="IdUsuarioModificacion" Type="int" />
           <Property Name="Estatus" Type="int" />
+        </EntityType>
+        <EntityType Name="C_UnidadesMedida">
+          <Key>
+            <PropertyRef Name="IdUnidadMedida" />
+          </Key>
+          <Property Name="IdUnidadMedida" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="Abreviatura" Type="varchar" MaxLength="50" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="FechaModificacion" Type="date" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="IdUsuarioCreacion" Type="int" />
+          <Property Name="IdUsuarioModificacion" Type="int" />
         </EntityType>
         <EntityType Name="C_Vehiculos">
           <Key>
@@ -433,6 +451,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_C_Servicios_C_UnidadesMedida">
+          <End Role="C_UnidadesMedida" Type="PuntoVentaModel.Store.C_UnidadesMedida" Multiplicity="1" />
+          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_UnidadesMedida">
+              <PropertyRef Name="IdUnidadMedida" />
+            </Principal>
+            <Dependent Role="C_Servicios">
+              <PropertyRef Name="IdUnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_C_Vehiculos_C_Clientes">
           <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="1" />
           <End Role="C_Vehiculos" Type="PuntoVentaModel.Store.C_Vehiculos" Multiplicity="*" />
@@ -579,6 +609,7 @@
           <EntitySet Name="C_Servicios" EntityType="PuntoVentaModel.C_Servicios" />
           <EntitySet Name="C_TiposPersona" EntityType="PuntoVentaModel.C_TiposPersona" />
           <EntitySet Name="C_TiposServicios" EntityType="PuntoVentaModel.C_TiposServicios" />
+          <EntitySet Name="C_UnidadesMedida" EntityType="PuntoVentaModel.C_UnidadesMedida" />
           <EntitySet Name="C_Vehiculos" EntityType="PuntoVentaModel.C_Vehiculos" />
           <EntitySet Name="Facturas" EntityType="PuntoVentaModel.Facturas" />
           <EntitySet Name="Inventario" EntityType="PuntoVentaModel.Inventario" />
@@ -625,6 +656,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_C_Servicios_C_TiposServicios" Association="PuntoVentaModel.FK_C_Servicios_C_TiposServicios">
             <End Role="C_TiposServicios" EntitySet="C_TiposServicios" />
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Servicios_C_UnidadesMedida" Association="PuntoVentaModel.FK_C_Servicios_C_UnidadesMedida">
+            <End Role="C_UnidadesMedida" EntitySet="C_UnidadesMedida" />
             <End Role="C_Servicios" EntitySet="C_Servicios" />
           </AssociationSet>
           <AssociationSet Name="FK_Inventario_C_Servicios" Association="PuntoVentaModel.FK_Inventario_C_Servicios">
@@ -769,6 +804,7 @@
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="C_Marcas" Relationship="PuntoVentaModel.FK_C_Servicios_C_Marcas" FromRole="C_Servicios" ToRole="C_Marcas" />
           <NavigationProperty Name="C_TiposServicios" Relationship="PuntoVentaModel.FK_C_Servicios_C_TiposServicios" FromRole="C_Servicios" ToRole="C_TiposServicios" />
+          <NavigationProperty Name="C_UnidadesMedida" Relationship="PuntoVentaModel.FK_C_Servicios_C_UnidadesMedida" FromRole="C_Servicios" ToRole="C_UnidadesMedida" />
           <NavigationProperty Name="Inventario" Relationship="PuntoVentaModel.FK_Inventario_C_Servicios" FromRole="C_Servicios" ToRole="Inventario" />
           <NavigationProperty Name="Precios" Relationship="PuntoVentaModel.FK_Precios_C_Servicios" FromRole="C_Servicios" ToRole="Precios" />
           <NavigationProperty Name="VentasDetalle" Relationship="PuntoVentaModel.FK_VentasDetalle_C_Servicios" FromRole="C_Servicios" ToRole="VentasDetalle" />
@@ -799,6 +835,20 @@
           <Property Type="Int32" Name="IdUsuarioModificacion" />
           <Property Type="Int32" Name="Estatus" />
           <NavigationProperty Name="C_Servicios" Relationship="PuntoVentaModel.FK_C_Servicios_C_TiposServicios" FromRole="C_TiposServicios" ToRole="C_Servicios" />
+        </EntityType>
+        <EntityType Name="C_UnidadesMedida">
+          <Key>
+            <PropertyRef Name="IdUnidadMedida" />
+          </Key>
+          <Property Type="Int32" Name="IdUnidadMedida" Nullable="false" />
+          <Property Type="String" Name="Descripcion" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Abreviatura" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="FechaAlta" Precision="0" />
+          <Property Type="DateTime" Name="FechaModificacion" Precision="0" />
+          <Property Type="Int32" Name="Estatus" />
+          <Property Type="Int32" Name="IdUsuarioCreacion" />
+          <Property Type="Int32" Name="IdUsuarioModificacion" />
+          <NavigationProperty Name="C_Servicios" Relationship="PuntoVentaModel.FK_C_Servicios_C_UnidadesMedida" FromRole="C_UnidadesMedida" ToRole="C_Servicios" />
         </EntityType>
         <EntityType Name="C_Vehiculos">
           <Key>
@@ -1069,6 +1119,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_C_Servicios_C_UnidadesMedida">
+          <End Type="PuntoVentaModel.C_UnidadesMedida" Role="C_UnidadesMedida" Multiplicity="1" />
+          <End Type="PuntoVentaModel.C_Servicios" Role="C_Servicios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_UnidadesMedida">
+              <PropertyRef Name="IdUnidadMedida" />
+            </Principal>
+            <Dependent Role="C_Servicios">
+              <PropertyRef Name="IdUnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inventario_C_Servicios">
           <End Type="PuntoVentaModel.C_Servicios" Role="C_Servicios" Multiplicity="1" />
           <End Type="PuntoVentaModel.Inventario" Role="Inventario" Multiplicity="*" />
@@ -1297,6 +1359,20 @@
                 <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IdTipoServicio" ColumnName="IdTipoServicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_UnidadesMedida">
+            <EntityTypeMapping TypeName="PuntoVentaModel.C_UnidadesMedida">
+              <MappingFragment StoreEntitySet="C_UnidadesMedida">
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Abreviatura" ColumnName="Abreviatura" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdUnidadMedida" ColumnName="IdUnidadMedida" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

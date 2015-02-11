@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock Text="NVENTARIO" FontSize="30"></TextBlock>
+        <TextBlock Text="Inventario en construcción" FontSize="30"></TextBlock>
     </Grid>
 </UserControl>

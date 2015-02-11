@@ -45,6 +45,7 @@ namespace TallerWPF.ClientesModule.ViewModels
         {
             ObservableCollection<C_ClientesDTO> clientes = new ObservableCollection<C_ClientesDTO>();
              clientesCtrl.ObtenerListaClientes().ForEach(c => clientes.Add(new C_ClientesDTO(c)));
+               
              return clientes;
         }
 

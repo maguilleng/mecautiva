@@ -3,9 +3,97 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:ServiciosVR="clr-namespace:TallerWPF.InventariosModule.ValidationRules"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock Text="SERVICIOS" FontSize="30"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition  Height="*"/>
+            <RowDefinition  Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition  Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition  Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition  Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition  Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".8*"/>
+            <ColumnDefinition Width=".8*"/>
+            <ColumnDefinition Width=".8*"/>
+            <ColumnDefinition Width=".8*"/>
+            <ColumnDefinition Width=".8*"/>
+            <ColumnDefinition Width=".8*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="7" VerticalAlignment="Center" >
+            <Label Content="Datos del Servicio: " Foreground="{StaticResource AccentDarkBrush}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        </StackPanel>
+        <Label Content="Tipo de Servicio :" Grid.Row="6"  Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
+        <telerik:RadComboBox x:Name="cmbTipoServicio"  Width="150"  Grid.Row="7"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left" SelectedIndex="0"
+                             SelectedValue="{Binding ServicioSeleccionado.IdTipoServicio, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
+                             ItemsSource="{Binding TiposServicios, Mode=TwoWay}"   SelectedValuePath="IdTipoServicio" DisplayMemberPath="Descripcion"></telerik:RadComboBox>
+        
+        <Label Content="Codigo :"   Grid.Row="6" Margin="15,0,0,0" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+        <TextBox x:Name="txtCodigo"  Width="150" Grid.Column="2"  FontWeight="Bold" FontSize="12"  Grid.Row="7" Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left">
+            <TextBox.Text>
+                <Binding  Mode="TwoWay" Path="ServicioSeleccionado.Codigo"  ValidatesOnDataErrors="True"  UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <ServiciosVR:ValidaCodigo ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label Content="Descripcion :"  Grid.Row="8" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+        <TextBox  x:Name="txtDescripcion" Width="150" Text="{Binding ServicioSeleccionado.Descripcion, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="9" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <Label Content="Marca :"  Grid.Row="8" Margin="15,0,0,0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+        <telerik:RadComboBox  x:Name="cmbMarca" Width="150" Grid.Column="2"  SelectedValue="{Binding ServicioSeleccionado.IdMarca, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
+                             ItemsSource="{Binding Marcas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   SelectedValuePath="IdMarca" DisplayMemberPath="Descripcion" Grid.Row="9" Grid.ColumnSpan="2"  Margin="15,0,0,0" HorizontalAlignment="Left"></telerik:RadComboBox>
+        <Label Content="Unidad de Medida :" Grid.Row="8" Grid.Column="4" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
+        <telerik:RadComboBox x:Name="cmbUnidadMedida"  Width="150" Grid.Column="4"  Grid.Row="9"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                              SelectedValue="{Binding ServicioSeleccionado.IdUnidadMedida, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
+                             ItemsSource="{Binding UnidadesMedida, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   SelectedValuePath="IdUnidadMedida" DisplayMemberPath="Descripcion"></telerik:RadComboBox>
+
+        <CheckBox x:Name="ckbSeAlmacena" Content="¿Se Almacena?" Grid.ColumnSpan="2" Grid.Row="11"  Margin="15,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsChecked="{Binding ServicioSeleccionado.SeAlmacena, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ></CheckBox>
+        <CheckBox x:Name="ckbSeCompra" Content="¿Se Compra?" Grid.ColumnSpan="2" Grid.Row="11" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsChecked="{Binding ServicioSeleccionado.SeCompra, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ></CheckBox>
+        <CheckBox x:Name="chbSeVende" Content="¿Se Vende?" Grid.ColumnSpan="2" Grid.Row="11" Grid.Column="4" Margin="15,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsChecked="{Binding ServicioSeleccionado.SeVende, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ></CheckBox>
+       
+        <telerik:RadGridView x:Name="grdVehiculos" ShowGroupPanel="False" AutoGenerateColumns="False"  ItemsSource="{Binding Servicios, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                             Grid.Row="2" Grid.Column="6" Grid.RowSpan="16" SelectedItem="{Binding ServicioSeleccionado, Mode=TwoWay}" SelectionChanged="grdVehiculos_SelectionChanged">
+            <telerik:RadGridView.Columns>
+            <telerik:GridViewDataColumn Header="Codigo" IsReadOnly="True" IsGroupable="False"
+                        DataMemberBinding="{Binding Codigo}"></telerik:GridViewDataColumn>
+
+            <telerik:GridViewDataColumn Header="Tipo Servicio" IsReadOnly="True"  DataMemberBinding="{Binding C_TiposServicios.Descripcion}"></telerik:GridViewDataColumn>
+
+            <telerik:GridViewDataColumn Header="Descripción" IsReadOnly="True"  IsGroupable="False" DataMemberBinding="{Binding Descripcion}" ></telerik:GridViewDataColumn>
+
+            <telerik:GridViewDataColumn Header="Unidad de Medida" IsReadOnly="True" IsGroupable="False" DataMemberBinding="{Binding C_UnidadesMedida.Descripcion}"></telerik:GridViewDataColumn>
+            <!--DataMemberBinding="{Binding IdTipoPersona, Converter={StaticResource tipoPersonaConverter }}">-->
+            <telerik:GridViewDataColumn Header="Marca" IsReadOnly="True" DataMemberBinding="{Binding C_Marcas.Descripcion}"></telerik:GridViewDataColumn>
+            <telerik:GridViewDataColumn Header="¿Se Almacena?" IsGroupable="False"  IsReadOnly="True" DataMemberBinding="{Binding SeAlmacena}"></telerik:GridViewDataColumn>
+
+            <telerik:GridViewDataColumn Header="¿Se Compra?" IsGroupable="False"  IsReadOnly="True" MaxWidth="100"
+                        DataMemberBinding="{Binding SeCompra}"></telerik:GridViewDataColumn>
+
+            <telerik:GridViewDataColumn Header="¿Se Vende?" IsGroupable="False"  IsReadOnly="True"
+                        DataMemberBinding="{Binding SeVende}"></telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
     </Grid>
 </UserControl>

@@ -24,7 +24,7 @@ namespace TallerWPF.Persistencia
         
         public List<C_Clientes> ObtenerListaClientes()
         {
-          return contexto.C_Clientes.Include("C_Vehiculos").ToList();
+          return contexto.C_Clientes.Include("C_Vehiculos").ToList();            
         }
 
         public String GuardarCliente(C_Clientes cliente)

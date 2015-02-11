@@ -34,6 +34,7 @@ namespace TallerWPF.Entidades
         public DbSet<C_Servicios> C_Servicios { get; set; }
         public DbSet<C_TiposPersona> C_TiposPersona { get; set; }
         public DbSet<C_TiposServicios> C_TiposServicios { get; set; }
+        public DbSet<C_UnidadesMedida> C_UnidadesMedida { get; set; }
         public DbSet<C_Vehiculos> C_Vehiculos { get; set; }
         public DbSet<Facturas> Facturas { get; set; }
         public DbSet<Inventario> Inventario { get; set; }

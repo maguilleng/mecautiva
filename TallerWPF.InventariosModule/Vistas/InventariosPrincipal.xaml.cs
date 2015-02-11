@@ -2,6 +2,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Controls;
 using TallerWPF.Infraestructura;
+using Microsoft.Practices.Prism.Regions;
+using System.Windows;
+using TallerWPF.InventariosModule.ViewModels;
 
 namespace TallerWPF.InventariosModule.Vistas
 {
@@ -15,6 +18,15 @@ namespace TallerWPF.InventariosModule.Vistas
         public InventariosPrincipal()
         {
             InitializeComponent();
+        }
+
+        [Import]
+        vmServicios ViewModel
+        {
+            set
+            {
+                this.DataContext = value;
+            }
         }
     }
 }

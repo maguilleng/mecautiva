@@ -148,7 +148,7 @@
                                          Text="Imprimir"
                                          Command="{Binding BotonMenuCommand}"/>
             </telerik:RadRibbonGroup >
-            <telerik:RadRibbonGroup  Header="" AlternationCount="2" x:Name="rbtnToolBarServicios" Visibility="Collapsed">
+            <telerik:RadRibbonGroup  AlternationCount="2" Header="Servicio Actual" x:Name="rbtnToolBarServicios" Visibility="Collapsed">
                 <CompCompartido:ucToolBarCRUD >
                 </CompCompartido:ucToolBarCRUD>
             </telerik:RadRibbonGroup>

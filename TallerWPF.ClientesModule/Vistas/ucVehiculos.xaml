@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-             xmlns:infra="clr-namespace:TallerWPF.Infraestructura;assembly=TallerWPF.Infraestructura"
              xmlns:ClientesVR= "clr-namespace:TallerWPF.ClientesModule.ValidationRules"
              mc:Ignorable="d" 
              d:DesignHeight="369.924" d:DesignWidth="1178.572">
@@ -84,7 +83,7 @@
             </telerik:RadAutoCompleteBox.DropDownItemTemplate>
         </telerik:RadAutoCompleteBox>
 
-        <telerik:RadGridView x:Name="grdVehiculos" AutoGenerateColumns="False"  ItemsSource="{Binding VehiculosxCliente}" 
+        <telerik:RadGridView x:Name="grdVehiculos" ShowGroupPanel="False" AutoGenerateColumns="False"  ItemsSource="{Binding VehiculosxCliente}" 
                              Grid.Row="4" Grid.Column="6" Grid.RowSpan="16" SelectionChanged="grdVehiculos_SelectionChanged" SelectedItem="{Binding VehiculoSeleccionado, Mode=TwoWay}">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="" Width="40" IsReadOnly="True" IsVisible="False" 
@@ -93,7 +92,8 @@
                 <telerik:GridViewDataColumn Header="Placa" Width="100" IsReadOnly="True" 
                         DataMemberBinding="{Binding Placas}"></telerik:GridViewDataColumn>
 
-                <telerik:GridViewDataColumn Header="Marca"  Width="100" DataMemberBinding="{Binding Marca}"></telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Marca" IsReadOnly="True" 
+                           Width="100" DataMemberBinding="{Binding Marca}"></telerik:GridViewDataColumn>
 
                 <telerik:GridViewDataColumn Header="Linea" IsReadOnly="True" 
                         DataMemberBinding="{Binding Linea}" MinWidth="100"></telerik:GridViewDataColumn>

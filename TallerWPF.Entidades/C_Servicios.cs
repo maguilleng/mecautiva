@@ -38,6 +38,7 @@ namespace TallerWPF.Entidades
     
         public virtual C_Marcas C_Marcas { get; set; }
         public virtual C_TiposServicios C_TiposServicios { get; set; }
+        public virtual C_UnidadesMedida C_UnidadesMedida { get; set; }
         public virtual ICollection<Inventario> Inventario { get; set; }
         public virtual ICollection<Precios> Precios { get; set; }
         public virtual ICollection<VentasDetalle> VentasDetalle { get; set; }
