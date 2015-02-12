@@ -22,7 +22,7 @@
                 <telerik:GridViewDataColumn Header="Marca" IsReadOnly="True" DataMemberBinding="{Binding C_Marcas.Descripcion}"></telerik:GridViewDataColumn>
                 <telerik:GridViewDataColumn Header="¿Se Almacena?" IsGroupable="False"  IsReadOnly="True" DataMemberBinding="{Binding SeAlmacena}"></telerik:GridViewDataColumn>
 
-                <telerik:GridViewDataColumn Header="¿Se Compra?" IsGroupable="False"  IsReadOnly="True" MaxWidth="100"
+                <telerik:GridViewDataColumn Header="¿Se Compra?" IsGroupable="False"  IsReadOnly="True"
                         DataMemberBinding="{Binding SeCompra}"></telerik:GridViewDataColumn>
 
                 <telerik:GridViewDataColumn Header="¿Se Vende?" IsGroupable="False"  IsReadOnly="True"

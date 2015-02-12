@@ -27,7 +27,7 @@ namespace TallerWPF.ClientesModule.Vistas
     {
 
         IEventAggregator eventAggregator;
-
+        
         [Import]
         IRegionManager regionManager;
 
@@ -36,7 +36,8 @@ namespace TallerWPF.ClientesModule.Vistas
         {
             InitializeComponent();
             eventAggregator = evtAggregator;
-            eventAggregator.GetEvent<GuardarEvent>().Subscribe(ValidaDatos);            
+            eventAggregator.GetEvent<GuardarEvent>().Subscribe(ValidaDatos);
+            this.eventAggregator.GetEvent<NuevoClienteEvent>().Subscribe(LimpiarFormulario);
         }
 
         [Import]
@@ -51,6 +52,30 @@ namespace TallerWPF.ClientesModule.Vistas
         private void grdClientes_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {
             txtRFC.IsEnabled = false;
+        }
+
+        public void LimpiarFormulario(object objeto)
+        {
+            vmClientes VMClientes = DataContext as vmClientes;
+            VMClientes.ClienteSeleccionado = null;
+            
+
+            txtCasa.Text = "";
+            txtDireccion.Text = "";
+            txtEmail.Text = "";
+            txtMovil.Text = "";
+            txtNombre.Text = "";
+            txtNumeroCliente.Text = "";
+            txtRFC.Text = "";
+            txtTelefono.Text = "";
+            txtCP.Text = "";
+
+            cmbCiudad.SelectedIndex = 0;
+            cmbEstado.SelectedIndex = 0;
+
+            txtRFC.IsEnabled = true;
+
+            
         }
 
         public void ValidaDatos(object objeto)
@@ -102,7 +127,7 @@ namespace TallerWPF.ClientesModule.Vistas
                 }
                 else
                 {
-                   vmClientes VMClientes = this.DataContext as vmClientes;
+                   vmClientes VMClientes = DataContext as vmClientes;
                    VMClientes.GuardarDatosCommand.Execute();
                 }
             }

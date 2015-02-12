@@ -49,6 +49,7 @@ namespace TallerWPF.Persistencia
 
         public String GuardarServicio(C_Servicios servicio)
         {
+            string mensajeExitoso = "";
             DateTime fechaTransaccion = DateTime.Now;
             try
             {
@@ -59,15 +60,17 @@ namespace TallerWPF.Persistencia
                         servicio.FechaAlta = fechaTransaccion;
                         ctx.C_Servicios.Add(servicio);
                         ctx.SaveChanges();
+                       mensajeExitoso = "Los datos del nuevo SERVICIO han sido guardados EXITOSAMENTE";
                     }
                     else
                     {
                         servicio.FechaModificacion = fechaTransaccion;
                         ctx.C_Servicios.Attach(servicio);
                         ctx.Entry(servicio).State = EntityState.Modified;
+                        mensajeExitoso = "Los datos del SERVICIO han sido actualizados EXITOSAMENTE";
                     }
                     ctx.SaveChanges();
-                    return "Los datos del SERVICIO han sido guardados EXITOSAMENTE";
+                    return mensajeExitoso;
                 }
             }
 

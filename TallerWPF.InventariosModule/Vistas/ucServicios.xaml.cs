@@ -36,7 +36,8 @@ namespace TallerWPF.InventariosModule.Vistas
         {
             InitializeComponent();
             eventAggregator = evtAggregator;
-            eventAggregator.GetEvent<GuardarEvent>().Subscribe(ValidaDatos);    
+            eventAggregator.GetEvent<GuardarEvent>().Subscribe(ValidaDatos);
+            this.eventAggregator.GetEvent<NuevoServicioEvent>().Subscribe(LimpiarFormulario);  
         }
 
         [Import]
@@ -51,6 +52,24 @@ namespace TallerWPF.InventariosModule.Vistas
         private void grdVehiculos_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {
             txtCodigo.IsEnabled = false;
+        }
+
+       public void LimpiarFormulario(object objeto)
+        {
+            vmServicios VMServicios = DataContext as vmServicios;
+            VMServicios.ServicioSeleccionado = null;
+
+            txtCodigo.Text = "";
+            txtDescripcion.Text = "";
+
+            cmbMarca.SelectedIndex = 0;
+            cmbTipoServicio.SelectedIndex = 0;
+            cmbUnidadMedida.SelectedIndex = 0;
+
+            ckbSeAlmacena.IsChecked = false;
+            ckbSeCompra.IsChecked = false;
+            ckbSeVende.IsChecked = false;
+            
         }
 
         public void ValidaDatos(object objeto)

@@ -138,13 +138,14 @@ namespace TallerWPF
                     break;
                 case "NuevoCliente":
                     regionManager.RequestNavigate(RegionNames.MainRegion, "ucClientes");
-                    eventAggregator.GetEvent<NuevoClienteEvent>().Publish(null);  //Se utilizara para limpiar las cajas del cliente
+                    eventAggregator.GetEvent<NuevoClienteEvent>().Publish(null);  
                     break;
                 case "Guardar":
                     eventAggregator.GetEvent<GuardarEvent>().Publish(null);
                     break;
                 case "NuevoVehiculo":
                     regionManager.RequestNavigate(RegionNames.MainRegion, "ucVehiculos");
+                    eventAggregator.GetEvent<NuevoVehiculoEvent>().Publish(null);                      
                     break;
                 //end CLIENTES
                 //SERVICIOS
@@ -153,6 +154,8 @@ namespace TallerWPF
                     break;
                 case "NuevoServicio":
                     regionManager.RequestNavigate(RegionNames.MainRegion, "ucServicios");
+                    eventAggregator.GetEvent<NuevoServicioEvent>().Publish(null);  
+                    
                     break;
                 case "Inventario":
                     regionManager.RequestNavigate(RegionNames.MainRegion, "ucInventario");

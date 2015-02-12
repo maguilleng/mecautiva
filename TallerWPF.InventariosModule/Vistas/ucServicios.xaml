@@ -71,7 +71,7 @@
 
         <CheckBox x:Name="ckbSeAlmacena" Content="¿Se Almacena?" Grid.ColumnSpan="2" Grid.Row="11"  Margin="15,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsChecked="{Binding ServicioSeleccionado.SeAlmacena, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ></CheckBox>
         <CheckBox x:Name="ckbSeCompra" Content="¿Se Compra?" Grid.ColumnSpan="2" Grid.Row="11" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsChecked="{Binding ServicioSeleccionado.SeCompra, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ></CheckBox>
-        <CheckBox x:Name="chbSeVende" Content="¿Se Vende?" Grid.ColumnSpan="2" Grid.Row="11" Grid.Column="4" Margin="15,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsChecked="{Binding ServicioSeleccionado.SeVende, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ></CheckBox>
+        <CheckBox x:Name="ckbSeVende" Content="¿Se Vende?" Grid.ColumnSpan="2" Grid.Row="11" Grid.Column="4" Margin="15,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsChecked="{Binding ServicioSeleccionado.SeVende, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ></CheckBox>
        
         <telerik:RadGridView x:Name="grdVehiculos" ShowGroupPanel="False" AutoGenerateColumns="False"  ItemsSource="{Binding Servicios, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                              Grid.Row="2" Grid.Column="6" Grid.RowSpan="16" SelectedItem="{Binding ServicioSeleccionado, Mode=TwoWay}" SelectionChanged="grdVehiculos_SelectionChanged">

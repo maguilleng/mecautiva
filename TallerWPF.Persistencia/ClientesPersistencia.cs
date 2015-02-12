@@ -29,6 +29,7 @@ namespace TallerWPF.Persistencia
 
         public String GuardarCliente(C_Clientes cliente)
         {
+            string mensajeExitoso = "";
             DateTime fechaTransaccion = DateTime.Now;
             try
             {
@@ -39,15 +40,17 @@ namespace TallerWPF.Persistencia
                              cliente.FechaAlta = fechaTransaccion;
                              ctx.C_Clientes.Add(cliente);
                              ctx.SaveChanges();
+                             mensajeExitoso = "Los datos del nuevo CLIENTE han sido guardados EXITOSAMENTE";
                         }
                         else
                         {
                              cliente.FechaModificacion = fechaTransaccion;
                              ctx.C_Clientes.Attach(cliente);
                              ctx.Entry(cliente).State = EntityState.Modified;
+                             mensajeExitoso = "Los datos del CLIENTE han sido actualizados EXITOSAMENTE";
                         }
                         ctx.SaveChanges();
-                        return "Los datos del CLIENTE han sido guardados EXITOSAMENTE";
+                        return mensajeExitoso;
                     }                    
                 }               
             
@@ -117,6 +120,7 @@ namespace TallerWPF.Persistencia
 
         public string GuardarVehiculo(C_Vehiculos vehiculo)
         {
+            string mensajeExitoso = "";
             DateTime fechaTransaccion = DateTime.Now;
             try
             {
@@ -127,15 +131,17 @@ namespace TallerWPF.Persistencia
                              vehiculo.FechaAlta = fechaTransaccion;
                              ctx.C_Vehiculos.Add(vehiculo);
                              ctx.SaveChanges();
+                             mensajeExitoso = "Los datos del nuevo VEHICULO han sido guardados EXITOSAMENTE";
                         }
                         else
                         {
                              vehiculo.FechaModificacion = fechaTransaccion;
                              ctx.C_Vehiculos.Attach(vehiculo);
                              ctx.Entry(vehiculo).State = EntityState.Modified;
+                             mensajeExitoso = "Los datos del VEHICULO han sido actualizados EXITOSAMENTE";
                         }
                         ctx.SaveChanges();
-                        return "Los datos del VEHICULO han sido guardados EXITOSAMENTE";
+                        return mensajeExitoso;
                     }                    
                 }               
             

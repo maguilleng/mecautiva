@@ -37,6 +37,7 @@ namespace TallerWPF.ClientesModule.Vistas
             InitializeComponent();
             eventAggregator = evtAggregator;
             eventAggregator.GetEvent<GuardarEvent>().Subscribe(ValidaDatos);
+            this.eventAggregator.GetEvent<NuevoVehiculoEvent>().Subscribe(LimpiarFormulario);
             
 
             this.txtModelo.NumberFormatInfo = new System.Globalization.NumberFormatInfo();
@@ -78,7 +79,20 @@ namespace TallerWPF.ClientesModule.Vistas
                 txtPlaca.IsEnabled = false;
             }
         }
-        
+
+        public void LimpiarFormulario(object objeto)
+        {
+            vmVehiculos VMVehiculos = DataContext as vmVehiculos;
+            VMVehiculos.VehiculoSeleccionado = null;
+
+            txtColor.Text = "";
+            txtLinea.Text = "";
+            txtMarca.Text = "";
+            txtModelo.Value = 0;
+            txtNoEconomico.Text = "";
+            txtPlaca.Text = "";
+        }
+
         public void ValidaDatos(object objeto)
         {
             var vistaActiva = regionManager.Regions[RegionNames.MainRegion].ActiveViews.First();

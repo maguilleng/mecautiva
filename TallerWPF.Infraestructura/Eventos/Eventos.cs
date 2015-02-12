@@ -16,6 +16,10 @@ namespace TallerWPF.Infraestructura
 
     //Modulo Clientes
     public class NuevoClienteEvent : PubSubEvent<object> { }
+    public class NuevoVehiculoEvent : PubSubEvent<object> { }
+
+    //Modulo Ventas
+    public class NuevoServicioEvent : PubSubEvent<object> { }
 
     //Modulo Ventas
     public class PagarVentaActualEvent : PubSubEvent<object> { }
