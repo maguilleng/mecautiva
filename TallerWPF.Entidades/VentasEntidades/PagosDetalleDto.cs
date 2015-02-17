@@ -43,7 +43,7 @@ namespace TallerWPF.Entidades.VentasEntidades
         double cantidad;
         public double Cantidad {
             get { return cantidad; }
-            set { SetProperty(ref this.cantidad, value); }
+            set { SetProperty(ref this.cantidad, value, "Cantidad"); }
         }
 
         Nullable<System.DateTime> fechaAlta;

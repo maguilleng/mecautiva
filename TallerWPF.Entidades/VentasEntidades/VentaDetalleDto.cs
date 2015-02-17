@@ -17,7 +17,7 @@ namespace TallerWPF.Entidades.VentasEntidades
         public double Cantidad
         {
             get { return cantidad; }
-            set { SetProperty(ref this.cantidad, value); }
+            set { SetProperty(ref this.cantidad, value, "Cantidad"); }
         }
 
         double precioUnitario;

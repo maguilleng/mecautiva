@@ -14,6 +14,8 @@ using TallerWPF.Infraestructura.Interfaces;
 using TallerWPF.Infraestructura;
 using TallerWPF.Entidades.VentasEntidades;
 using System.Windows;
+using TallerWPF.VentasModule.Helpers;
+using System.Windows.Data;
 
 namespace TallerWPF.VentasModule.ViewModels
 {
@@ -184,14 +186,33 @@ namespace TallerWPF.VentasModule.ViewModels
         PagosDetalleDto detallePagoSeleccionado;
         public PagosDetalleDto DetallePagoSeleccionado
         {
-            get { return detallePagoSeleccionado; }
+            get 
+            {
+                detallePagoSeleccionado = detallePagoSeleccionado ?? new PagosDetalleDto();
+                return detallePagoSeleccionado;
+            }
             set { SetProperty(ref this.detallePagoSeleccionado, value); }
         }
 
-        PagoEfectivoDto pagoEfectivoHelper;
-        public PagoEfectivoDto PagoEfectivoHelper
+        double cantidadRecibidaPago;
+        public double CantidadRecibidaPago
         {
-            get { return pagoEfectivoHelper; }
+            get { return cantidadRecibidaPago; }
+            set 
+            { 
+                SetProperty(ref this.cantidadRecibidaPago, value);
+                ActualizarDatosPago();
+            }
+        }
+
+        PagoEfectivoHelper pagoEfectivoHelper;
+        public PagoEfectivoHelper PagoEfectivoHelper
+        {
+            get 
+            {
+                pagoEfectivoHelper = pagoEfectivoHelper ?? new PagoEfectivoHelper();
+                return pagoEfectivoHelper; 
+            }
             set { SetProperty(ref this.pagoEfectivoHelper, value); }
         }
 
@@ -364,11 +385,20 @@ namespace TallerWPF.VentasModule.ViewModels
         { 
             if(!EstaPagandoVentaActual){
                 EstaPagandoVentaActual = true;
+                PagoEfectivoHelper.TotalAPagar = VentaActual.Total;
+                PagoEfectivoHelper.CantidadRecibidaValida = false;
+                PagoEfectivoHelper.CantidadRecibida = 0;
             }
             else if (EstaPagandoVentaActual) 
             {
                 MessageBox.Show("Saca la lana");
             }
+        }
+
+        public void ActualizarDatosPago()
+        {
+            DetallePagoSeleccionado.Cantidad = CantidadRecibidaPago;
+            PagoEfectivoHelper.CantidadRecibida = CantidadRecibidaPago;
         }
         #endregion        
     }

@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculadoraPagoEfectivoService.cs" />
     <Compile Include="ClientesController.cs" />
     <Compile Include="ClientesService.cs" />
     <Compile Include="NavigationManager.cs" />

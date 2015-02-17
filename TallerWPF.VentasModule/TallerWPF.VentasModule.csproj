@@ -115,6 +115,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\PagoEfectivoHelper.cs" />
     <Compile Include="ModuloVentas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
