@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -118,6 +119,8 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\ExistenciaAColorBrushConverter.cs" />
     <Compile Include="Converters\FalseToVisibilityConverter.cs" />
+    <Compile Include="Dtos\Ventas\PagosDetalleDto.cs" />
+    <Compile Include="ErrorsContainer.cs" />
     <Compile Include="Eventos\Eventos.cs" />
     <Compile Include="Interfaces\IServicioCliente.cs" />
     <Compile Include="Interfaces\IServicioVenta.cs" />
@@ -136,6 +139,7 @@
     </Compile>
     <Compile Include="RegionNames.cs" />
     <Compile Include="Utilerias\NumerosAletras.cs" />
+    <Compile Include="ValidatableBindableBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

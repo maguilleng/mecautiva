@@ -39,7 +39,8 @@ namespace TallerWPF.Entidades.VentasEntidades
         public double Total
         {
           get { return total; }
-          set { SetProperty(ref this.total, value); }
+          set { SetProperty(ref this.total, value);
+          }
         }
 
         public C_Clientes Cliente{get;set;}

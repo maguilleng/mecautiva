@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f469863ddc904fa0864e7d9b57d5b90e" Name="Diagrama1" ZoomLevel="94">
+      <Diagram DiagramId="f469863ddc904fa0864e7d9b57d5b90e" Name="Diagrama1" ZoomLevel="90">
         <EntityTypeShape EntityType="PuntoVentaModel.C_Ciudades" Width="1.5" PointX="3.7110239508147465" PointY="14.87833952106458" />
         <EntityTypeShape EntityType="PuntoVentaModel.C_Clientes" Width="1.5" PointX="3.4331162904543411" PointY="7.2231442663926373" />
         <EntityTypeShape EntityType="PuntoVentaModel.C_Estados" Width="1.5" PointX="2.6005482741634118" PointY="20.625453407236119" />
@@ -42,6 +42,8 @@
         <AssociationConnector Association="PuntoVentaModel.FK_Pagos_Ventas" />
         <AssociationConnector Association="PuntoVentaModel.FK_PagosDetalle_Pagos" />
         <AssociationConnector Association="PuntoVentaModel.FK_VentasDetalle_Ventas" />
+        <EntityTypeShape EntityType="PuntoVentaModel.ValidacionesFormasPago" Width="1.5" PointX="9.75" PointY="21.5" />
+        <AssociationConnector Association="PuntoVentaModel.FK_ValidacionesFormasPago_C_FormasPago" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

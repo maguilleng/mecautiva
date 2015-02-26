@@ -134,6 +134,9 @@
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs" />
+    <Compile Include="ValidacionesFormasPago.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VehiculosEntidades\C_ClientesDTO.cs" />
     <Compile Include="VehiculosEntidades\C_VehiculosDTO.cs" />
     <Compile Include="Ventas.cs">
@@ -143,7 +146,6 @@
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VentasEntidades\C_ServiciosDto.cs" />
-    <Compile Include="VentasEntidades\PagosDetalleDto.cs" />
     <Compile Include="VentasEntidades\VentaDetalleDto.cs" />
     <Compile Include="VentasEntidades\VentaDto.cs" />
   </ItemGroup>

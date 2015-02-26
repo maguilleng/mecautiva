@@ -17,6 +17,7 @@ namespace TallerWPF.Entidades
         public C_FormasPago()
         {
             this.PagosDetalle = new HashSet<PagosDetalle>();
+            this.ValidacionesFormasPago = new HashSet<ValidacionesFormasPago>();
         }
     
         public int IdFormaPago { get; set; }
@@ -29,5 +30,6 @@ namespace TallerWPF.Entidades
         public Nullable<int> IdUsuarioModificacion { get; set; }
     
         public virtual ICollection<PagosDetalle> PagosDetalle { get; set; }
+        public virtual ICollection<ValidacionesFormasPago> ValidacionesFormasPago { get; set; }
     }
 }

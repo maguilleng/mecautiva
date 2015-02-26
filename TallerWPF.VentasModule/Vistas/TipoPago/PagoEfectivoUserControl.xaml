@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         
         <Label HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Cantidad Recibida</Label>
-        <telerik:RadNumericUpDown Value="{Binding CantidadRecibidaPago, Mode=TwoWay}" NumberDecimalDigits="2"
+        <telerik:RadNumericUpDown Value="{Binding CantidadRecibidaPago, Mode=TwoWay, NotifyOnValidationError=True,ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" NumberDecimalDigits="2"
                                   Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="Bold"></telerik:RadNumericUpDown>
 
         <Label HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Cambio</Label>

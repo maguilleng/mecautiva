@@ -16,8 +16,6 @@ namespace Servicios
         {
             bool exito = false;
 
-
-
             return exito;
         }
 
@@ -29,6 +27,8 @@ namespace Servicios
 
             return Venta;
         }
+
+
 
         //public List<VentasDetalle> ConvertirDetallesVentaDto(List<VentaDetalleDto> detallesVentaDto)
         //{ 

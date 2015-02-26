@@ -4,109 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PuntoVentaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="PuntoVentaModelStoreContainer">
-          <EntitySet Name="C_Ciudades" EntityType="PuntoVentaModel.Store.C_Ciudades" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="C_Clientes" EntityType="PuntoVentaModel.Store.C_Clientes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="C_Estados" EntityType="PuntoVentaModel.Store.C_Estados" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="C_FormasPago" EntityType="PuntoVentaModel.Store.C_FormasPago" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="C_Marcas" EntityType="PuntoVentaModel.Store.C_Marcas" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="C_Municipios" EntityType="PuntoVentaModel.Store.C_Municipios" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="C_Servicios" EntityType="PuntoVentaModel.Store.C_Servicios" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="C_TiposPersona" EntityType="PuntoVentaModel.Store.C_TiposPersona" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="C_TiposServicios" EntityType="PuntoVentaModel.Store.C_TiposServicios" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="C_UnidadesMedida" EntityType="PuntoVentaModel.Store.C_UnidadesMedida" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="C_Vehiculos" EntityType="PuntoVentaModel.Store.C_Vehiculos" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Facturas" EntityType="PuntoVentaModel.Store.Facturas" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Inventario" EntityType="PuntoVentaModel.Store.Inventario" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Pagos" EntityType="PuntoVentaModel.Store.Pagos" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PagosDetalle" EntityType="PuntoVentaModel.Store.PagosDetalle" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Precios" EntityType="PuntoVentaModel.Store.Precios" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Ventas" EntityType="PuntoVentaModel.Store.Ventas" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="VentasDetalle" EntityType="PuntoVentaModel.Store.VentasDetalle" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_C_Ciudades_C_Municipios" Association="PuntoVentaModel.Store.FK_C_Ciudades_C_Municipios">
-            <End Role="C_Municipios" EntitySet="C_Municipios" />
-            <End Role="C_Ciudades" EntitySet="C_Ciudades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_C_Clientes_C_Ciudades" Association="PuntoVentaModel.Store.FK_C_Clientes_C_Ciudades">
-            <End Role="C_Ciudades" EntitySet="C_Ciudades" />
-            <End Role="C_Clientes" EntitySet="C_Clientes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_C_Clientes_C_Municipios" Association="PuntoVentaModel.Store.FK_C_Clientes_C_Municipios">
-            <End Role="C_Municipios" EntitySet="C_Municipios" />
-            <End Role="C_Clientes" EntitySet="C_Clientes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_C_Clientes_C_TiposPersona" Association="PuntoVentaModel.Store.FK_C_Clientes_C_TiposPersona">
-            <End Role="C_TiposPersona" EntitySet="C_TiposPersona" />
-            <End Role="C_Clientes" EntitySet="C_Clientes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_C_Municipios_C_Estados" Association="PuntoVentaModel.Store.FK_C_Municipios_C_Estados">
-            <End Role="C_Estados" EntitySet="C_Estados" />
-            <End Role="C_Municipios" EntitySet="C_Municipios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_C_Servicios_C_Marcas" Association="PuntoVentaModel.Store.FK_C_Servicios_C_Marcas">
-            <End Role="C_Marcas" EntitySet="C_Marcas" />
-            <End Role="C_Servicios" EntitySet="C_Servicios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_C_Servicios_C_TiposServicios" Association="PuntoVentaModel.Store.FK_C_Servicios_C_TiposServicios">
-            <End Role="C_TiposServicios" EntitySet="C_TiposServicios" />
-            <End Role="C_Servicios" EntitySet="C_Servicios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_C_Servicios_C_UnidadesMedida" Association="PuntoVentaModel.Store.FK_C_Servicios_C_UnidadesMedida">
-            <End Role="C_UnidadesMedida" EntitySet="C_UnidadesMedida" />
-            <End Role="C_Servicios" EntitySet="C_Servicios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_C_Vehiculos_C_Clientes" Association="PuntoVentaModel.Store.FK_C_Vehiculos_C_Clientes">
-            <End Role="C_Clientes" EntitySet="C_Clientes" />
-            <End Role="C_Vehiculos" EntitySet="C_Vehiculos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Facturas_Ventas" Association="PuntoVentaModel.Store.FK_Facturas_Ventas">
-            <End Role="Ventas" EntitySet="Ventas" />
-            <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inventario_C_Servicios" Association="PuntoVentaModel.Store.FK_Inventario_C_Servicios">
-            <End Role="C_Servicios" EntitySet="C_Servicios" />
-            <End Role="Inventario" EntitySet="Inventario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pagos_Ventas" Association="PuntoVentaModel.Store.FK_Pagos_Ventas">
-            <End Role="Ventas" EntitySet="Ventas" />
-            <End Role="Pagos" EntitySet="Pagos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PagosDetalle_C_FormasPago" Association="PuntoVentaModel.Store.FK_PagosDetalle_C_FormasPago">
-            <End Role="C_FormasPago" EntitySet="C_FormasPago" />
-            <End Role="PagosDetalle" EntitySet="PagosDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PagosDetalle_Pagos" Association="PuntoVentaModel.Store.FK_PagosDetalle_Pagos">
-            <End Role="Pagos" EntitySet="Pagos" />
-            <End Role="PagosDetalle" EntitySet="PagosDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Precios_C_Servicios" Association="PuntoVentaModel.Store.FK_Precios_C_Servicios">
-            <End Role="C_Servicios" EntitySet="C_Servicios" />
-            <End Role="Precios" EntitySet="Precios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ventas_C_Clientes" Association="PuntoVentaModel.Store.FK_Ventas_C_Clientes">
-            <End Role="C_Clientes" EntitySet="C_Clientes" />
-            <End Role="Ventas" EntitySet="Ventas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ventas_C_Vehiculos" Association="PuntoVentaModel.Store.FK_Ventas_C_Vehiculos">
-            <End Role="C_Vehiculos" EntitySet="C_Vehiculos" />
-            <End Role="Ventas" EntitySet="Ventas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VentasDetalle_C_Servicios" Association="PuntoVentaModel.Store.FK_VentasDetalle_C_Servicios">
-            <End Role="C_Servicios" EntitySet="C_Servicios" />
-            <End Role="VentasDetalle" EntitySet="VentasDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VentasDetalle_Ventas" Association="PuntoVentaModel.Store.FK_VentasDetalle_Ventas">
-            <End Role="Ventas" EntitySet="Ventas" />
-            <End Role="VentasDetalle" EntitySet="VentasDetalle" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="PuntoVentaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="C_Ciudades">
           <Key>
             <PropertyRef Name="IdCiudad" />
           </Key>
-          <Property Name="IdCiudad" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="IdCiudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Estatus" Type="int" />
           <Property Name="IdMunicipio" Type="int" />
         </EntityType>
@@ -114,18 +18,18 @@
           <Key>
             <PropertyRef Name="IdCliente" />
           </Key>
-          <Property Name="IdCliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="RFC" Type="nvarchar" Nullable="false" MaxLength="13" />
+          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RFC" Type="nvarchar" MaxLength="13" Nullable="false" />
           <Property Name="NumeroCliente" Type="nvarchar" MaxLength="10" />
-          <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="IdTipoPersona" Type="int" />
           <Property Name="Direccion" Type="nvarchar" MaxLength="250" />
           <Property Name="IdCiudad" Type="int" />
           <Property Name="CodigoPostal" Type="int" />
           <Property Name="IdMunicipio" Type="int" />
-          <Property Name="Movil" Type="numeric" Precision="10" />
-          <Property Name="Casa" Type="numeric" Precision="10" />
-          <Property Name="Trabajo" Type="numeric" Precision="10" />
+          <Property Name="Movil" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="Casa" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="Trabajo" Type="numeric" Precision="10" Scale="0" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="FechaAlta" Type="date" />
           <Property Name="FechaModificacion" Type="date" />
@@ -138,17 +42,17 @@
           <Key>
             <PropertyRef Name="IdEstado" />
           </Key>
-          <Property Name="IdEstado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IdEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="C_FormasPago">
           <Key>
             <PropertyRef Name="IdFormaPago" />
           </Key>
-          <Property Name="IdFormaPago" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="150" />
-          <Property Name="Mnemonico" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="IdFormaPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Mnemonico" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="FechaAlta" Type="date" />
           <Property Name="FechaModificacion" Type="date" />
           <Property Name="Estatus" Type="int" />
@@ -159,7 +63,7 @@
           <Key>
             <PropertyRef Name="IdMarca" />
           </Key>
-          <Property Name="IdMarca" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdMarca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Clave" Type="nvarchar" MaxLength="50" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="150" />
           <Property Name="FechaAlta" Type="date" />
@@ -172,17 +76,17 @@
           <Key>
             <PropertyRef Name="IdMunicipio" />
           </Key>
-          <Property Name="IdMunicipio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdMunicipio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="80" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="C_Servicios">
           <Key>
             <PropertyRef Name="IdServicio" />
           </Key>
-          <Property Name="IdServicio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="IdServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="IdUnidadMedida" Type="int" Nullable="false" />
           <Property Name="SeAlmacena" Type="bit" />
           <Property Name="SeCompra" Type="bit" />
@@ -194,15 +98,15 @@
           <Property Name="IdUsuarioCreacion" Type="int" />
           <Property Name="IdUsuarioModificacion" Type="int" />
           <Property Name="Estatus" Type="int" Nullable="false" />
-          <Property Name="Codigo" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="C_TiposPersona">
           <Key>
             <PropertyRef Name="IdTipoPersona" />
           </Key>
-          <Property Name="IdTipoPersona" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="150" />
-          <Property Name="Mnemonico" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="IdTipoPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Mnemonico" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="FechaAlta" Type="date" />
           <Property Name="FechaModificacion" Type="date" />
           <Property Name="Estatus" Type="int" />
@@ -213,8 +117,8 @@
           <Key>
             <PropertyRef Name="IdTipoServicio" />
           </Key>
-          <Property Name="IdTipoServicio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="IdTipoServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="FechaAlta" Type="date" />
           <Property Name="FechaModificacion" Type="date" />
           <Property Name="IdUsuarioCreacion" Type="int" />
@@ -238,7 +142,7 @@
           <Key>
             <PropertyRef Name="IdVehiculo" />
           </Key>
-          <Property Name="IdVehiculo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdVehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Placas" Type="nvarchar" MaxLength="10" />
           <Property Name="Marca" Type="nvarchar" MaxLength="40" />
           <Property Name="Linea" Type="nvarchar" MaxLength="50" />
@@ -256,7 +160,7 @@
           <Key>
             <PropertyRef Name="IdFactura" />
           </Key>
-          <Property Name="IdFactura" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdVenta" Type="int" Nullable="false" />
           <Property Name="FechaEmision" Type="date" Nullable="false" />
           <Property Name="FechaCertificacion" Type="date" Nullable="false" />
@@ -275,7 +179,7 @@
           <Key>
             <PropertyRef Name="IdInventario" />
           </Key>
-          <Property Name="IdInventario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdInventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdServicio" Type="int" Nullable="false" />
           <Property Name="PrecioCompra" Type="float" Nullable="false" />
           <Property Name="PrecioVenta" Type="float" Nullable="false" />
@@ -292,7 +196,7 @@
           <Key>
             <PropertyRef Name="IdPago" />
           </Key>
-          <Property Name="IdPago" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdVenta" Type="int" Nullable="false" />
           <Property Name="FechaAlta" Type="date" />
           <Property Name="FechaModificacion" Type="date" />
@@ -304,7 +208,7 @@
           <Key>
             <PropertyRef Name="IdPagoDetalle" />
           </Key>
-          <Property Name="IdPagoDetalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdPagoDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPago" Type="int" Nullable="false" />
           <Property Name="IdFormaPago" Type="int" Nullable="false" />
           <Property Name="Institucion" Type="nvarchar" MaxLength="250" />
@@ -320,7 +224,7 @@
           <Key>
             <PropertyRef Name="IdPrecio" />
           </Key>
-          <Property Name="IdPrecio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdPrecio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdServicio" Type="int" Nullable="false" />
           <Property Name="Precio" Type="float" Nullable="false" />
           <Property Name="FechaAlta" Type="date" />
@@ -330,11 +234,19 @@
           <Property Name="Estatus" Type="int" />
           <Property Name="PrecioNota" Type="float" Nullable="false" />
         </EntityType>
+        <EntityType Name="ValidacionesFormasPago">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFormaPago" Type="int" Nullable="false" />
+          <Property Name="PropiedadValidadaPagosDetalle" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Ventas">
           <Key>
             <PropertyRef Name="IdVenta" />
           </Key>
-          <Property Name="IdVenta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Folio" Type="nvarchar" MaxLength="50" />
           <Property Name="Subtotal" Type="float" Nullable="false" />
@@ -355,7 +267,7 @@
           <Key>
             <PropertyRef Name="IdVentaDetalle" />
           </Key>
-          <Property Name="IdVentaDetalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdVentaDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdVenta" Type="int" Nullable="false" />
           <Property Name="Cantidad" Type="float" Nullable="false" />
           <Property Name="PrecioUnitario" Type="float" Nullable="false" />
@@ -368,8 +280,8 @@
           <Property Name="Estatus" Type="int" />
         </EntityType>
         <Association Name="FK_C_Ciudades_C_Municipios">
-          <End Role="C_Municipios" Type="PuntoVentaModel.Store.C_Municipios" Multiplicity="0..1" />
-          <End Role="C_Ciudades" Type="PuntoVentaModel.Store.C_Ciudades" Multiplicity="*" />
+          <End Role="C_Municipios" Type="Self.C_Municipios" Multiplicity="0..1" />
+          <End Role="C_Ciudades" Type="Self.C_Ciudades" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Municipios">
               <PropertyRef Name="IdMunicipio" />
@@ -380,8 +292,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_C_Clientes_C_Ciudades">
-          <End Role="C_Ciudades" Type="PuntoVentaModel.Store.C_Ciudades" Multiplicity="0..1" />
-          <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="*" />
+          <End Role="C_Ciudades" Type="Self.C_Ciudades" Multiplicity="0..1" />
+          <End Role="C_Clientes" Type="Self.C_Clientes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Ciudades">
               <PropertyRef Name="IdCiudad" />
@@ -392,8 +304,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_C_Clientes_C_Municipios">
-          <End Role="C_Municipios" Type="PuntoVentaModel.Store.C_Municipios" Multiplicity="0..1" />
-          <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="*" />
+          <End Role="C_Municipios" Type="Self.C_Municipios" Multiplicity="0..1" />
+          <End Role="C_Clientes" Type="Self.C_Clientes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Municipios">
               <PropertyRef Name="IdMunicipio" />
@@ -404,8 +316,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_C_Clientes_C_TiposPersona">
-          <End Role="C_TiposPersona" Type="PuntoVentaModel.Store.C_TiposPersona" Multiplicity="0..1" />
-          <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="*" />
+          <End Role="C_TiposPersona" Type="Self.C_TiposPersona" Multiplicity="0..1" />
+          <End Role="C_Clientes" Type="Self.C_Clientes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_TiposPersona">
               <PropertyRef Name="IdTipoPersona" />
@@ -416,8 +328,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_C_Municipios_C_Estados">
-          <End Role="C_Estados" Type="PuntoVentaModel.Store.C_Estados" Multiplicity="1" />
-          <End Role="C_Municipios" Type="PuntoVentaModel.Store.C_Municipios" Multiplicity="*" />
+          <End Role="C_Estados" Type="Self.C_Estados" Multiplicity="1" />
+          <End Role="C_Municipios" Type="Self.C_Municipios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Estados">
               <PropertyRef Name="IdEstado" />
@@ -428,8 +340,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_C_Servicios_C_Marcas">
-          <End Role="C_Marcas" Type="PuntoVentaModel.Store.C_Marcas" Multiplicity="1" />
-          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="*" />
+          <End Role="C_Marcas" Type="Self.C_Marcas" Multiplicity="1" />
+          <End Role="C_Servicios" Type="Self.C_Servicios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Marcas">
               <PropertyRef Name="IdMarca" />
@@ -440,8 +352,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_C_Servicios_C_TiposServicios">
-          <End Role="C_TiposServicios" Type="PuntoVentaModel.Store.C_TiposServicios" Multiplicity="0..1" />
-          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="*" />
+          <End Role="C_TiposServicios" Type="Self.C_TiposServicios" Multiplicity="0..1" />
+          <End Role="C_Servicios" Type="Self.C_Servicios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_TiposServicios">
               <PropertyRef Name="IdTipoServicio" />
@@ -452,8 +364,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_C_Servicios_C_UnidadesMedida">
-          <End Role="C_UnidadesMedida" Type="PuntoVentaModel.Store.C_UnidadesMedida" Multiplicity="1" />
-          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="*" />
+          <End Role="C_UnidadesMedida" Type="Self.C_UnidadesMedida" Multiplicity="1" />
+          <End Role="C_Servicios" Type="Self.C_Servicios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_UnidadesMedida">
               <PropertyRef Name="IdUnidadMedida" />
@@ -464,8 +376,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_C_Vehiculos_C_Clientes">
-          <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="1" />
-          <End Role="C_Vehiculos" Type="PuntoVentaModel.Store.C_Vehiculos" Multiplicity="*" />
+          <End Role="C_Clientes" Type="Self.C_Clientes" Multiplicity="1" />
+          <End Role="C_Vehiculos" Type="Self.C_Vehiculos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Clientes">
               <PropertyRef Name="IdCliente" />
@@ -476,8 +388,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Facturas_Ventas">
-          <End Role="Ventas" Type="PuntoVentaModel.Store.Ventas" Multiplicity="1" />
-          <End Role="Facturas" Type="PuntoVentaModel.Store.Facturas" Multiplicity="*" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ventas">
               <PropertyRef Name="IdVenta" />
@@ -488,8 +400,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Inventario_C_Servicios">
-          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="1" />
-          <End Role="Inventario" Type="PuntoVentaModel.Store.Inventario" Multiplicity="*" />
+          <End Role="C_Servicios" Type="Self.C_Servicios" Multiplicity="1" />
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Servicios">
               <PropertyRef Name="IdServicio" />
@@ -500,8 +412,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Pagos_Ventas">
-          <End Role="Ventas" Type="PuntoVentaModel.Store.Ventas" Multiplicity="1" />
-          <End Role="Pagos" Type="PuntoVentaModel.Store.Pagos" Multiplicity="*" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ventas">
               <PropertyRef Name="IdVenta" />
@@ -512,8 +424,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PagosDetalle_C_FormasPago">
-          <End Role="C_FormasPago" Type="PuntoVentaModel.Store.C_FormasPago" Multiplicity="1" />
-          <End Role="PagosDetalle" Type="PuntoVentaModel.Store.PagosDetalle" Multiplicity="*" />
+          <End Role="C_FormasPago" Type="Self.C_FormasPago" Multiplicity="1" />
+          <End Role="PagosDetalle" Type="Self.PagosDetalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_FormasPago">
               <PropertyRef Name="IdFormaPago" />
@@ -524,8 +436,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PagosDetalle_Pagos">
-          <End Role="Pagos" Type="PuntoVentaModel.Store.Pagos" Multiplicity="1" />
-          <End Role="PagosDetalle" Type="PuntoVentaModel.Store.PagosDetalle" Multiplicity="*" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="1" />
+          <End Role="PagosDetalle" Type="Self.PagosDetalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pagos">
               <PropertyRef Name="IdPago" />
@@ -536,8 +448,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Precios_C_Servicios">
-          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="1" />
-          <End Role="Precios" Type="PuntoVentaModel.Store.Precios" Multiplicity="*" />
+          <End Role="C_Servicios" Type="Self.C_Servicios" Multiplicity="1" />
+          <End Role="Precios" Type="Self.Precios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Servicios">
               <PropertyRef Name="IdServicio" />
@@ -547,9 +459,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ValidacionesFormasPago_C_FormasPago">
+          <End Role="C_FormasPago" Type="Self.C_FormasPago" Multiplicity="1" />
+          <End Role="ValidacionesFormasPago" Type="Self.ValidacionesFormasPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_FormasPago">
+              <PropertyRef Name="IdFormaPago" />
+            </Principal>
+            <Dependent Role="ValidacionesFormasPago">
+              <PropertyRef Name="IdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Ventas_C_Clientes">
-          <End Role="C_Clientes" Type="PuntoVentaModel.Store.C_Clientes" Multiplicity="1" />
-          <End Role="Ventas" Type="PuntoVentaModel.Store.Ventas" Multiplicity="*" />
+          <End Role="C_Clientes" Type="Self.C_Clientes" Multiplicity="1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Clientes">
               <PropertyRef Name="IdCliente" />
@@ -560,8 +484,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ventas_C_Vehiculos">
-          <End Role="C_Vehiculos" Type="PuntoVentaModel.Store.C_Vehiculos" Multiplicity="0..1" />
-          <End Role="Ventas" Type="PuntoVentaModel.Store.Ventas" Multiplicity="*" />
+          <End Role="C_Vehiculos" Type="Self.C_Vehiculos" Multiplicity="0..1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Vehiculos">
               <PropertyRef Name="IdVehiculo" />
@@ -572,8 +496,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VentasDetalle_C_Servicios">
-          <End Role="C_Servicios" Type="PuntoVentaModel.Store.C_Servicios" Multiplicity="1" />
-          <End Role="VentasDetalle" Type="PuntoVentaModel.Store.VentasDetalle" Multiplicity="*" />
+          <End Role="C_Servicios" Type="Self.C_Servicios" Multiplicity="1" />
+          <End Role="VentasDetalle" Type="Self.VentasDetalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Servicios">
               <PropertyRef Name="IdServicio" />
@@ -584,8 +508,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VentasDetalle_Ventas">
-          <End Role="Ventas" Type="PuntoVentaModel.Store.Ventas" Multiplicity="1" />
-          <End Role="VentasDetalle" Type="PuntoVentaModel.Store.VentasDetalle" Multiplicity="*" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="VentasDetalle" Type="Self.VentasDetalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ventas">
               <PropertyRef Name="IdVenta" />
@@ -595,6 +519,107 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="PuntoVentaModelStoreContainer">
+          <EntitySet Name="C_Ciudades" EntityType="Self.C_Ciudades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Clientes" EntityType="Self.C_Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Estados" EntityType="Self.C_Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_FormasPago" EntityType="Self.C_FormasPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Marcas" EntityType="Self.C_Marcas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Municipios" EntityType="Self.C_Municipios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Servicios" EntityType="Self.C_Servicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_TiposPersona" EntityType="Self.C_TiposPersona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_TiposServicios" EntityType="Self.C_TiposServicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_UnidadesMedida" EntityType="Self.C_UnidadesMedida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Vehiculos" EntityType="Self.C_Vehiculos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventario" EntityType="Self.Inventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PagosDetalle" EntityType="Self.PagosDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Precios" EntityType="Self.Precios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ValidacionesFormasPago" EntityType="Self.ValidacionesFormasPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VentasDetalle" EntityType="Self.VentasDetalle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_C_Ciudades_C_Municipios" Association="Self.FK_C_Ciudades_C_Municipios">
+            <End Role="C_Municipios" EntitySet="C_Municipios" />
+            <End Role="C_Ciudades" EntitySet="C_Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Clientes_C_Ciudades" Association="Self.FK_C_Clientes_C_Ciudades">
+            <End Role="C_Ciudades" EntitySet="C_Ciudades" />
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Clientes_C_Municipios" Association="Self.FK_C_Clientes_C_Municipios">
+            <End Role="C_Municipios" EntitySet="C_Municipios" />
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Clientes_C_TiposPersona" Association="Self.FK_C_Clientes_C_TiposPersona">
+            <End Role="C_TiposPersona" EntitySet="C_TiposPersona" />
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Municipios_C_Estados" Association="Self.FK_C_Municipios_C_Estados">
+            <End Role="C_Estados" EntitySet="C_Estados" />
+            <End Role="C_Municipios" EntitySet="C_Municipios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Servicios_C_Marcas" Association="Self.FK_C_Servicios_C_Marcas">
+            <End Role="C_Marcas" EntitySet="C_Marcas" />
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Servicios_C_TiposServicios" Association="Self.FK_C_Servicios_C_TiposServicios">
+            <End Role="C_TiposServicios" EntitySet="C_TiposServicios" />
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Servicios_C_UnidadesMedida" Association="Self.FK_C_Servicios_C_UnidadesMedida">
+            <End Role="C_UnidadesMedida" EntitySet="C_UnidadesMedida" />
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_Vehiculos_C_Clientes" Association="Self.FK_C_Vehiculos_C_Clientes">
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+            <End Role="C_Vehiculos" EntitySet="C_Vehiculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_Ventas" Association="Self.FK_Facturas_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventario_C_Servicios" Association="Self.FK_Inventario_C_Servicios">
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Ventas" Association="Self.FK_Pagos_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagosDetalle_C_FormasPago" Association="Self.FK_PagosDetalle_C_FormasPago">
+            <End Role="C_FormasPago" EntitySet="C_FormasPago" />
+            <End Role="PagosDetalle" EntitySet="PagosDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagosDetalle_Pagos" Association="Self.FK_PagosDetalle_Pagos">
+            <End Role="Pagos" EntitySet="Pagos" />
+            <End Role="PagosDetalle" EntitySet="PagosDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Precios_C_Servicios" Association="Self.FK_Precios_C_Servicios">
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+            <End Role="Precios" EntitySet="Precios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValidacionesFormasPago_C_FormasPago" Association="Self.FK_ValidacionesFormasPago_C_FormasPago">
+            <End Role="C_FormasPago" EntitySet="C_FormasPago" />
+            <End Role="ValidacionesFormasPago" EntitySet="ValidacionesFormasPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventas_C_Clientes" Association="Self.FK_Ventas_C_Clientes">
+            <End Role="C_Clientes" EntitySet="C_Clientes" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventas_C_Vehiculos" Association="Self.FK_Ventas_C_Vehiculos">
+            <End Role="C_Vehiculos" EntitySet="C_Vehiculos" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentasDetalle_C_Servicios" Association="Self.FK_VentasDetalle_C_Servicios">
+            <End Role="C_Servicios" EntitySet="C_Servicios" />
+            <End Role="VentasDetalle" EntitySet="VentasDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentasDetalle_Ventas" Association="Self.FK_VentasDetalle_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="VentasDetalle" EntitySet="VentasDetalle" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -694,6 +719,11 @@
             <End Role="Ventas" EntitySet="Ventas" />
             <End Role="VentasDetalle" EntitySet="VentasDetalle" />
           </AssociationSet>
+          <EntitySet Name="ValidacionesFormasPago" EntityType="PuntoVentaModel.ValidacionesFormasPago" />
+          <AssociationSet Name="FK_ValidacionesFormasPago_C_FormasPago" Association="PuntoVentaModel.FK_ValidacionesFormasPago_C_FormasPago">
+            <End Role="C_FormasPago" EntitySet="C_FormasPago" />
+            <End Role="ValidacionesFormasPago" EntitySet="ValidacionesFormasPago" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C_Ciudades">
           <Key>
@@ -757,6 +787,7 @@
           <Property Type="Int32" Name="IdUsuarioCreacion" />
           <Property Type="Int32" Name="IdUsuarioModificacion" />
           <NavigationProperty Name="PagosDetalle" Relationship="PuntoVentaModel.FK_PagosDetalle_C_FormasPago" FromRole="C_FormasPago" ToRole="PagosDetalle" />
+          <NavigationProperty Name="ValidacionesFormasPago" Relationship="PuntoVentaModel.FK_ValidacionesFormasPago_C_FormasPago" FromRole="C_FormasPago" ToRole="ValidacionesFormasPago" />
         </EntityType>
         <EntityType Name="C_Marcas">
           <Key>
@@ -1227,6 +1258,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ValidacionesFormasPago">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFormaPago" Type="Int32" Nullable="false" />
+          <Property Name="PropiedadValidadaPagosDetalle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="C_FormasPago" Relationship="PuntoVentaModel.FK_ValidacionesFormasPago_C_FormasPago" FromRole="ValidacionesFormasPago" ToRole="C_FormasPago" />
+        </EntityType>
+        <Association Name="FK_ValidacionesFormasPago_C_FormasPago">
+          <End Type="PuntoVentaModel.C_FormasPago" Role="C_FormasPago" Multiplicity="1" />
+          <End Type="PuntoVentaModel.ValidacionesFormasPago" Role="ValidacionesFormasPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_FormasPago">
+              <PropertyRef Name="IdFormaPago" />
+            </Principal>
+            <Dependent Role="ValidacionesFormasPago">
+              <PropertyRef Name="IdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1517,6 +1569,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ValidacionesFormasPago">
+            <EntityTypeMapping TypeName="PuntoVentaModel.ValidacionesFormasPago">
+              <MappingFragment StoreEntitySet="ValidacionesFormasPago">
+                <ScalarProperty Name="PropiedadValidadaPagosDetalle" ColumnName="PropiedadValidadaPagosDetalle" />
+                <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1534,6 +1595,7 @@
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -96,7 +96,7 @@
                Margin="4" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0"/>
         <Button Content="Regresar" Command="{Binding VerDetalleVentaCommand}" Grid.Row="0" Grid.Column="1" Width="80" HorizontalAlignment="Right"></Button>
         
-        
+
         <!--RESUMEN TOTAL VENTA-->
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
@@ -152,5 +152,17 @@
                             Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></views:PagoTarjetaUserControl>
             
         </Grid>
+
+        <ItemsControl ItemsSource="{Binding Errores}"
+                          Grid.Row="1" Grid.Column="0"
+                          TextBlock.Foreground="{StaticResource ValidationBrush}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border CornerRadius="3" Background="Red">
+                        <Label Content="{Binding}" Foreground="White" FontStyle="Oblique"></Label>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

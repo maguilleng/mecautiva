@@ -16,11 +16,14 @@ using TallerWPF.Entidades.VentasEntidades;
 using System.Windows;
 using TallerWPF.VentasModule.Helpers;
 using System.Windows.Data;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using TallerWPF.Infraestructura.Dtos.Ventas;
 
 namespace TallerWPF.VentasModule.ViewModels
 {
     [Export]
-    public class NuevaVentaViewModel : BindableBase
+    public class NuevaVentaViewModel : ValidatableBindableBase
     {
         #region ATRIBUTOS PRIVADOS
 
@@ -76,6 +79,7 @@ namespace TallerWPF.VentasModule.ViewModels
         }
 
         C_FormasPago tipoPagoSeleccionado;
+        [Required(ErrorMessage = "Debe seleccionar una Forma de Pago")]
         public C_FormasPago TipoPagoSeleccionado
         {
             get { return tipoPagoSeleccionado; }
@@ -115,6 +119,7 @@ namespace TallerWPF.VentasModule.ViewModels
         }
 
         ObservableCollection<VentaDetalleDto> detallesVenta;
+        [CustomValidation( typeof( NuevaVentaViewModel ), "ValidarProductosSeleccionados" )]
         public ObservableCollection<VentaDetalleDto> DetallesVenta
         {
             get 
@@ -153,6 +158,7 @@ namespace TallerWPF.VentasModule.ViewModels
         }
 
         C_Clientes clienteSeleccionado;
+        [Required (ErrorMessage = "Debe seleccionar un Cliente")]
         public C_Clientes ClienteSeleccionado
         {
             get { return this.clienteSeleccionado; }
@@ -170,7 +176,7 @@ namespace TallerWPF.VentasModule.ViewModels
         }
 
         Pagos pagoVentaActual;
-        public Pagos PagoVentaActual1
+        public Pagos PagoVentaActual
         {
             get { return pagoVentaActual; }
             set { SetProperty(ref this.pagoVentaActual, value); }
@@ -195,6 +201,7 @@ namespace TallerWPF.VentasModule.ViewModels
         }
 
         double cantidadRecibidaPago;
+        [Required]
         public double CantidadRecibidaPago
         {
             get { return cantidadRecibidaPago; }
@@ -239,6 +246,13 @@ namespace TallerWPF.VentasModule.ViewModels
             }
         }
 
+        List<string> errores;
+        public List<string> Errores
+        {
+            get { return ObtenerErrores(); }
+            set { SetProperty(ref this.errores, value); }
+        }
+
         string tituloVenta;
         public string TituloVenta
         {
@@ -279,11 +293,57 @@ namespace TallerWPF.VentasModule.ViewModels
             ActualizarDatosVenta();
 
             EstadoDetalleVentas = true;
-        }
 
+            this.PropertyChanged += NuevaVentaViewModel_PropertyChanged;
+        }
+      
         #endregion
 
         #region MÉTODOS
+
+        void VentaActual_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var p = e.PropertyName;
+        }
+
+        void NuevaVentaViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "CantidadRecibidaPago" || e.PropertyName == "Total" || e.PropertyName == "ProductoSeleccionado" || e.PropertyName == "TipoPagoSeleccionado" || e.PropertyName == "VentaActual")
+            {
+                if (this.CantidadRecibidaPago < VentaActual.Total)
+                {
+                    var err = new String[] { "La Cantidad Recibida es Menor al Total de la Venta." }.AsEnumerable();
+                    this.SetErrors(() => this.CantidadRecibidaPago, err);
+
+                    Errores = ObtenerErrores();
+                    //OnErrorsChanged(new DataErrorsChangedEventArgs("CantidadRecibidaPago"));
+                }
+            }
+        }
+
+        private List<string> ObtenerErrores()
+        {
+            List<string> errors = new List<string>();
+            Dictionary<string, List<string>> allErrors = this.GetAllErrors();
+            foreach (string propertyName in allErrors.Keys)
+            {
+                foreach (var errorString in allErrors[propertyName])
+                {
+                    errors.Add(errorString);
+                }
+            }
+
+            allErrors = DetallePagoSeleccionado.GetAllErrors();
+            foreach (string propertyName in allErrors.Keys)
+            {
+                foreach (var errorString in allErrors[propertyName])
+                {
+                    errors.Add(propertyName + ": " + errorString);
+                }
+            }
+
+            return errors;
+        }
 
         private ObservableCollection<C_FormasPago> ObtenerTiposDePago()
         {
@@ -322,6 +382,7 @@ namespace TallerWPF.VentasModule.ViewModels
                     DetallesVenta.Add(ventaDetalle);
                 }
                 ActualizarImporteVenta();
+                ValidateProperty("DetallesVenta");
             }
         }
 
@@ -333,6 +394,40 @@ namespace TallerWPF.VentasModule.ViewModels
         public void ActualizarImporteVenta()
         {
             servicioVenta.ActualizarImporteVenta();
+            VerificarCantidadValida();
+        }
+
+        public void VerificarCantidadValida()
+        {
+            if (this.CantidadRecibidaPago < VentaActual.Total)
+            {
+                var err = new String[] { "La Cantidad Recibida es Menor al Total de la Venta." }.AsEnumerable();
+                this.SetErrors(() => this.CantidadRecibidaPago, err);
+
+                Errores = ObtenerErrores();
+                OnErrorsChanged(new DataErrorsChangedEventArgs("CantidadRecibidaPago"));
+            }
+            else
+            {
+                this.ValidateProperties();
+
+                if(TipoPagoSeleccionado != null)
+                {
+                    //DetallePagoSeleccionado.ValidateProperties();
+                    var erroresPago = DetallePagoSeleccionado.GetAllErrors().Select(e => e.Key).ToList();
+                    foreach (var error in erroresPago)
+                    {
+                        DetallePagoSeleccionado.ErrorsContainer.ClearErrors(error);
+                    }
+
+                    foreach (var propiedad in TipoPagoSeleccionado.ValidacionesFormasPago)
+                    {
+                        this.DetallePagoSeleccionado.ValidateProperty(propiedad.PropiedadValidadaPagosDetalle);
+                    }
+                }
+
+                Errores = ObtenerErrores();
+            }
         }
 
         public void VerDetalleVenta()
@@ -391,7 +486,36 @@ namespace TallerWPF.VentasModule.ViewModels
             }
             else if (EstaPagandoVentaActual) 
             {
-                MessageBox.Show("Saca la lana");
+                this.ValidateProperties();
+
+                if (TipoPagoSeleccionado != null)
+                {
+                    //this.DetallePagoSeleccionado.ValidateProperties();
+                    var erroresPago = DetallePagoSeleccionado.GetAllErrors().Select(e => e.Key).ToList();
+                    foreach (var error in erroresPago)
+                    {
+                        DetallePagoSeleccionado.ErrorsContainer.ClearErrors(error);
+                    }
+
+                    foreach (var propiedad in TipoPagoSeleccionado.ValidacionesFormasPago)
+                    {
+                        this.DetallePagoSeleccionado.ValidateProperty(propiedad.PropiedadValidadaPagosDetalle);
+                    }
+                    
+                }
+
+                VerificarCantidadValida();
+
+                if (this.HasErrors || this.DetallePagoSeleccionado.HasErrors)
+                {
+                    Errores = ObtenerErrores();
+                }                
+                
+                if (!this.HasErrors)
+                { 
+                    Errores = ObtenerErrores();
+                    MessageBox.Show("Saca la lana");
+                }                
             }
         }
 
@@ -399,6 +523,17 @@ namespace TallerWPF.VentasModule.ViewModels
         {
             DetallePagoSeleccionado.Cantidad = CantidadRecibidaPago;
             PagoEfectivoHelper.CantidadRecibida = CantidadRecibidaPago;
+            VerificarCantidadValida();
+        }
+
+        public static ValidationResult ValidarProductosSeleccionados(ObservableCollection<VentaDetalleDto> productos, ValidationContext validationContext)
+        {
+            ValidationResult result = new ValidationResult("Debe agregar Productos a la Venta");
+
+            if (productos.Count != 0)
+                result = ValidationResult.Success;
+
+            return result;
         }
         #endregion        
     }
