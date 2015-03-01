@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TallerWPF.Infraestructura.Dtos.Ventas
+namespace TallerWPF.Entidades.VentasEntidades
 {
     public class PagosDetalleDto : ValidatableBindableBase
     {

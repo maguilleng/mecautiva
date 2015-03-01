@@ -12,7 +12,7 @@ using System.ComponentModel;
 namespace TallerWPF.Entidades.VehiculosEntidades
 {
    
-    public class C_VehiculosDTO : BindableBase , IDataErrorInfo
+    public class C_VehiculosDTO : ValidatableBindableBase , IDataErrorInfo
     {
         int idVehiculo;
         string placas;

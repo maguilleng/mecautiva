@@ -12,15 +12,16 @@
         </ResourceDictionary>
     </UserControl.Resources>-->
     <Grid>
-        <TextBlock Text="CARTERA DE CLIENTES " FontSize="30"></TextBlock>
+        <TextBlock Text="CARTERA DE CLIENTES " FontSize="30"/>
         <telerik:RadGridView x:Name="grdClientes" ItemsSource="{Binding Clientes}" 
                              AutoGenerateColumns="False"  Margin="0,0,-753,0" >
             <telerik:RadGridView.ChildTableDefinitions>
                 <telerik:GridViewTableDefinition >
                     <telerik:GridViewTableDefinition.Relation >
-                        <telerik:PropertyRelation ParentPropertyName="C_Vehiculos"  />
+                        <telerik:PropertyRelation ParentPropertyName="C_Vehiculos"  />                        
                     </telerik:GridViewTableDefinition.Relation>
                 </telerik:GridViewTableDefinition>
+                
             </telerik:RadGridView.ChildTableDefinitions>
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="No." Width="110" IsReadOnly="True" IsGroupable="False" 

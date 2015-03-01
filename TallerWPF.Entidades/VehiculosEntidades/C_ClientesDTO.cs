@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace TallerWPF.Entidades.VehiculosEntidades
 {
-    public class C_ClientesDTO : BindableBase, IDataErrorInfo
+    public class C_ClientesDTO : ValidatableBindableBase, IDataErrorInfo
     {
 
 
@@ -217,7 +217,18 @@ namespace TallerWPF.Entidades.VehiculosEntidades
                         result = "El campo Dirección no puede quedar vacio";
                     }
                 }
-
+                /*
+                else if (name == "CodigoPostal")
+                {
+                    if (this.codigoPostal != null)
+                    {
+                        if (this.codigoPostal.Value.ToString().Length != 5 || this.codigoPostal.Value.ToString().Length != 0)
+                        {
+                            result = "El campo CodigoPostal tiene que contener 5 numeros";
+                        }
+                    }
+                }
+                */
                 else if (name == "IdMunicipio")
                 {
                     if (this.idMunicipio == 0 || this.idMunicipio == null)
@@ -253,7 +264,6 @@ namespace TallerWPF.Entidades.VehiculosEntidades
             Email = cliente.Email;
             IdEstado = cliente.IdEstado;
             Nombre = cliente.Nombre;
-
           
             C_TiposPersona = cliente.C_TiposPersona;
             C_Municipios = cliente.C_Municipios;

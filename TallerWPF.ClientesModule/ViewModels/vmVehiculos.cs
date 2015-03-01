@@ -14,10 +14,12 @@ using TallerWPF.Entidades.VehiculosEntidades;
 using Servicios;
 using System.Windows;
 
+using System.ComponentModel.DataAnnotations;
+
 namespace TallerWPF.ClientesModule.ViewModels
 {
     [Export]
-    class vmVehiculos : BindableBase
+    class vmVehiculos : ValidatableBindableBase
     {
 
         #region ATRIBUTOS PRIVAODOS
@@ -41,17 +43,32 @@ namespace TallerWPF.ClientesModule.ViewModels
 
         public void guardarDatosVehiculo()
         {
-            C_Vehiculos nuevoVehiculo = new C_Vehiculos();
-            nuevoVehiculo.IdVehiculo = vehiculoSeleccionado.IdVehiculo;
-            nuevoVehiculo.Placas = VehiculoSeleccionado.Placas;
-            nuevoVehiculo.Marca = VehiculoSeleccionado.Marca;
-            nuevoVehiculo.Linea = VehiculoSeleccionado.Linea;
-            nuevoVehiculo.IdCliente = ClienteSeleccionado.IdCliente;
-            nuevoVehiculo.Color = VehiculoSeleccionado.Color;
-            nuevoVehiculo.Modelo = VehiculoSeleccionado.Modelo;
-            nuevoVehiculo.NoEconomico = VehiculoSeleccionado.NoEconomico;
-            nuevoVehiculo.Estatus = 1;
-            MessageBox.Show(clientesCtrl.GuardarVehiculo(nuevoVehiculo));
+            this.ValidateProperties();
+
+           
+            
+
+            if (ClienteSeleccionado.HasErrors)
+            {
+                Errores = ObtenerErrores();
+                MessageBox.Show("Existen errores");
+            }
+            else {
+
+                C_Vehiculos nuevoVehiculo = new C_Vehiculos();
+
+                nuevoVehiculo.IdVehiculo = vehiculoSeleccionado.IdVehiculo;
+                nuevoVehiculo.Placas = VehiculoSeleccionado.Placas;
+                nuevoVehiculo.Marca = VehiculoSeleccionado.Marca;
+                nuevoVehiculo.Linea = VehiculoSeleccionado.Linea;
+                nuevoVehiculo.IdCliente = ClienteSeleccionado.IdCliente;
+                nuevoVehiculo.Color = VehiculoSeleccionado.Color;
+                nuevoVehiculo.Modelo = VehiculoSeleccionado.Modelo;
+                nuevoVehiculo.NoEconomico = VehiculoSeleccionado.NoEconomico;
+                nuevoVehiculo.Estatus = 1;
+                MessageBox.Show(clientesCtrl.GuardarVehiculo(nuevoVehiculo));
+            }
+            
         }
 
         private ObservableCollection<C_VehiculosDTO> ListadoVehiculos(int idCliente)
@@ -93,6 +110,8 @@ namespace TallerWPF.ClientesModule.ViewModels
             set
             {
                 SetProperty(ref this.clienteSeleccionado, value);
+
+                VerificarCantidadValida();
 
                 if (clienteSeleccionado != null)
                 {
@@ -149,6 +168,73 @@ namespace TallerWPF.ClientesModule.ViewModels
                 SetProperty(ref this.vehiculoSeleccionado, value);
             }
         }
+
+        #region PROPIEDAD
+
+        List<string> errores;
+        public List<string> Errores
+        {
+            get { return ObtenerErrores(); }
+            set { SetProperty(ref this.errores, value); }
+        }
+        public void VerificarCantidadValida()
+        {
+            if (this.ClienteSeleccionado == null)
+            {
+                var err = new String[] { "No existe un cliente seleccionado." }.AsEnumerable();
+                this.SetErrors(() => this.ClienteSeleccionado, err);
+
+                Errores = ObtenerErrores();
+                // OnErrorsChanged(new DataErrorsChangedEventArgs("CantidadRecibidaPago"));
+            }
+            else
+            {
+                this.ValidateProperties();
+
+                /*   if (TipoPagoSeleccionado != null)
+                   {
+                       //DetallePagoSeleccionado.ValidateProperties();
+                       var erroresPago = DetallePagoSeleccionado.GetAllErrors().Select(e => e.Key).ToList();
+                       foreach (var error in erroresPago)
+                       {
+                           DetallePagoSeleccionado.ErrorsContainer.ClearErrors(error);
+                       }
+
+                       foreach (var propiedad in TipoPagoSeleccionado.ValidacionesFormasPago)
+                       {
+                           this.DetallePagoSeleccionado.ValidateProperty(propiedad.PropiedadValidadaPagosDetalle);
+                       }
+                   }*/
+
+                Errores = ObtenerErrores();
+            }
+        }
+        #endregion
+
+        private List<string> ObtenerErrores()
+        {
+            List<string> errors = new List<string>();
+            Dictionary<string, List<string>> allErrors = this.GetAllErrors();
+            foreach (string propertyName in allErrors.Keys)
+            {
+                foreach (var errorString in allErrors[propertyName])
+                {
+                    errors.Add(errorString);
+                }
+            }
+
+           // allErrors = ClienteSeleccionado.GetAllErrors();
+            foreach (string propertyName in allErrors.Keys)
+            {
+                foreach (var errorString in allErrors[propertyName])
+                {
+                    errors.Add(propertyName + ": " + errorString);
+                }
+            }
+
+            return errors;
+        }
+
     }
         #endregion
 }

@@ -100,27 +100,29 @@ namespace TallerWPF.ClientesModule.Vistas
             if (vistaActiva is ucVehiculos)
             {
                 string mensajeErrores = "Existen errores en los datos a guardar, verifiquelos por favor";
-                if (Validation.GetHasError(txtPlaca))
+            /*    if (Validation.GetHasError(txtPlaca))
                 {
                     MessageBox.Show(mensajeErrores);
                 }
-                else if (cmbClientes.SelectedItem == null)
+              /*  else if (cmbClientes.SelectedItem == null)
                 {
                     MessageBox.Show("Debe seleccionar un cliente");
-                }
-                else if (Validation.GetHasError(txtMarca))
-                {
-                    MessageBox.Show("mensajeErrores");
-                }
-                else if (Validation.GetHasError(txtLinea))
-                {
-                    MessageBox.Show("mensajeErrores");
-                }
-                else
-                {
-                    vmVehiculos VMVehiculos = this.DataContext as vmVehiculos;
-                    VMVehiculos.GuardarDatosCommand.Execute();
-                }
+                }*/
+                /* else if (Validation.GetHasError(txtMarca))
+                 {
+                     MessageBox.Show("mensajeErrores");
+                 }
+                 else if (Validation.GetHasError(txtLinea))
+                 {
+                     MessageBox.Show("mensajeErrores");
+                 }
+                 else
+                 {
+                     vmVehiculos VMVehiculos = this.DataContext as vmVehiculos;
+                     VMVehiculos.GuardarDatosCommand.Execute();
+                 }*/
+                vmVehiculos VMVehiculos = this.DataContext as vmVehiculos;
+                VMVehiculos.GuardarDatosCommand.Execute();
             }
         }
     }

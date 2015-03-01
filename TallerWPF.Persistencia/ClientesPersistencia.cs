@@ -47,9 +47,9 @@ namespace TallerWPF.Persistencia
                              cliente.FechaModificacion = fechaTransaccion;
                              ctx.C_Clientes.Attach(cliente);
                              ctx.Entry(cliente).State = EntityState.Modified;
+                             ctx.SaveChanges();
                              mensajeExitoso = "Los datos del CLIENTE han sido actualizados EXITOSAMENTE";
                         }
-                        ctx.SaveChanges();
                         return mensajeExitoso;
                     }                    
                 }               

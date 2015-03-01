@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TallerWPF.Entidades;
+using TallerWPF.Entidades.VentasEntidades;
 using TallerWPF.Infraestructura.Interfaces;
 using TallerWPF.Infraestructura;
 using TallerWPF.Entidades.VentasEntidades;
@@ -18,7 +19,7 @@ using TallerWPF.VentasModule.Helpers;
 using System.Windows.Data;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using TallerWPF.Infraestructura.Dtos.Ventas;
+//using TallerWPF.Infraestructura.Dtos.Ventas;
 
 namespace TallerWPF.VentasModule.ViewModels
 {
@@ -500,8 +501,7 @@ namespace TallerWPF.VentasModule.ViewModels
                     foreach (var propiedad in TipoPagoSeleccionado.ValidacionesFormasPago)
                     {
                         this.DetallePagoSeleccionado.ValidateProperty(propiedad.PropiedadValidadaPagosDetalle);
-                    }
-                    
+                    }                    
                 }
 
                 VerificarCantidadValida();

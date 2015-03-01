@@ -76,7 +76,7 @@
         <Label Content="Dirección :" Grid.Row="6" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Label>
         <TextBox x:Name="txtDireccion" Text="{Binding ClienteSeleccionado.Direccion, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="250" Grid.Column="0" FontWeight="Bold" FontSize="12"  Grid.Row="7" Grid.ColumnSpan="3" Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
         <Label  Content="CP :" Grid.Row="6" Grid.Column="3" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBox x:Name="txtCP" Width="70" Text="{Binding ClienteSeleccionado.CodigoPostal, Mode=TwoWay}" Grid.Column="3" Grid.Row="7"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
+        <TextBox x:Name="txtCP" Width="70" Text="{Binding ClienteSeleccionado.CodigoPostal, ValidatesOnDataErrors=True, Mode=TwoWay}" Grid.Column="3" Grid.Row="7"  Margin="15,0,0,0" HorizontalAlignment="Left"></TextBox>
       
         <Label Content="Estado :" Grid.Row="8" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
         <telerik:RadComboBox Width="150" Grid.Column="0" FontSize="12"  Grid.Row="9" Grid.ColumnSpan="2" Margin="15,0,0,0" HorizontalAlignment="Left" IsTextSearchEnabled="True"

@@ -70,7 +70,7 @@
         <TextBox x:Name="txtNoEconomico" IsEnabled="False" Width="150"  Text="{Binding VehiculoSeleccionado.NoEconomico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="4" Grid.Row="11"  Margin="15,0,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left"></TextBox>
         <Label Content="Cliente: " FontSize="14" Grid.Column="6" Grid.Row="2" Margin="30,0,0,0" HorizontalAlignment="Left"></Label>
         <telerik:RadAutoCompleteBox x:Name="cmbClientes" Grid.Column="6" Margin="110,0,0,0" Grid.Row="2" Width="300" HorizontalAlignment="Left"
-                                    ItemsSource="{Binding Clientes}" SelectionChanged="cmbClientes_SelectionChanged"  SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}" 
+                                    ItemsSource="{Binding Clientes}" SelectionChanged="cmbClientes_SelectionChanged"  SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}" 
                                     SelectionMode="Single"  DisplayMemberPath="Nombre">
             <telerik:RadAutoCompleteBox.DropDownItemTemplate>
                 <DataTemplate>

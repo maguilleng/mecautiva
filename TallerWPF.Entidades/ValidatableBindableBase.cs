@@ -10,9 +10,8 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 
-namespace TallerWPF.Infraestructura
+namespace TallerWPF.Entidades
 {
     public class ValidatableBindableBase : BindableBase, INotifyDataErrorInfo
     {

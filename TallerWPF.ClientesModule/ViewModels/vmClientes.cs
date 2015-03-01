@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Servicios;
-using TallerWPF.Infraestructura;
 using TallerWPF.Entidades;
 using TallerWPF.Entidades.VehiculosEntidades;
 
@@ -17,11 +16,13 @@ using TallerWPF.ClientesModule.SharedServices;
 using TallerWPF.Infraestructura.Interfaces;
 using System.Windows;
 
+using System.ComponentModel.DataAnnotations;
+
 
 namespace TallerWPF.ClientesModule.ViewModels
 {
     [Export]
-    class vmClientes : BindableBase
+    class vmClientes  : ValidatableBindableBase
     {
         #region ATRIBUTOS PRIVADOS
         IServicioCliente servicioCliente;
@@ -75,6 +76,8 @@ namespace TallerWPF.ClientesModule.ViewModels
         }
         public void guardarDatosCliente()
         {
+            this.ValidateProperties(); 
+
             C_Clientes nuevoCliente = new C_Clientes();
 
             nuevoCliente.IdCliente = ClienteSeleccionado.IdCliente;
@@ -115,6 +118,7 @@ namespace TallerWPF.ClientesModule.ViewModels
         }
 
         C_ClientesDTO clienteSeleccionado;
+        [Required(ErrorMessage = "Debe seleccionar un Cliente")]
         public C_ClientesDTO ClienteSeleccionado
         {
             get
@@ -242,7 +246,7 @@ namespace TallerWPF.ClientesModule.ViewModels
                 }
             }
         }
-
+    
         //TRAEMOS LAS CIUDADES
         ObservableCollection<C_Ciudades> ciudadesPorMunicipio;
         public ObservableCollection<C_Ciudades> CiudadesPorMunicipio
@@ -267,5 +271,6 @@ namespace TallerWPF.ClientesModule.ViewModels
         }
     }
         #endregion
+   
 }
 

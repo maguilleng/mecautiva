@@ -66,6 +66,7 @@
     <Reference Include="System.Data.SQLite.Linq">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.93.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -106,6 +107,7 @@
     <Compile Include="C_Vehiculos.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ErrorsContainer.cs" />
     <Compile Include="Facturas.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
@@ -137,6 +139,7 @@
     <Compile Include="ValidacionesFormasPago.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ValidatableBindableBase.cs" />
     <Compile Include="VehiculosEntidades\C_ClientesDTO.cs" />
     <Compile Include="VehiculosEntidades\C_VehiculosDTO.cs" />
     <Compile Include="Ventas.cs">
@@ -146,6 +149,7 @@
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VentasEntidades\C_ServiciosDto.cs" />
+    <Compile Include="VentasEntidades\PagosDetalleDto.cs" />
     <Compile Include="VentasEntidades\VentaDetalleDto.cs" />
     <Compile Include="VentasEntidades\VentaDto.cs" />
   </ItemGroup>
