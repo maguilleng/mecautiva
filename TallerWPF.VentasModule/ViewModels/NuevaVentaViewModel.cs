@@ -35,6 +35,7 @@ namespace TallerWPF.VentasModule.ViewModels
         PreciosService preciosService;
         TipoPagoService tipoPagoService;
         ClientesController clientesCtrl;
+        VentasService ventasService;
 
         #endregion       
 
@@ -46,7 +47,7 @@ namespace TallerWPF.VentasModule.ViewModels
 
         #endregion
 
-        #region PROPIEDADES       
+        #region PROPIEDADES
 
         bool estaPagandoVentaActual;
         public bool EstaPagandoVentaActual
@@ -55,6 +56,16 @@ namespace TallerWPF.VentasModule.ViewModels
             set { 
                 SetProperty(ref this.estaPagandoVentaActual, value);
                 EstadoDetalleVentas = EstaPagandoVentaActual ? false : true;
+            }
+        }
+
+        bool ventaGuardada;
+        public bool VentaGuardada
+        {
+            get { return ventaGuardada; }
+            set 
+            {
+                SetProperty(ref this.ventaGuardada, value); 
             }
         }
 
@@ -159,7 +170,7 @@ namespace TallerWPF.VentasModule.ViewModels
         }
 
         C_Clientes clienteSeleccionado;
-        [Required (ErrorMessage = "Debe seleccionar un Cliente")]
+        [Required (ErrorMessage = "Debe seleccionar un Cliente", AllowEmptyStrings=false)]
         public C_Clientes ClienteSeleccionado
         {
             get { return this.clienteSeleccionado; }
@@ -271,19 +282,21 @@ namespace TallerWPF.VentasModule.ViewModels
             ProductosService servicioProductos, 
             ClientesController clientesCtrl,
             PreciosService preciosService,
-            TipoPagoService tipoPagoService)
+            TipoPagoService tipoPagoService,
+            VentasService ventasService)
         {
-            this.servicioVenta = servicioVenta;
             this.eventAggregator = eventAggregator;
+            
+            this.servicioVenta = servicioVenta;
+            this.ventasService = ventasService;
             this.servicioProductos = servicioProductos;
             this.preciosService = preciosService;
             this.tipoPagoService = tipoPagoService;
+            this.clientesCtrl = clientesCtrl;
 
             this.ProductoEliminadoCommand = new DelegateCommand(ActualizarImporteVenta);
             this.ProductoActualizadoCommand = new DelegateCommand(ActualizarImporteVenta);
-            this.VerDetalleVentaCommand = new DelegateCommand(VerDetalleVenta);
-            
-            this.clientesCtrl = clientesCtrl;
+            this.VerDetalleVentaCommand = new DelegateCommand(VerDetalleVenta);           
 
             this.eventAggregator.GetEvent<ClienteSeleccionadoEvent>().Subscribe(OnClienteSeleccionado);
             this.eventAggregator.GetEvent<VehiculoSeleccionadoEvent>().Subscribe(OnVehiculoSeleccionado);
@@ -374,6 +387,7 @@ namespace TallerWPF.VentasModule.ViewModels
 
                     VentaDetalleDto ventaDetalle = new VentaDetalleDto()
                     {
+                        IdServicio = c_servicioAgregado.IdServicio,
                         C_Servicios = c_servicioAgregado,
                         Cantidad = 1,
                         PrecioUnitario = precioUnitario,
@@ -400,34 +414,37 @@ namespace TallerWPF.VentasModule.ViewModels
 
         public void VerificarCantidadValida()
         {
-            if (this.CantidadRecibidaPago < VentaActual.Total)
+            if (TipoPagoSeleccionado != null && TipoPagoSeleccionado.Mnemonico == "EF")
             {
-                var err = new String[] { "La Cantidad Recibida es Menor al Total de la Venta." }.AsEnumerable();
-                this.SetErrors(() => this.CantidadRecibidaPago, err);
-
-                Errores = ObtenerErrores();
-                OnErrorsChanged(new DataErrorsChangedEventArgs("CantidadRecibidaPago"));
-            }
-            else
-            {
-                this.ValidateProperties();
-
-                if(TipoPagoSeleccionado != null)
+                if (this.CantidadRecibidaPago < VentaActual.Total)
                 {
-                    //DetallePagoSeleccionado.ValidateProperties();
-                    var erroresPago = DetallePagoSeleccionado.GetAllErrors().Select(e => e.Key).ToList();
-                    foreach (var error in erroresPago)
-                    {
-                        DetallePagoSeleccionado.ErrorsContainer.ClearErrors(error);
-                    }
+                    var err = new String[] { "La Cantidad Recibida es Menor al Total de la Venta." }.AsEnumerable();
+                    this.SetErrors(() => this.CantidadRecibidaPago, err);
 
-                    foreach (var propiedad in TipoPagoSeleccionado.ValidacionesFormasPago)
-                    {
-                        this.DetallePagoSeleccionado.ValidateProperty(propiedad.PropiedadValidadaPagosDetalle);
-                    }
+                    Errores = ObtenerErrores();
+                    OnErrorsChanged(new DataErrorsChangedEventArgs("CantidadRecibidaPago"));
                 }
+                else
+                {
+                    this.ValidateProperties();
 
-                Errores = ObtenerErrores();
+                    if (TipoPagoSeleccionado != null)
+                    {
+                        //DetallePagoSeleccionado.ValidateProperties();
+                        var erroresPago = DetallePagoSeleccionado.GetAllErrors().Select(e => e.Key).ToList();
+                        foreach (var error in erroresPago)
+                        {
+                            DetallePagoSeleccionado.ErrorsContainer.ClearErrors(error);
+                        }
+
+                        foreach (var propiedad in TipoPagoSeleccionado.ValidacionesFormasPago)
+                        {
+                            this.DetallePagoSeleccionado.ValidateProperty(propiedad.PropiedadValidadaPagosDetalle);
+                        }
+                    }
+
+                    Errores = ObtenerErrores();
+                }
             }
         }
 
@@ -509,13 +526,13 @@ namespace TallerWPF.VentasModule.ViewModels
                 if (this.HasErrors || this.DetallePagoSeleccionado.HasErrors)
                 {
                     Errores = ObtenerErrores();
-                }                
-                
-                if (!this.HasErrors)
-                { 
+                }
+                else
+                {
                     Errores = ObtenerErrores();
-                    MessageBox.Show("Saca la lana");
-                }                
+                    DetallePagoSeleccionado.Cantidad = VentaActual.Total;
+                    GuardarVentaActual();
+                }               
             }
         }
 
@@ -526,6 +543,23 @@ namespace TallerWPF.VentasModule.ViewModels
             VerificarCantidadValida();
         }
 
+
+        public void GuardarVentaActual()
+        {
+            bool exito = false;
+            
+            exito = ventasService.GuardarVenta(TipoPagoSeleccionado, VentaActual, DetallesVenta.ToList(), ClienteSeleccionado, VehiculoSeleccionado, DetallePagoSeleccionado);
+
+            if (exito)
+            {
+                MessageBox.Show("Venta Exitosa");
+            }
+            else
+            {
+                MessageBox.Show("Ocurrió un error al guardar.");
+            }
+                
+        }
         public static ValidationResult ValidarProductosSeleccionados(ObservableCollection<VentaDetalleDto> productos, ValidationContext validationContext)
         {
             ValidationResult result = new ValidationResult("Debe agregar Productos a la Venta");

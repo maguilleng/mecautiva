@@ -11,16 +11,14 @@ namespace TallerWPF.Persistencia
 {
     public class ServiciosPersistencia
     {
-        PuntoVentaEntities contexto;
-
-        public ServiciosPersistencia()
-        {
-            this.contexto = new PuntoVentaEntities();
-        }
 
         public List<C_Servicios> ObtenerCatalogoServicios()
         {
-            return contexto.C_Servicios.Where(s => s.SeVende.Value).ToList();
+            using(var contexto = new PuntoVentaEntities())
+            {
+                return contexto.C_Servicios.Include("C_TiposServicios").Include("C_UnidadesMedida").
+                    Include("C_Marcas").Where(s => s.SeVende.Value).ToList();
+            }
         }
 
         public List<C_Marcas> ObtenerListaMarcas()

@@ -9,16 +9,12 @@ namespace TallerWPF.Persistencia
 {
     public class TipoPagoPersistencia
     {
-        private PuntoVentaEntities contexto;
-
-        public TipoPagoPersistencia()
-        {
-            contexto = new PuntoVentaEntities();
-        }
-
         public List<C_FormasPago> ObtenerTiposPago()
         {
-            return contexto.C_FormasPago.ToList();
+            using (var contexto = new PuntoVentaEntities())
+            {
+                return contexto.C_FormasPago.Include("ValidacionesFormasPago").ToList();
+            }
         }
     }
 }

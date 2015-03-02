@@ -65,6 +65,7 @@
       <DependentUpon>TallerModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="VehiculosPersistencia.cs" />
+    <Compile Include="VentasPersistencia.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
