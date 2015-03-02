@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using TallerWPF.Entidades;
 using TallerWPF.Entidades.VentasEntidades;
-using TallerWPF.Infraestructura.Dtos.Ventas;
 using TallerWPF.Persistencia;
 
 namespace Servicios

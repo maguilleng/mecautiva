@@ -13,13 +13,11 @@ using TallerWPF.Entidades;
 using TallerWPF.Entidades.VentasEntidades;
 using TallerWPF.Infraestructura.Interfaces;
 using TallerWPF.Infraestructura;
-using TallerWPF.Entidades.VentasEntidades;
 using System.Windows;
 using TallerWPF.VentasModule.Helpers;
 using System.Windows.Data;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-//using TallerWPF.Infraestructura.Dtos.Ventas;
 
 namespace TallerWPF.VentasModule.ViewModels
 {
