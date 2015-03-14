@@ -279,14 +279,10 @@
           <Property Name="IdUsuarioModificacion" Type="int" />
           <Property Name="Estatus" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'PuntoVenta.dbo.VentasVehiculos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VentasVehiculos">
           <Key>
             <PropertyRef Name="IdVenta" />
             <PropertyRef Name="IdVehiculo" />
-            <PropertyRef Name="Kilometraje" />
-            <PropertyRef Name="Observaciones" />
           </Key>
           <Property Name="IdVenta" Type="int" Nullable="false" />
           <Property Name="IdVehiculo" Type="int" Nullable="false" />
@@ -577,14 +573,7 @@ advertencia 6002: La tabla o vista 'PuntoVenta.dbo.VentasVehiculos' no tiene def
           <EntitySet Name="ValidacionesFormasPago" EntityType="Self.ValidacionesFormasPago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VentasDetalle" EntityType="Self.VentasDetalle" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VentasVehiculos" EntityType="Self.VentasVehiculos" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[VentasVehiculos].[IdVenta] AS [IdVenta], 
-[VentasVehiculos].[IdVehiculo] AS [IdVehiculo], 
-[VentasVehiculos].[Kilometraje] AS [Kilometraje], 
-[VentasVehiculos].[Observaciones] AS [Observaciones]
-FROM [dbo].[VentasVehiculos] AS [VentasVehiculos]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="VentasVehiculos" EntityType="Self.VentasVehiculos" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_C_Ciudades_C_Municipios" Association="Self.FK_C_Ciudades_C_Municipios">
             <End Role="C_Municipios" EntitySet="C_Municipios" />
             <End Role="C_Ciudades" EntitySet="C_Ciudades" />
@@ -787,7 +776,7 @@ FROM [dbo].[VentasVehiculos] AS [VentasVehiculos]</DefiningQuery>
             <End Role="Ventas" EntitySet="Ventas" />
             <End Role="VentasVehiculos" EntitySet="VentasVehiculos" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="C_Ciudades">
           <Key>
             <PropertyRef Name="IdCiudad" />
@@ -1348,8 +1337,6 @@ FROM [dbo].[VentasVehiculos] AS [VentasVehiculos]</DefiningQuery>
           <Key>
             <PropertyRef Name="IdVenta" />
             <PropertyRef Name="IdVehiculo" />
-            <PropertyRef Name="Kilometraje" />
-            <PropertyRef Name="Observaciones" />
           </Key>
           <Property Name="IdVenta" Type="Int32" Nullable="false" />
           <Property Name="IdVehiculo" Type="Int32" Nullable="false" />

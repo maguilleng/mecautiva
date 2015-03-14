@@ -47,7 +47,7 @@
         <EntityTypeShape EntityType="PuntoVentaModel.VentasVehiculos" Width="1.5" PointX="13.375" PointY="22.125" />
         <AssociationConnector Association="PuntoVentaModel.FK_VentasVehiculos_C_Vehiculos" />
         <AssociationConnector Association="PuntoVentaModel.FK_VentasVehiculos_Ventas" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
