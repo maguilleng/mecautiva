@@ -152,6 +152,9 @@
     <Compile Include="VentasEntidades\PagosDetalleDto.cs" />
     <Compile Include="VentasEntidades\VentaDetalleDto.cs" />
     <Compile Include="VentasEntidades\VentaDto.cs" />
+    <Compile Include="VentasVehiculos.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

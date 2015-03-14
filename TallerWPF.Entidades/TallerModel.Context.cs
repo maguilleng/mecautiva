@@ -44,5 +44,6 @@ namespace TallerWPF.Entidades
         public DbSet<Ventas> Ventas { get; set; }
         public DbSet<VentasDetalle> VentasDetalle { get; set; }
         public DbSet<ValidacionesFormasPago> ValidacionesFormasPago { get; set; }
+        public DbSet<VentasVehiculos> VentasVehiculos { get; set; }
     }
 }

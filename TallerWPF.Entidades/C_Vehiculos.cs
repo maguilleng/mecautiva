@@ -17,6 +17,7 @@ namespace TallerWPF.Entidades
         public C_Vehiculos()
         {
             this.Ventas = new HashSet<Ventas>();
+            this.VentasVehiculos = new HashSet<VentasVehiculos>();
         }
     
         public int IdVehiculo { get; set; }
@@ -35,5 +36,6 @@ namespace TallerWPF.Entidades
     
         public virtual C_Clientes C_Clientes { get; set; }
         public virtual ICollection<Ventas> Ventas { get; set; }
+        public virtual ICollection<VentasVehiculos> VentasVehiculos { get; set; }
     }
 }

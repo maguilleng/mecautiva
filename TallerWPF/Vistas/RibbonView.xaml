@@ -32,7 +32,7 @@
                 <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"
                                             LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
                                             Size="Large"
-                                            Text="Venta Con Factura"
+                                            Text="Nueva Venta"
                                              Command="{Binding BotonMenuCommand}"
                                              CommandParameter="VentaConFactura">
                 </telerik:RadRibbonButton>

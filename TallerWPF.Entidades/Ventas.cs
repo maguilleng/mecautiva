@@ -19,6 +19,7 @@ namespace TallerWPF.Entidades
             this.Facturas = new HashSet<Facturas>();
             this.Pagos = new HashSet<Pagos>();
             this.VentasDetalle = new HashSet<VentasDetalle>();
+            this.VentasVehiculos = new HashSet<VentasVehiculos>();
         }
     
         public int IdVenta { get; set; }
@@ -43,5 +44,6 @@ namespace TallerWPF.Entidades
         public virtual ICollection<Facturas> Facturas { get; set; }
         public virtual ICollection<Pagos> Pagos { get; set; }
         public virtual ICollection<VentasDetalle> VentasDetalle { get; set; }
+        public virtual ICollection<VentasVehiculos> VentasVehiculos { get; set; }
     }
 }

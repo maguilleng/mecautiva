@@ -279,6 +279,20 @@
           <Property Name="IdUsuarioModificacion" Type="int" />
           <Property Name="Estatus" Type="int" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'PuntoVenta.dbo.VentasVehiculos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VentasVehiculos">
+          <Key>
+            <PropertyRef Name="IdVenta" />
+            <PropertyRef Name="IdVehiculo" />
+            <PropertyRef Name="Kilometraje" />
+            <PropertyRef Name="Observaciones" />
+          </Key>
+          <Property Name="IdVenta" Type="int" Nullable="false" />
+          <Property Name="IdVehiculo" Type="int" Nullable="false" />
+          <Property Name="Kilometraje" Type="float" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
         <Association Name="FK_C_Ciudades_C_Municipios">
           <End Role="C_Municipios" Type="Self.C_Municipios" Multiplicity="0..1" />
           <End Role="C_Ciudades" Type="Self.C_Ciudades" Multiplicity="*" />
@@ -519,6 +533,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VentasVehiculos_C_Vehiculos">
+          <End Role="C_Vehiculos" Type="Self.C_Vehiculos" Multiplicity="1" />
+          <End Role="VentasVehiculos" Type="Self.VentasVehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Vehiculos">
+              <PropertyRef Name="IdVehiculo" />
+            </Principal>
+            <Dependent Role="VentasVehiculos">
+              <PropertyRef Name="IdVehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentasVehiculos_Ventas">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="VentasVehiculos" Type="Self.VentasVehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="IdVenta" />
+            </Principal>
+            <Dependent Role="VentasVehiculos">
+              <PropertyRef Name="IdVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="PuntoVentaModelStoreContainer">
           <EntitySet Name="C_Ciudades" EntityType="Self.C_Ciudades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_Clientes" EntityType="Self.C_Clientes" Schema="dbo" store:Type="Tables" />
@@ -539,6 +577,14 @@
           <EntitySet Name="ValidacionesFormasPago" EntityType="Self.ValidacionesFormasPago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VentasDetalle" EntityType="Self.VentasDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VentasVehiculos" EntityType="Self.VentasVehiculos" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[VentasVehiculos].[IdVenta] AS [IdVenta], 
+[VentasVehiculos].[IdVehiculo] AS [IdVehiculo], 
+[VentasVehiculos].[Kilometraje] AS [Kilometraje], 
+[VentasVehiculos].[Observaciones] AS [Observaciones]
+FROM [dbo].[VentasVehiculos] AS [VentasVehiculos]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_C_Ciudades_C_Municipios" Association="Self.FK_C_Ciudades_C_Municipios">
             <End Role="C_Municipios" EntitySet="C_Municipios" />
             <End Role="C_Ciudades" EntitySet="C_Ciudades" />
@@ -618,6 +664,14 @@
           <AssociationSet Name="FK_VentasDetalle_Ventas" Association="Self.FK_VentasDetalle_Ventas">
             <End Role="Ventas" EntitySet="Ventas" />
             <End Role="VentasDetalle" EntitySet="VentasDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentasVehiculos_C_Vehiculos" Association="Self.FK_VentasVehiculos_C_Vehiculos">
+            <End Role="C_Vehiculos" EntitySet="C_Vehiculos" />
+            <End Role="VentasVehiculos" EntitySet="VentasVehiculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentasVehiculos_Ventas" Association="Self.FK_VentasVehiculos_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="VentasVehiculos" EntitySet="VentasVehiculos" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -723,6 +777,15 @@
           <AssociationSet Name="FK_ValidacionesFormasPago_C_FormasPago" Association="PuntoVentaModel.FK_ValidacionesFormasPago_C_FormasPago">
             <End Role="C_FormasPago" EntitySet="C_FormasPago" />
             <End Role="ValidacionesFormasPago" EntitySet="ValidacionesFormasPago" />
+          </AssociationSet>
+          <EntitySet Name="VentasVehiculos" EntityType="PuntoVentaModel.VentasVehiculos" />
+          <AssociationSet Name="FK_VentasVehiculos_C_Vehiculos" Association="PuntoVentaModel.FK_VentasVehiculos_C_Vehiculos">
+            <End Role="C_Vehiculos" EntitySet="C_Vehiculos" />
+            <End Role="VentasVehiculos" EntitySet="VentasVehiculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentasVehiculos_Ventas" Association="PuntoVentaModel.FK_VentasVehiculos_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="VentasVehiculos" EntitySet="VentasVehiculos" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C_Ciudades">
@@ -900,6 +963,7 @@
           <Property Type="Int32" Name="IdUsuarioModificacion" />
           <NavigationProperty Name="C_Clientes" Relationship="PuntoVentaModel.FK_C_Vehiculos_C_Clientes" FromRole="C_Vehiculos" ToRole="C_Clientes" />
           <NavigationProperty Name="Ventas" Relationship="PuntoVentaModel.FK_Ventas_C_Vehiculos" FromRole="C_Vehiculos" ToRole="Ventas" />
+          <NavigationProperty Name="VentasVehiculos" Relationship="PuntoVentaModel.FK_VentasVehiculos_C_Vehiculos" FromRole="C_Vehiculos" ToRole="VentasVehiculos" />
         </EntityType>
         <EntityType Name="Facturas">
           <Key>
@@ -1011,6 +1075,7 @@
           <NavigationProperty Name="Facturas" Relationship="PuntoVentaModel.FK_Facturas_Ventas" FromRole="Ventas" ToRole="Facturas" />
           <NavigationProperty Name="Pagos" Relationship="PuntoVentaModel.FK_Pagos_Ventas" FromRole="Ventas" ToRole="Pagos" />
           <NavigationProperty Name="VentasDetalle" Relationship="PuntoVentaModel.FK_VentasDetalle_Ventas" FromRole="Ventas" ToRole="VentasDetalle" />
+          <NavigationProperty Name="VentasVehiculos" Relationship="PuntoVentaModel.FK_VentasVehiculos_Ventas" FromRole="Ventas" ToRole="VentasVehiculos" />
         </EntityType>
         <EntityType Name="VentasDetalle">
           <Key>
@@ -1276,6 +1341,44 @@
             </Principal>
             <Dependent Role="ValidacionesFormasPago">
               <PropertyRef Name="IdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VentasVehiculos">
+          <Key>
+            <PropertyRef Name="IdVenta" />
+            <PropertyRef Name="IdVehiculo" />
+            <PropertyRef Name="Kilometraje" />
+            <PropertyRef Name="Observaciones" />
+          </Key>
+          <Property Name="IdVenta" Type="Int32" Nullable="false" />
+          <Property Name="IdVehiculo" Type="Int32" Nullable="false" />
+          <Property Name="Kilometraje" Type="Double" Nullable="false" />
+          <Property Name="Observaciones" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="C_Vehiculos" Relationship="PuntoVentaModel.FK_VentasVehiculos_C_Vehiculos" FromRole="VentasVehiculos" ToRole="C_Vehiculos" />
+          <NavigationProperty Name="Ventas" Relationship="PuntoVentaModel.FK_VentasVehiculos_Ventas" FromRole="VentasVehiculos" ToRole="Ventas" />
+        </EntityType>
+        <Association Name="FK_VentasVehiculos_C_Vehiculos">
+          <End Type="PuntoVentaModel.C_Vehiculos" Role="C_Vehiculos" Multiplicity="1" />
+          <End Type="PuntoVentaModel.VentasVehiculos" Role="VentasVehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Vehiculos">
+              <PropertyRef Name="IdVehiculo" />
+            </Principal>
+            <Dependent Role="VentasVehiculos">
+              <PropertyRef Name="IdVehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentasVehiculos_Ventas">
+          <End Type="PuntoVentaModel.Ventas" Role="Ventas" Multiplicity="1" />
+          <End Type="PuntoVentaModel.VentasVehiculos" Role="VentasVehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="IdVenta" />
+            </Principal>
+            <Dependent Role="VentasVehiculos">
+              <PropertyRef Name="IdVenta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1575,6 +1678,16 @@
                 <ScalarProperty Name="PropiedadValidadaPagosDetalle" ColumnName="PropiedadValidadaPagosDetalle" />
                 <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VentasVehiculos">
+            <EntityTypeMapping TypeName="PuntoVentaModel.VentasVehiculos">
+              <MappingFragment StoreEntitySet="VentasVehiculos">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Kilometraje" ColumnName="Kilometraje" />
+                <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
+                <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
