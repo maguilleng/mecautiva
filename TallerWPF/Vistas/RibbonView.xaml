@@ -25,6 +25,13 @@
                 <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"
                                             LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
                                             Size="Large"
+                                            Text="Resumen Ventas"
+                                             Command="{Binding BotonMenuCommand}"
+                                             CommandParameter="ResumenVentas">
+                </telerik:RadRibbonButton>
+                <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"
+                                            LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
+                                            Size="Large"
                                             Text="Venta Con Factura"
                                              Command="{Binding BotonMenuCommand}"
                                              CommandParameter="VentaConFactura">
@@ -32,9 +39,9 @@
                 <telerik:RadRibbonButton CollapseToSmall="WhenGroupIsMedium"
                                         LargeImage="/Recursos/Imagenes/Ventas/NuevaVentaDark_64x64.png"
                                         Size="Large"
-                                        Text="Venta Sencilla"
+                                        Text="Presupuesto"
                                             Command="{Binding BotonMenuCommand}"
-                                            CommandParameter="VentaSencilla">
+                                            CommandParameter="HacerPresupuesto">
 
                 </telerik:RadRibbonButton>
             </telerik:RadRibbonGroup>

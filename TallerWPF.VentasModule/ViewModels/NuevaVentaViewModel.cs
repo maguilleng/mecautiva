@@ -306,7 +306,13 @@ namespace TallerWPF.VentasModule.ViewModels
 
             EstadoDetalleVentas = true;
 
-            this.PropertyChanged += NuevaVentaViewModel_PropertyChanged;
+            //this.PropertyChanged += NuevaVentaViewModel_PropertyChanged;
+            this.ErrorsChanged += NuevaVentaViewModel_ErrorsChanged;
+        }
+
+        void NuevaVentaViewModel_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            Errores = ObtenerErrores();
         }
       
         #endregion
@@ -317,6 +323,7 @@ namespace TallerWPF.VentasModule.ViewModels
         {
             var p = e.PropertyName;
         }
+
 
         void NuevaVentaViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -457,11 +464,8 @@ namespace TallerWPF.VentasModule.ViewModels
         }
 
         public void OnClienteSeleccionado(C_Clientes cliente)
-        { 
-            if(cliente != null)
-            {
-                ClienteSeleccionado = cliente;
-            }
+        {
+            ClienteSeleccionado = cliente;
         }
 
         public void OnVehiculoSeleccionado(C_Vehiculos vehiculo)

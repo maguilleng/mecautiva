@@ -61,7 +61,6 @@ namespace Servicios
             return exito;
         }
 
-
         public Ventas ConvertirVentaDto(VentaDto ventaDto)
         {
             int? idVehiculo = null;

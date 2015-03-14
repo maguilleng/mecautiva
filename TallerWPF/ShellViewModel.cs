@@ -119,10 +119,13 @@ namespace TallerWPF
         {
             switch (parametroBoton)
             {
+                case "ResumenVentas":
+                    regionManager.RequestNavigate(RegionNames.MainRegion, "VentasPrincipal");
+                    break;
                 case "VentaConFactura":
                     EventoNuevaVenta(parametroBoton);
                     break;
-                case "VentaSencilla":
+                case "HacerPresupuesto":
                     EventoNuevaVenta(parametroBoton);
                     break;
                 case "LimpiarProductosVentaActual":

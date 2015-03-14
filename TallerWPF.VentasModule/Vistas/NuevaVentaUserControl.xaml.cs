@@ -40,8 +40,8 @@ namespace TallerWPF.VentasModule.Vistas
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             //throw new System.NotImplementedException();
-            int i = 1;
-            return;
+            //int i = 1;
+            //return;
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -54,7 +54,6 @@ namespace TallerWPF.VentasModule.Vistas
             }
 
             vm.ActualizarVentaActual();
-
         }
 
         public void ConfirmNavigationRequest(NavigationContext navigationContext, System.Action<bool> continuationCallback)
@@ -62,9 +61,13 @@ namespace TallerWPF.VentasModule.Vistas
             bool salir = false;
 
             var vm = this.DataContext as NuevaVentaViewModel;
-            if(vm.DetallesVenta != null && vm.DetallesVenta.Count > 0)
+            if (vm.DetallesVenta != null && vm.DetallesVenta.Count > 0)
             {
                 salir = MessageBox.Show("No ha finalizado la Venta Actual, perderá los cambios si continúa navegando a otra sección.\nDesea Continuar?", "Venta No Finalizada", MessageBoxButton.YesNo) == MessageBoxResult.Yes;
+            }
+            else
+            {
+                salir = true;
             }
                          
             if (salir)
